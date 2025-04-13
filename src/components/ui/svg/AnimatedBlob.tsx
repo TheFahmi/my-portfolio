@@ -2,22 +2,33 @@
 
 import { motion } from 'framer-motion';
 import { useId } from 'react';
+import { useThemeDetector } from '@/hooks/useThemeDetector';
 
 interface AnimatedBlobProps {
   className?: string;
   color?: string;
+  darkColor?: string;
   duration?: number;
   delay?: number;
 }
 
-const AnimatedBlob = ({ 
-  className = '', 
-  color = 'rgba(37, 99, 235, 0.15)', 
+const AnimatedBlob = ({
+  className = '',
+  color = 'rgba(37, 99, 235, 0.15)',
+  darkColor = 'rgba(59, 130, 246, 0.5)',
   duration = 20,
   delay = 0
 }: AnimatedBlobProps) => {
   const id = useId();
+  const { isDarkMode } = useThemeDetector();
+
+  // Use dark color in dark mode if provided
+  const activeColor = isDarkMode && darkColor ? darkColor : color;
   
+  // Higher opacity values for dark mode
+  const startOpacity = isDarkMode ? 0.9 : 0.7;
+  const endOpacity = isDarkMode ? 0.6 : 0.3;
+
   return (
     <motion.div
       className={`absolute ${className}`}
@@ -41,8 +52,8 @@ const AnimatedBlob = ({
       >
         <defs>
           <linearGradient id={`gradient-${id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style={{ stopColor: color, stopOpacity: 0.7 }} />
-            <stop offset="100%" style={{ stopColor: color, stopOpacity: 0.3 }} />
+            <stop offset="0%" style={{ stopColor: activeColor, stopOpacity: startOpacity }} />
+            <stop offset="100%" style={{ stopColor: activeColor, stopOpacity: endOpacity }} />
           </linearGradient>
         </defs>
         <motion.path

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import Image from 'next/image';
+import ComingSoon from '@/components/ui/ComingSoon';
 
 // Project data
 const projects = [
@@ -14,7 +14,8 @@ const projects = [
     category: 'web',
     technologies: ['React', 'Node.js', 'MongoDB'],
     demoLink: '#',
-    codeLink: '#'
+    codeLink: '#',
+    status: 'completed'
   },
   {
     id: 2,
@@ -24,7 +25,9 @@ const projects = [
     category: 'web',
     technologies: ['Vue.js', 'Express', 'Socket.io'],
     demoLink: '#',
-    codeLink: '#'
+    codeLink: '#',
+    status: 'coming-soon',
+    progress: 70
   },
   {
     id: 3,
@@ -34,7 +37,8 @@ const projects = [
     category: 'mobile',
     technologies: ['React Native', 'Firebase', 'Redux'],
     demoLink: '#',
-    codeLink: '#'
+    codeLink: '#',
+    status: 'completed'
   },
   {
     id: 4,
@@ -44,7 +48,8 @@ const projects = [
     category: 'web',
     technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
     demoLink: '#',
-    codeLink: '#'
+    codeLink: '#',
+    status: 'completed'
   },
   {
     id: 5,
@@ -54,7 +59,9 @@ const projects = [
     category: 'web',
     technologies: ['React', 'Chart.js', 'Weather API'],
     demoLink: '#',
-    codeLink: '#'
+    codeLink: '#',
+    status: 'coming-soon',
+    progress: 40
   },
   {
     id: 6,
@@ -64,7 +71,9 @@ const projects = [
     category: 'mobile',
     technologies: ['React Native', 'Node.js', 'MongoDB'],
     demoLink: '#',
-    codeLink: '#'
+    codeLink: '#',
+    status: 'coming-soon',
+    progress: 25
   }
 ];
 
@@ -75,15 +84,26 @@ const categories = [
   { id: 'mobile', label: 'Mobile Apps' }
 ];
 
+// Status filter categories
+const statusFilters = [
+  { id: 'all', label: 'All Status' },
+  { id: 'completed', label: 'Completed' },
+  { id: 'coming-soon', label: 'Coming Soon' }
+];
+
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
+  const [activeStatusFilter, setActiveStatusFilter] = useState('all');
 
-  const filteredProjects = activeFilter === 'all'
-    ? projects
-    : projects.filter(project => project.category === activeFilter);
+  // Apply both category and status filters
+  const filteredProjects = projects.filter(project => {
+    const matchesCategory = activeFilter === 'all' || project.category === activeFilter;
+    const matchesStatus = activeStatusFilter === 'all' || project.status === activeStatusFilter;
+    return matchesCategory && matchesStatus;
+  });
 
   return (
-    <section id="projects" className="py-20 bg-white dark:bg-gray-800 relative overflow-hidden transition-colors duration-300">
+    <section id="projects" className="section-alt py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300">
       {/* Decorative circles */}
       <div className="absolute top-1/6 left-0 w-72 h-72 rounded-full bg-blue-100/30 dark:bg-blue-900/20 z-0"></div>
       <div className="absolute bottom-1/10 right-0 w-80 h-80 rounded-full bg-blue-100/30 dark:bg-blue-900/20 z-0"></div>
@@ -140,25 +160,45 @@ const ProjectsSection = () => {
           <h2 className="section-title">My Projects</h2>
           <div className="section-divider"></div>
           <p className="section-subtitle">
-            Here are some of the projects I've worked on. Each project represents different challenges and solutions.
+            Here are some of the projects I&apos;ve worked on. Each project represents different challenges and solutions.
           </p>
         </motion.div>
 
         {/* Project Filters */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveFilter(category.id)}
-              className={`px-6 py-2 rounded-full border transition-colors duration-300 ${
-                activeFilter === category.id
-                  ? 'bg-blue-600 text-white border-blue-600'
-                  : 'bg-transparent border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
-              }`}
-            >
-              {category.label}
-            </button>
-          ))}
+        <div className="flex flex-col items-center mb-12 space-y-6">
+          {/* Category Filters */}
+          <div className="flex flex-wrap justify-center gap-4">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveFilter(category.id)}
+                className={`px-6 py-2 rounded-full border cursor-pointer transition-colors duration-300 ${
+                  activeFilter === category.id
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white dark:bg-transparent border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                }`}
+              >
+                {category.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Status Filters */}
+          <div className="flex flex-wrap justify-center gap-4">
+            {statusFilters.map((status) => (
+              <button
+                key={status.id}
+                onClick={() => setActiveStatusFilter(status.id)}
+                className={`px-6 py-2 rounded-full border cursor-pointer transition-colors duration-300 ${
+                  activeStatusFilter === status.id
+                    ? 'bg-blue-600 text-white border-blue-600'
+                    : 'bg-white dark:bg-transparent border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                }`}
+              >
+                {status.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Projects Grid */}
@@ -173,11 +213,19 @@ const ProjectsSection = () => {
               className="card"
             >
               <div className="relative h-48 overflow-hidden">
-                <div className="w-full h-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-gray-500 dark:text-gray-400">
-                  <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd"></path>
-                  </svg>
-                </div>
+                {project.status === 'coming-soon' ? (
+                  <ComingSoon
+                    className="w-full h-full"
+                    title="Coming Soon"
+                    subtitle={`Project in progress - ${project.progress || 0}%`}
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-300 dark:bg-gray-600 flex items-center justify-center text-gray-500 dark:text-gray-400">
+                    <svg className="w-12 h-12" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                      <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd"></path>
+                    </svg>
+                  </div>
+                )}
               </div>
               <div className="card-body">
                 <h3 className="card-title mb-2">{project.title}</h3>
@@ -193,22 +241,30 @@ const ProjectsSection = () => {
                   ))}
                 </div>
                 <div className="flex justify-between">
-                  <a
-                    href={project.demoLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline transition-colors duration-300"
-                  >
-                    <i className="fas fa-external-link-alt mr-1"></i> Demo
-                  </a>
-                  <a
-                    href={project.codeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline transition-colors duration-300"
-                  >
-                    <i className="fas fa-code mr-1"></i> Code
-                  </a>
+                  {project.status === 'coming-soon' ? (
+                    <span className="text-blue-600 dark:text-blue-400 text-sm italic">
+                      <i className="fas fa-clock mr-1"></i> In Development
+                    </span>
+                  ) : (
+                    <>
+                      <a
+                        href={project.demoLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline transition-colors duration-300"
+                      >
+                        <i className="fas fa-external-link-alt mr-1"></i> Demo
+                      </a>
+                      <a
+                        href={project.codeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline transition-colors duration-300"
+                      >
+                        <i className="fas fa-code mr-1"></i> Code
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
             </motion.div>

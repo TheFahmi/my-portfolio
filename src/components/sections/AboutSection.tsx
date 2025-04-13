@@ -8,20 +8,22 @@ import ToggleableAboutImage from '@/components/ui/ToggleableAboutImage';
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-20 bg-gray-100 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300">
+    <section id="about" className="section-alt py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300">
       {/* SVG Background Animations */}
       <AnimatedBlob
-        className="top-1/4 left-1/5 w-[300px] h-[300px] opacity-20 -z-10"
-        color="rgba(37, 99, 235, 0.1)"
+        className="top-1/4 left-1/5 w-[300px] h-[300px] opacity-20 dark:opacity-50 -z-10"
+        color="rgba(37, 99, 235, 0.2)"
+        darkColor="rgba(59, 130, 246, 0.6)"
         duration={20}
       />
       <AnimatedBlob
-        className="bottom-1/4 right-1/6 w-[400px] h-[400px] opacity-15 -z-10"
-        color="rgba(37, 99, 235, 0.08)"
+        className="bottom-1/4 right-1/6 w-[400px] h-[400px] opacity-15 dark:opacity-40 -z-10"
+        color="rgba(37, 99, 235, 0.15)"
+        darkColor="rgba(59, 130, 246, 0.5)"
         duration={25}
         delay={1}
       />
-      <GeometricShapes className="-z-10" count={10} />
+      <GeometricShapes className="-z-10 opacity-30 dark:opacity-60" count={10} />
 
       <div className="container mx-auto px-4 relative z-10">
         <motion.div
@@ -68,13 +70,13 @@ const AboutSection = () => {
               <span className="absolute bottom-0 left-0 w-12 h-1 bg-blue-600"></span>
             </h3>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              I'm a passionate <span className="font-semibold text-blue-600 dark:text-blue-400">Frontend Engineer</span> with over 4 years of experience in creating innovative and impactful web applications. My expertise extends to project management, team leadership, and implementing Agile methodologies for efficient task execution.
+              I&apos;m a passionate <span className="font-semibold text-blue-600 dark:text-blue-400">Frontend Engineer</span> with over 4 years of experience in creating innovative and impactful web applications. My expertise extends to project management, team leadership, and implementing Agile methodologies for efficient task execution.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-4">
-              I've led frontend teams to success by implementing Agile practices like sprint planning and stand-ups, ensuring project delivery within deadlines. My technical toolkit includes TypeScript, NuxtJs, TailwindCSS, ReactJs, Vue.js, and React Native for mobile development.
+              I&apos;ve led frontend teams to success by implementing Agile practices like sprint planning and stand-ups, ensuring project delivery within deadlines. My technical toolkit includes TypeScript, NuxtJs, TailwindCSS, ReactJs, Vue.js, and React Native for mobile development.
             </p>
             <p className="text-gray-600 dark:text-gray-300 mb-6">
-              I've spearheaded redesign projects that improved user experience, migrated tech stacks to enhance performance, and maintained clear communication with stakeholders through regular progress reports.
+              I&apos;ve spearheaded redesign projects that improved user experience, migrated tech stacks to enhance performance, and maintained clear communication with stakeholders through regular progress reports.
             </p>
 
             <div className="card p-6 mb-6 border-l-4 border-primary">

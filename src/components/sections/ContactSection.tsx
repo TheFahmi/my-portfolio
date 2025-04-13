@@ -29,10 +29,23 @@ const ContactSection = () => {
     setSubmitSuccess(false);
     setSubmitError('');
 
-    // Simulate form submission
     try {
-      // In a real application, you would send the form data to your backend
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Send form data to our API endpoint
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      // Success
       setSubmitSuccess(true);
       setFormData({
         name: '',
@@ -41,21 +54,25 @@ const ContactSection = () => {
         message: ''
       });
     } catch (error) {
-      setSubmitError('There was an error submitting the form. Please try again.');
+      setSubmitError(
+        error instanceof Error
+          ? error.message
+          : 'There was an error submitting the form. Please try again.'
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" className="py-20 bg-gray-100 dark:bg-gray-900 relative overflow-hidden transition-colors duration-300">
+    <section id="contact" className="section-primary py-20 bg-white dark:bg-gray-900 relative overflow-hidden transition-colors duration-300">
       {/* Decorative circles */}
-      <div className="absolute top-1/10 right-0 w-64 h-64 rounded-full bg-blue-100/30 dark:bg-blue-900/20 z-0"></div>
-      <div className="absolute bottom-1/20 left-0 w-72 h-72 rounded-full bg-blue-100/30 dark:bg-blue-900/20 z-0"></div>
+      <div className="absolute top-1/10 right-0 w-64 h-64 rounded-full bg-blue-200/40 dark:bg-blue-900/20 z-0"></div>
+      <div className="absolute bottom-1/20 left-0 w-72 h-72 rounded-full bg-blue-200/40 dark:bg-blue-900/20 z-0"></div>
 
       {/* Animated floating circles */}
       <motion.div
-        className="absolute top-1/2 left-1/4 w-12 h-12 rounded-full bg-blue-100/40 dark:bg-blue-900/30 z-0"
+        className="absolute top-1/2 left-1/4 w-12 h-12 rounded-full bg-blue-200/50 dark:bg-blue-900/30 z-0"
         animate={{
           y: [0, -10, 0],
           x: [0, 10, 0]
@@ -68,7 +85,7 @@ const ContactSection = () => {
         }}
       />
       <motion.div
-        className="absolute bottom-1/5 right-1/5 w-8 h-8 rounded-full bg-blue-100/40 dark:bg-blue-900/30 z-0"
+        className="absolute bottom-1/5 right-1/5 w-8 h-8 rounded-full bg-blue-200/50 dark:bg-blue-900/30 z-0"
         animate={{
           y: [0, 8, 0],
           x: [0, -8, 0]
@@ -249,7 +266,7 @@ const ContactSection = () => {
 
                 {submitSuccess && (
                   <div className="mb-6 p-4 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-lg">
-                    Your message has been sent successfully! I'll get back to you soon.
+                    Your message has been sent successfully! I&apos;ll get back to you soon.
                   </div>
                 )}
 
