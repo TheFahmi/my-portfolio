@@ -1,24 +1,25 @@
 1:"$Sreact.fragment"
-2:I[8114,["413","static/chunks/413-3c754d0d5a7600f2.js","874","static/chunks/874-0d569637f878ba9d.js","38","static/chunks/38-770c5086d65cfcbb.js","177","static/chunks/app/layout-6c3cc7d7deaa397a.js"],"default"]
+2:I[8114,["413","static/chunks/413-3c754d0d5a7600f2.js","874","static/chunks/874-0d569637f878ba9d.js","38","static/chunks/38-ed7f840dc2116259.js","177","static/chunks/app/layout-6c3cc7d7deaa397a.js"],"default"]
 3:I[255,["974","static/chunks/app/page-b3c526e6363e85a9.js"],"PreloadChunks"]
-4:I[3249,["413","static/chunks/413-3c754d0d5a7600f2.js","874","static/chunks/874-0d569637f878ba9d.js","38","static/chunks/38-770c5086d65cfcbb.js","177","static/chunks/app/layout-6c3cc7d7deaa397a.js"],"default"]
-5:I[7555,[],""]
-6:I[1295,[],""]
-7:I[9543,["874","static/chunks/874-0d569637f878ba9d.js","345","static/chunks/app/not-found-a57aa2a4ca1fd2c7.js"],"default"]
-9:I[9665,[],"MetadataBoundary"]
-b:I[9665,[],"OutletBoundary"]
-e:I[4911,[],"AsyncMetadataOutlet"]
-10:I[9665,[],"ViewportBoundary"]
-12:I[6614,[],""]
-:HL["/my-portfolio/_next/static/css/87d8e1ff08d9a980.css","style"]
-0:{"P":null,"b":"tSyLYyOyk7JsCKUGVZ5cl","p":"/my-portfolio","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/my-portfolio/_next/static/css/87d8e1ff08d9a980.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","link",null,{"rel":"stylesheet","href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"}]}],["$","body",null,{"className":"__variable_6d2663 font-sans antialiased","children":[["$","$L2",null,{}],[["$","$L3",null,{"moduleIds":["app\\layout.tsx -> ../components/layout/ClientLayout"]}],["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L7",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]]]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[[["$","$L3",null,{"moduleIds":["app\\page.tsx -> ./page.client"]}],"$L8"],["$","$L9",null,{"children":"$La"}],null,["$","$Lb",null,{"children":["$Lc","$Ld",["$","$Le",null,{"promise":"$@f"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","aVvL-e98whI0RfCg2mcbU",{"children":[["$","$L10",null,{"children":"$L11"}],null]}],null]}],false]],"m":"$undefined","G":["$12","$undefined"],"s":false,"S":true}
-13:"$Sreact.suspense"
-14:I[4911,[],"AsyncMetadata"]
-a:["$","$13",null,{"fallback":null,"children":["$","$L14",null,{"promise":"$@15"}]}]
-16:I[3785,["974","static/chunks/app/page-b3c526e6363e85a9.js"],"default"]
-d:null
-8:["$","$L16",null,{}]
-11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-c:null
-15:{"metadata":[["$","title","0",{"children":"Muhammad Fahmi Hassan | Portfolio"}],["$","meta","1",{"name":"description","content":"Frontend Engineer with 4+ years of experience in TypeScript, NuxtJs, TailwindCSS, ReactJs, Vue.js, and React Native"}],["$","link","2",{"rel":"icon","href":"/my-portfolio/favicon.ico","type":"image/x-icon","sizes":"16x16"}]],"error":null,"digest":"$undefined"}
-f:{"metadata":"$15:metadata","error":null,"digest":"$undefined"}
+6:I[9665,[],"MetadataBoundary"]
+8:I[9665,[],"OutletBoundary"]
+b:I[4911,[],"AsyncMetadataOutlet"]
+d:I[9665,[],"ViewportBoundary"]
+f:I[6614,[],""]
+:HL["/_next/static/css/32aba48b95212a5a.css","style"]
+0:{"P":null,"b":"hRQ9YGFyLfb0qy4AlriDm","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/32aba48b95212a5a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","link",null,{"rel":"stylesheet","href":"https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"}]}],["$","body",null,{"className":"__variable_559008 font-sans antialiased","children":[["$","$L2",null,{}],[["$","$L3",null,{"moduleIds":["app\\layout.tsx -> ../components/layout/ClientLayout"]}],"$L4"]]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[[["$","$L3",null,{"moduleIds":["app\\page.tsx -> ./page.client"]}],"$L5"],["$","$L6",null,{"children":"$L7"}],null,["$","$L8",null,{"children":["$L9","$La",["$","$Lb",null,{"promise":"$@c"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,["$","$1","G8FPTCd3fADv8-DH8nkFQ",{"children":[["$","$Ld",null,{"children":"$Le"}],null]}],null]}],false]],"m":"$undefined","G":["$f","$undefined"],"s":false,"S":true}
+10:"$Sreact.suspense"
+11:I[4911,[],"AsyncMetadata"]
+7:["$","$10",null,{"fallback":null,"children":["$","$L11",null,{"promise":"$@12"}]}]
+13:I[3249,["413","static/chunks/413-3c754d0d5a7600f2.js","874","static/chunks/874-0d569637f878ba9d.js","38","static/chunks/38-ed7f840dc2116259.js","177","static/chunks/app/layout-6c3cc7d7deaa397a.js"],"default"]
+14:I[7555,[],""]
+15:I[1295,[],""]
+16:I[9543,["874","static/chunks/874-0d569637f878ba9d.js","345","static/chunks/app/not-found-a57aa2a4ca1fd2c7.js"],"default"]
+17:I[3785,["974","static/chunks/app/page-b3c526e6363e85a9.js"],"default"]
+a:null
+4:["$","$L13",null,{"children":["$","$L14",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L15",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L16",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]
+5:["$","$L17",null,{}]
+e:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+9:null
+12:{"metadata":[["$","title","0",{"children":"Muhammad Fahmi Hassan | Portfolio"}],["$","meta","1",{"name":"description","content":"Frontend Engineer with 4+ years of experience in TypeScript, NuxtJs, TailwindCSS, ReactJs, Vue.js, and React Native"}],["$","link","2",{"rel":"icon","href":"/favicon.ico","type":"image/x-icon","sizes":"16x16"}]],"error":null,"digest":"$undefined"}
+c:{"metadata":"$12:metadata","error":null,"digest":"$undefined"}
