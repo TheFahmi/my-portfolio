@@ -14,6 +14,7 @@ const skillCategories = [
 const frontendSkills = [
   { name: "React.js", level: 90, icon: "react" },
   { name: "Vue.js", level: 90, icon: "vuejs" },
+  { name: "NuxtJS", level: 85, icon: "vuejs" },
   { name: "TypeScript", level: 85, icon: "js" },
   { name: "SCSS/SASS", level: 85, icon: "sass" },
   { name: "Tailwind CSS", level: 90, icon: "wind" },
@@ -22,7 +23,6 @@ const frontendSkills = [
 
 const backendSkills = [
   { name: "Node.js", level: 85, icon: "node-js" },
-  { name: "NuxtJS", level: 85, icon: "js" },
   { name: "MongoDB", level: 80, icon: "database" },
   { name: "MySQL", level: 85, icon: "database" },
   { name: "Express", level: 80, icon: "server" },
