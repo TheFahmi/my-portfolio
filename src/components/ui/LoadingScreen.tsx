@@ -157,10 +157,10 @@ const LoadingScreen = () => {
               >
                 Full Stack Developer
               </motion.p>
-            </motion.div>
+              </motion.div>
 
             {/* Loading Progress */}
-            <motion.div
+              <motion.div
               variants={itemVariants}
               className="w-full"
             >
@@ -168,13 +168,13 @@ const LoadingScreen = () => {
               <div className={`w-full h-1 rounded-full overflow-hidden mb-4 ${
                 theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'
               }`}>
-                <motion.div
+              <motion.div
                   className="h-full bg-gradient-to-r from-blue-600 to-blue-500 rounded-full"
                   initial={{ width: '0%' }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.3, ease: "easeOut" }}
-                />
-              </div>
+              />
+            </div>
 
               {/* Progress Text */}
               <motion.p

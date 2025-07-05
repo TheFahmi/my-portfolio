@@ -270,12 +270,12 @@ const Navbar = () => {
         {mobileMenuOpen && (
           <>
             {/* Backdrop */}
-            <motion.div
+          <motion.div
               className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
+            transition={{ duration: 0.3 }}
               onClick={() => setMobileMenuOpen(false)}
             />
             
@@ -336,7 +336,7 @@ const Navbar = () => {
                       )}
                     </motion.button>
                     <motion.button
-                      onClick={() => setMobileMenuOpen(false)}
+                  onClick={() => setMobileMenuOpen(false)}
                       className={`p-2 rounded-lg ${
                         theme === 'dark' 
                           ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
@@ -346,11 +346,11 @@ const Navbar = () => {
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
+                  </svg>
                     </motion.button>
-                  </div>
                 </div>
               </div>
+            </div>
 
               {/* Menu Items */}
               <div className="p-6 space-y-2">
@@ -438,8 +438,8 @@ const Navbar = () => {
                     Full Stack Developer
                   </p>
                 </div>
-              </div>
-            </motion.div>
+            </div>
+          </motion.div>
           </>
         )}
       </AnimatePresence>
