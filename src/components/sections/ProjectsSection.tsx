@@ -1,9 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ComingSoon from '@/components/ui/ComingSoon';
 
+// Project interface
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  category: string;
+  technologies: string[];
+  demoLink: string;
+  codeLink: string;
+  status: string;
+  progress?: number;
+  stars?: number;
+  forks?: number;
+  updated?: string;
+}
 // Project data
 const projects = [
   {
@@ -94,13 +110,80 @@ const statusFilters = [
 const ProjectsSection = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const [activeStatusFilter, setActiveStatusFilter] = useState('all');
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fetch projects from GitHub API
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        const response = await fetch('/api/github/repositories');
+        
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+        
+        const data = await response.json();
+        setProjects(data);
+      } catch (err) {
+        setError('Failed to load projects');
+        console.error('Error fetching projects:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   // Apply both category and status filters
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = projects.filter((project: Project) => {
     const matchesCategory = activeFilter === 'all' || project.category === activeFilter;
     const matchesStatus = activeStatusFilter === 'all' || project.status === activeStatusFilter;
     return matchesCategory && matchesStatus;
   });
+
+  // Show loading state
+  if (loading) {
+    return (
+      <section id="projects" className="section-alt py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center">
+            <h2 className="section-title">My Projects</h2>
+            <div className="section-divider"></div>
+            <p className="section-subtitle">Loading projects from GitHub...</p>
+            <div className="mt-8">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Show error state
+  if (error) {
+    return (
+      <section id="projects" className="section-alt py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="text-center">
+            <h2 className="section-title">My Projects</h2>
+            <div className="section-divider"></div>
+            <p className="section-subtitle text-red-600 dark:text-red-400">{error}</p>
+            <button 
+              onClick={() => window.location.reload()} 
+              className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="projects" className="section-alt py-20 bg-gray-50 dark:bg-gray-800 relative overflow-hidden transition-colors duration-300">
@@ -160,7 +243,7 @@ const ProjectsSection = () => {
           <h2 className="section-title">My Projects</h2>
           <div className="section-divider"></div>
           <p className="section-subtitle">
-            Here are some of the projects I&apos;ve worked on. Each project represents different challenges and solutions.
+            Here are my projects from GitHub repositories. Each project represents different challenges and solutions.
           </p>
         </motion.div>
 
@@ -240,18 +323,20 @@ const ProjectsSection = () => {
                     </span>
                   ))}
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   {project.status === 'coming-soon' ? (
                     <span className="text-blue-600 dark:text-blue-400 text-sm italic">
                       <i className="fas fa-clock mr-1"></i> In Development
                     </span>
                   ) : (
-                    <>
+                    <div className="flex space-x-4">
                       <a
                         href={project.demoLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-primary hover:underline transition-colors duration-300"
+                        className={`text-primary hover:underline transition-colors duration-300 ${
+                          project.demoLink === '#' ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
                       >
                         <i className="fas fa-external-link-alt mr-1"></i> Demo
                       </a>
@@ -263,8 +348,23 @@ const ProjectsSection = () => {
                       >
                         <i className="fas fa-code mr-1"></i> Code
                       </a>
-                    </>
+                    </div>
                   )}
+                  {/* GitHub stats */}
+                  <div className="flex items-center space-x-3 text-sm text-gray-600 dark:text-gray-400">
+                    {project.stars !== undefined && (
+                      <span className="flex items-center">
+                        <i className="fas fa-star mr-1"></i>
+                        {project.stars}
+                      </span>
+                    )}
+                    {project.forks !== undefined && (
+                      <span className="flex items-center">
+                        <i className="fas fa-code-branch mr-1"></i>
+                        {project.forks}
+                      </span>
+                    )}
+                  </div>
                 </div>
               </div>
             </motion.div>
