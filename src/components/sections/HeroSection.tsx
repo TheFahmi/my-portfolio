@@ -2,145 +2,254 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import AnimatedBlob from "@/components/ui/svg/AnimatedBlob";
-import WaveAnimation from "@/components/ui/svg/WaveAnimation";
+import { useTheme } from "next-themes";
 import ToggleableProfileImage from "@/components/ui/ToggleableProfileImage";
 
 const HeroSection = () => {
+  const { theme } = useTheme();
+
+  const quickStats = [
+    { number: '4+', label: 'Years' },
+    { number: '50+', label: 'Projects' },
+    { number: '100%', label: 'Quality' },
+  ];
+
+  const techStack = ['React', 'Next.js', 'TypeScript', 'TailwindCSS'];
+
   return (
     <section
       id="home"
-      className="section-primary relative min-h-screen flex items-center bg-white dark:bg-gray-900 overflow-hidden transition-colors duration-300"
+      className={`min-h-screen flex items-center py-20 transition-colors duration-300 ${
+        theme === 'dark' 
+          ? 'bg-gray-900' 
+          : 'bg-white'
+      }`}
     >
-      {/* SVG Background Animations */}
-      <AnimatedBlob
-        className="top-0 right-0 w-[600px] h-[600px] opacity-30 dark:opacity-60 -z-10"
-        color="rgba(37, 99, 235, 0.15)"
-        darkColor="rgba(59, 130, 246, 0.6)"
-        duration={25}
-      />
-      {/* Removed second AnimatedBlob for cleaner design */}
-      {/* Removed GeometricShapes and FloatingParticles for cleaner design */}
-      <WaveAnimation
-        className="bottom-0 left-0 -z-10"
-        height={200}
-        color="rgba(37, 99, 235, 0.2)"
-        darkColor="rgba(59, 130, 246, 0.8)"
-      />
-
-      {/* Additional waves for layered effect */}
-      <WaveAnimation
-        className="bottom-0 left-0 -z-20"
-        height={180}
-        color="rgba(37, 99, 235, 0.15)"
-        darkColor="rgba(59, 130, 246, 0.6)"
-      />
-
-      {/* More ships with different sizes and positions */}
-      <WaveAnimation
-        className="bottom-0 left-0 -z-10"
-        height={150}
-        color="rgba(37, 99, 235, 0.1)"
-        darkColor="rgba(59, 130, 246, 0.4)"
-      />
-
-      <div className="container mx-auto px-4 z-10">
-        <div className="flex flex-col md:flex-row items-center">
-          <div className="md:w-1/2 mb-10 md:mb-0">
+      <div className="container mx-auto px-4">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
+          {/* Left Content */}
+          <motion.div 
+            className="lg:w-1/2 text-center lg:text-left"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            {/* Status Badge */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-8 ${
+                theme === 'dark' 
+                  ? 'bg-gray-800 text-gray-300 border border-gray-700' 
+                  : 'bg-gray-100 text-gray-600 border border-gray-200'
+              }`}
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-                Hi, I&apos;m{" "}
-                <span className="text-blue-700 dark:text-blue-300">
-                  M Fahmi Hassan
-                </span>
-              </h1>
-              <h2 className="text-2xl md:text-3xl font-medium mb-6 text-gray-700 dark:text-gray-300">
-                Frontend Engineer & Team Lead
-              </h2>
-              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-lg">
-                A passionate Frontend Engineer with 4+ years of experience in
-                creating innovative and impactful web applications.
-              </p>
-              <div className="flex flex-wrap gap-4">
-                <Link href="#projects" className="btn btn-primary">
-                  View My Work
-                </Link>
-                <Link href="#contact" className="btn btn-secondary">
-                  Contact Me
-                </Link>
-              </div>
+              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
+              Available for work
             </motion.div>
-          </div>
-          <div className="md:w-1/2 flex justify-center">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              className="relative"
-            >
-              <AnimatedBlob
-                className="bottom-0 left-0 w-[500px] h-[500px] opacity-20 dark:opacity-50 -z-10"
-                color="rgba(37, 99, 235, 0.1)"
-                darkColor="rgba(59, 130, 246, 0.5)"
-                duration={30}
-                delay={2}
-              />
 
-              <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-blue-100 dark:bg-blue-900/50 overflow-hidden border-4 border-white dark:border-gray-800 shadow-xl relative z-10">
-                {/* Toggleable Profile Image */}
-                <ToggleableProfileImage
-                  className="w-full h-full"
-                  imageUrl="/images/fahmi-profile.jpg"
-                  alt="Fahmi Hassan - Frontend Engineer"
-                />
-              </div>
-              <motion.div
-                className="absolute -bottom-4 -right-4 w-24 h-24 rounded-full bg-blue-600 dark:bg-blue-500 flex items-center justify-center text-white z-20"
-                animate={{
-                  scale: [1, 1.1, 1],
-                  rotate: [0, 5, 0, -5, 0],
-                }}
-                transition={{
-                  scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                  rotate: { duration: 5, repeat: Infinity, ease: "easeInOut" },
-                }}
-              >
-                <span className="font-bold">4+</span>
-                <span className="text-xs ml-1">
-                  Years
-                  <br />
-                  Exp.
-                </span>
-              </motion.div>
-            </motion.div>
-          </div>
-        </div>
-        <div className="mt-16 flex justify-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.5 }}
-          >
-            <Link
-              href="#about"
-              className="group flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 cursor-pointer"
-              aria-label="Scroll down to About section"
+            {/* Main Heading */}
+            <motion.h1 
+              className={`text-5xl lg:text-6xl font-bold mb-6 leading-tight ${
+                theme === 'dark' ? 'text-white' : 'text-gray-900'
+              }`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
             >
-              <span className="text-sm mb-2 hidden md:block font-medium">Scroll Down</span>
-              <div className="w-8 h-12 md:w-10 md:h-14 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center pt-1 group-hover:border-blue-500 dark:group-hover:border-blue-400 transition-all duration-300 hover:shadow-md">
-                <motion.div
-                  className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gray-400 dark:bg-gray-600 rounded-full group-hover:bg-blue-500 dark:group-hover:bg-blue-400 transition-colors duration-300"
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-                />
+                             Hi, I&apos;m{" "}
+              <span className={`${
+                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+              }`}>
+                Fahmi Hassan
+              </span>
+            </motion.h1>
+
+            {/* Subtitle */}
+            <motion.h2 
+              className={`text-xl lg:text-2xl font-medium mb-8 ${
+                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+            >
+              Frontend Engineer & Team Lead
+            </motion.h2>
+
+            {/* Description */}
+            <motion.p 
+              className={`text-lg mb-8 max-w-xl leading-relaxed ${
+                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
+              }`}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+            >
+              I create innovative web applications with modern technologies. 
+              Passionate about clean code, user experience, and team collaboration.
+            </motion.p>
+
+            {/* Tech Stack */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="mb-10"
+            >
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
+                {techStack.map((tech, index) => (
+                  <motion.span
+                    key={tech}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.4, delay: 0.9 + index * 0.1 }}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium ${
+                      theme === 'dark' 
+                        ? 'bg-gray-800 text-gray-300 border border-gray-700' 
+                        : 'bg-gray-50 text-gray-700 border border-gray-200'
+                    }`}
+                  >
+                    {tech}
+                  </motion.span>
+                ))}
               </div>
-            </Link>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.0 }}
+            >
+              <Link 
+                href="#projects" 
+                className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${
+                  theme === 'dark'
+                    ? 'bg-blue-600 text-white hover:bg-blue-700'
+                    : 'bg-blue-600 text-white hover:bg-blue-700'
+                }`}
+              >
+                View My Work
+              </Link>
+              <Link 
+                href="#contact" 
+                className={`px-8 py-3 rounded-lg font-semibold border-2 transition-all duration-300 ${
+                  theme === 'dark'
+                    ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
+                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                Contact Me
+              </Link>
+            </motion.div>
+
+            {/* Quick Stats */}
+            <motion.div 
+              className="flex justify-center lg:justify-start gap-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+            >
+              {quickStats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 1.3 + index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className={`text-2xl font-bold ${
+                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
+                  }`}>
+                    {stat.number}
+                  </div>
+                  <div className={`text-sm font-medium ${
+                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                  }`}>
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* Right Content - Profile Image */}
+          <motion.div 
+            className="lg:w-1/2 flex justify-center lg:justify-end"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            <div className="relative">
+              {/* Main Profile Image Container */}
+              <motion.div
+                className="relative w-80 h-80 lg:w-96 lg:h-96"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Simple Border */}
+                <div className={`absolute inset-0 rounded-full p-2 ${
+                  theme === 'dark' 
+                    ? 'bg-gray-800 border border-gray-700' 
+                    : 'bg-gray-100 border border-gray-200'
+                } shadow-xl`}>
+                  <div className="w-full h-full rounded-full overflow-hidden">
+                    <ToggleableProfileImage
+                      className="w-full h-full object-cover"
+                      imageUrl="/images/fahmi-profile.jpg"
+                      alt="Fahmi Hassan - Frontend Engineer"
+                    />
+                  </div>
+                </div>
+
+                {/* Simple Badge */}
+                <motion.div
+                  className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full text-sm font-semibold shadow-lg ${
+                    theme === 'dark' 
+                      ? 'bg-gray-800 text-gray-300 border border-gray-700' 
+                      : 'bg-white text-gray-700 border border-gray-200'
+                  }`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1.4 }}
+                >
+                  Frontend Engineer
+                </motion.div>
+              </motion.div>
+            </div>
           </motion.div>
         </div>
+
+        {/* Scroll Down Indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.6, duration: 0.5 }}
+        >
+          <Link
+            href="#about"
+            className={`flex flex-col items-center transition-colors duration-300 ${
+              theme === 'dark' ? 'text-gray-400 hover:text-gray-300' : 'text-gray-600 hover:text-gray-800'
+            }`}
+          >
+            <span className="text-sm mb-2">Scroll Down</span>
+            <div className={`w-6 h-10 border-2 rounded-full flex justify-center pt-2 ${
+              theme === 'dark' ? 'border-gray-600' : 'border-gray-400'
+            }`}>
+              <motion.div
+                className={`w-1 h-1 rounded-full ${
+                  theme === 'dark' ? 'bg-gray-400' : 'bg-gray-600'
+                }`}
+                animate={{ y: [0, 6, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              />
+            </div>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

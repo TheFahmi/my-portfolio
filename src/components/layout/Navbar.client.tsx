@@ -4,13 +4,13 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useTheme } from 'next-themes';
-import { useThemeDetector } from '@/hooks/useThemeDetector';
+
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [animationActive, setAnimationActive] = useState(false);
-  const { isDarkMode } = useThemeDetector();
+
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -83,8 +83,8 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         scrolled
-          ? `py-2 ${isDarkMode ? 'bg-gray-900/95 shadow-lg' : 'bg-white/95 shadow-md'}`
-          : `py-4 ${isDarkMode ? 'bg-gray-900' : 'bg-white'}`
+          ? `py-2 ${theme === 'dark' ? 'bg-gray-900/95 shadow-lg' : 'bg-white/95 shadow-md'}`
+          : `py-4 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`
       }`}
       style={{
         overflowX: 'hidden',
@@ -100,7 +100,7 @@ const Navbar = () => {
         <nav className="flex justify-between items-center" style={{ position: 'relative' }}>
         {/* Logo */}
           <Link href="/" className="flex-shrink-0" style={{ minWidth: '120px' }}>
-            <span className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+            <span className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
               Fahmi<span className="text-ocean-500">Hassan</span>
             </span>
         </Link>
@@ -113,7 +113,7 @@ const Navbar = () => {
                 <Link
                   href={link.href}
                     className={`text-sm font-medium hover:text-ocean-500 transition-colors duration-300 ${
-                      isDarkMode ? 'text-gray-300' : 'text-gray-700'
+                      theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                     }`}
                 >
                   {link.label}
@@ -125,7 +125,7 @@ const Navbar = () => {
             {/* Theme Toggle - Desktop */}
             <motion.button
             onClick={toggleTheme}
-              className={`relative flex items-center justify-center rounded-full w-10 h-10 ${isDarkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70] cursor-pointer`}
+              className={`relative flex items-center justify-center rounded-full w-10 h-10 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70] cursor-pointer`}
             aria-label="Toggle dark mode"
               whileTap={{ scale: 0.9 }}
               initial={false}
@@ -135,7 +135,7 @@ const Navbar = () => {
               <AnimatePresence mode="wait">
                 {animationActive && (
                   <motion.div
-                    className={`absolute rounded-full ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+                    className={`absolute rounded-full ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}
                     initial={{ width: 0, height: 0, opacity: 1 }}
                     animate={{ width: 1000, height: 1000, opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -147,7 +147,7 @@ const Navbar = () => {
 
               {/* Sun/Moon Icon */}
               <AnimatePresence mode="wait">
-            {isDarkMode ? (
+            {theme === 'dark' ? (
                   <motion.svg
                     key="moon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -188,7 +188,7 @@ const Navbar = () => {
           <div className="flex items-center md:hidden justify-end gap-2" style={{ width: '88px', flexShrink: 0 }}>
             <motion.button
             onClick={toggleTheme}
-              className={`relative flex items-center justify-center rounded-full w-10 h-10 ${isDarkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70] cursor-pointer`}
+              className={`relative flex items-center justify-center rounded-full w-10 h-10 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70] cursor-pointer`}
             aria-label="Toggle dark mode"
               whileTap={{ scale: 0.9 }}
               initial={false}
@@ -206,7 +206,7 @@ const Navbar = () => {
               <AnimatePresence mode="wait">
                 {animationActive && (
                   <motion.div
-                    className={`absolute rounded-full ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}
+                    className={`absolute rounded-full ${theme === 'dark' ? 'bg-gray-900' : 'bg-gray-50'}`}
                     initial={{ width: 0, height: 0, opacity: 1 }}
                     animate={{ width: 1000, height: 1000, opacity: 1 }}
                     exit={{ opacity: 0 }}
@@ -218,7 +218,7 @@ const Navbar = () => {
 
               {/* Sun/Moon Icon */}
               <AnimatePresence mode="wait">
-            {isDarkMode ? (
+            {theme === 'dark' ? (
                   <motion.svg
                     key="moon"
                     xmlns="http://www.w3.org/2000/svg"
@@ -256,7 +256,7 @@ const Navbar = () => {
 
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`mobile-menu-toggle flex items-center justify-center rounded-full w-10 h-10 ${isDarkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300`}
+              className={`mobile-menu-toggle flex items-center justify-center rounded-full w-10 h-10 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300`}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
               style={{
@@ -296,83 +296,156 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            className={`mobile-menu md:hidden fixed inset-0 ${isDarkMode ? 'bg-gray-900' : 'bg-white'} z-40 ${isDarkMode ? 'text-white' : 'text-gray-900'}`}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            style={{
-              overflowX: 'hidden',
-              width: '100vw',
-              left: 0,
-              right: 0,
-              top: 0,
-              bottom: 0,
-              position: 'fixed',
-              boxSizing: 'border-box'
-            }}
-          >
-            {/* Header bar - same height as navbar */}
-            <div className={`w-full ${scrolled ? 'py-2' : 'py-4'} border-b ${isDarkMode ? 'border-gray-800' : 'border-gray-200'}`}
-              style={{ position: 'relative', boxSizing: 'border-box' }}
+          <>
+            {/* Backdrop */}
+            <motion.div
+              className="md:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={() => setMobileMenuOpen(false)}
+            />
+            
+            {/* Mobile Menu Panel */}
+            <motion.div
+              className={`mobile-menu md:hidden fixed top-0 right-0 h-full w-80 max-w-[85vw] z-50 ${
+                theme === 'dark' 
+                  ? 'bg-gray-900 border-l border-gray-800' 
+                  : 'bg-white border-l border-gray-200'
+              } shadow-2xl`}
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              <div className="container mx-auto px-4 max-w-screen-xl">
-                <div className="flex justify-between items-center">
-                  <h2 className={`text-xl font-bold ${isDarkMode ? 'text-gray-200' : 'text-gray-800'}`}>Menu</h2>
-                  <div className="flex justify-end items-center" style={{ width: '88px', flexShrink: 0 }}>
-                    <motion.button
-                  onClick={() => setMobileMenuOpen(false)}
-                      className={`flex items-center justify-center rounded-full w-10 h-10 ${isDarkMode ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300`}
-                  aria-label="Close menu"
-                      style={{
-                        flexShrink: 0,
-                        width: '40px',
-                        height: '40px',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        position: 'relative'
-                      }}
-                      whileTap={{ scale: 0.9 }}
-                    >
-                      <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M6 18L18 6M6 6l12 12"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                  </svg>
-                    </motion.button>
+              {/* Header */}
+              <div className={`p-6 border-b ${
+                theme === 'dark' ? 'border-gray-800' : 'border-gray-200'
+              }`}>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-lg flex items-center justify-center">
+                      <span className="text-white font-bold text-sm">FH</span>
+                    </div>
+                    <div>
+                      <h2 className={`font-bold ${
+                        theme === 'dark' ? 'text-white' : 'text-gray-900'
+                      }`}>
+                        Navigation
+                      </h2>
+                      <p className={`text-sm ${
+                        theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
+                      }`}>
+                        Portfolio Menu
+                      </p>
+                    </div>
                   </div>
+                  <motion.button
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`p-2 rounded-lg ${
+                      theme === 'dark' 
+                        ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' 
+                        : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    } transition-colors duration-300`}
+                    whileTap={{ scale: 0.9 }}
+                  >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </motion.button>
                 </div>
               </div>
-            </div>
 
-            {/* Menu content */}
-            <div className="container mx-auto px-4 py-6 max-w-screen-xl">
-              <ul className="flex flex-col space-y-6">
-                {navLinks.map((link) => (
-                  <motion.li
+              {/* Menu Items */}
+              <div className="p-6 space-y-2">
+                {navLinks.map((link, index) => (
+                  <motion.div
                     key={link.href}
-                    initial={{ opacity: 0, x: -20 }}
+                    initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 * navLinks.indexOf(link) }}
+                    transition={{ delay: 0.1 + index * 0.1, duration: 0.3 }}
                   >
                     <Link
                       href={link.href}
-                      className={`text-xl font-medium ${isDarkMode ? 'text-gray-200 hover:text-blue-300' : 'text-gray-800 hover:text-blue-700'} block py-2 transition-colors duration-300`}
+                      className={`flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 group ${
+                        theme === 'dark' 
+                          ? 'hover:bg-gray-800 text-gray-300 hover:text-white' 
+                          : 'hover:bg-gray-50 text-gray-700 hover:text-gray-900'
+                      }`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      {link.label}
+                      <div className={`w-10 h-10 rounded-lg flex items-center justify-center transition-all duration-300 ${
+                        theme === 'dark' 
+                          ? 'bg-gray-800 group-hover:bg-blue-600' 
+                          : 'bg-gray-100 group-hover:bg-blue-600'
+                      }`}>
+                        {/* Icons for each menu item */}
+                        {link.href === '#home' && (
+                          <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-gray-400 group-hover:text-white' : 'text-gray-600 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                          </svg>
+                        )}
+                        {link.href === '#about' && (
+                          <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-gray-400 group-hover:text-white' : 'text-gray-600 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                          </svg>
+                        )}
+                        {link.href === '#projects' && (
+                          <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-gray-400 group-hover:text-white' : 'text-gray-600 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                          </svg>
+                        )}
+                        {link.href === '#skills' && (
+                          <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-gray-400 group-hover:text-white' : 'text-gray-600 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                          </svg>
+                        )}
+                        {link.href === '#contact' && (
+                          <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-gray-400 group-hover:text-white' : 'text-gray-600 group-hover:text-white'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                          </svg>
+                        )}
+                      </div>
+                      <div className="flex-1">
+                        <span className="font-medium text-lg">{link.label}</span>
+                        <p className={`text-sm ${
+                          theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
+                        }`}>
+                          {link.href === '#home' && 'Back to top'}
+                          {link.href === '#about' && 'Learn about me'}
+                          {link.href === '#projects' && 'View my work'}
+                          {link.href === '#skills' && 'My expertise'}
+                          {link.href === '#contact' && 'Get in touch'}
+                        </p>
+                      </div>
+                      <svg className={`w-5 h-5 ${theme === 'dark' ? 'text-gray-600' : 'text-gray-400'} group-hover:text-blue-500`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
                     </Link>
-                  </motion.li>
+                  </motion.div>
                 ))}
-              </ul>
-            </div>
-          </motion.div>
+              </div>
+
+              {/* Footer */}
+              <div className={`absolute bottom-0 left-0 right-0 p-6 border-t ${
+                theme === 'dark' ? 'border-gray-800' : 'border-gray-200'
+              }`}>
+                <div className="text-center">
+                  <p className={`text-sm ${
+                    theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
+                  }`}>
+                    © 2024 Fahmi Hassan
+                  </p>
+                  <p className={`text-xs mt-1 ${
+                    theme === 'dark' ? 'text-gray-600' : 'text-gray-400'
+                  }`}>
+                    Full Stack Developer
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </header>
