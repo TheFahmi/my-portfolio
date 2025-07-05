@@ -3,7 +3,7 @@ const siteConfig = {
   // Feature flags
   features: {
     // Set to true to show the full projects section, false to show "coming soon"
-    showProjects: false,
+    showProjects: true,
   },
   
   // Site metadata
