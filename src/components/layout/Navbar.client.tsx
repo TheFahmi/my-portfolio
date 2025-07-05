@@ -86,21 +86,12 @@ const Navbar = () => {
           ? `py-2 ${theme === 'dark' ? 'bg-gray-900/95 shadow-lg' : 'bg-white/95 shadow-md'}`
           : `py-4 ${theme === 'dark' ? 'bg-gray-900' : 'bg-white'}`
       }`}
-      style={{
-        overflowX: 'hidden',
-        width: '100%',
-        boxSizing: 'border-box',
-      }}
     >
-      <div className="container mx-auto px-4 max-w-screen-xl relative" style={{
-        width: '100%',
-        boxSizing: 'border-box',
-        position: 'relative'
-      }}>
-        <nav className="flex justify-between items-center" style={{ position: 'relative' }}>
+              <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-screen-xl relative">
+        <nav className="flex justify-between items-center">
         {/* Logo */}
-          <Link href="/" className="flex-shrink-0" style={{ minWidth: '120px' }}>
-            <span className={`text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
+          <Link href="/" className="flex-shrink-0 min-w-0">
+            <span className={`text-lg sm:text-xl font-bold ${theme === 'dark' ? 'text-white' : 'text-gray-900'} truncate`}>
               Fahmi<span className="text-ocean-500">Hassan</span>
             </span>
         </Link>
@@ -125,11 +116,10 @@ const Navbar = () => {
             {/* Theme Toggle - Desktop */}
             <motion.button
             onClick={toggleTheme}
-              className={`relative flex items-center justify-center rounded-full w-10 h-10 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70] cursor-pointer`}
+              className={`relative flex items-center justify-center rounded-full w-10 h-10 flex-shrink-0 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70] cursor-pointer`}
             aria-label="Toggle dark mode"
               whileTap={{ scale: 0.9 }}
               initial={false}
-              style={{ flexShrink: 0, width: '40px', height: '40px' }}
             >
               {/* Theme toggle ripple effect */}
               <AnimatePresence mode="wait">
@@ -185,22 +175,13 @@ const Navbar = () => {
         </div>
 
           {/* Mobile Menu Button and Theme Toggle - Mobile */}
-          <div className="flex items-center md:hidden justify-end gap-2" style={{ width: '88px', flexShrink: 0 }}>
+          <div className="flex items-center md:hidden justify-end gap-2 flex-shrink-0">
             <motion.button
             onClick={toggleTheme}
-              className={`relative flex items-center justify-center rounded-full w-10 h-10 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-all duration-300 z-[60] cursor-pointer ${mobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+              className={`relative flex items-center justify-center rounded-full w-10 h-10 flex-shrink-0 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-all duration-300 z-[60] cursor-pointer ${mobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
             aria-label="Toggle dark mode"
               whileTap={{ scale: 0.9 }}
               initial={false}
-              style={{
-                flexShrink: 0,
-                width: '40px',
-                height: '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative'
-              }}
             >
               {/* Theme toggle ripple effect */}
               <AnimatePresence mode="wait">
@@ -256,18 +237,9 @@ const Navbar = () => {
 
             <motion.button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className={`mobile-menu-toggle flex items-center justify-center rounded-full w-10 h-10 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70]`}
+              className={`mobile-menu-toggle flex items-center justify-center rounded-full w-10 h-10 flex-shrink-0 ${theme === 'dark' ? 'bg-gray-800 text-gray-300 hover:bg-gray-700' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'} transition-colors duration-300 z-[70]`}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
-              style={{
-                flexShrink: 0,
-                width: '40px',
-                height: '40px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative'
-              }}
               whileTap={{ scale: 0.9 }}
             >
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" xmlns="http://www.w3.org/2000/svg">
