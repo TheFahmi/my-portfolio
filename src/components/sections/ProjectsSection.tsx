@@ -8,72 +8,72 @@ import ComingSoon from '@/components/ui/ComingSoon';
 const projects = [
   {
     id: 1,
-    title: 'E-Commerce Platform',
-    description: 'A modern e-commerce platform with product management, cart functionality, and payment integration.',
+    title: 'Modern E-Commerce Platform',
+    description: 'A full-featured e-commerce platform with product management, shopping cart, payment integration, and admin dashboard. Built with modern web technologies.',
     image: '/projects/project1.jpg',
     category: 'web',
-    technologies: ['React', 'Node.js', 'MongoDB'],
-    demoLink: '#',
-    codeLink: '#',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'TypeScript'],
+    demoLink: 'https://ecommerce-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/ecommerce-platform',
     status: 'completed'
   },
   {
     id: 2,
-    title: 'Task Management App',
-    description: 'A collaborative task management application with real-time updates and team collaboration features.',
+    title: 'Real-time Task Management',
+    description: 'A collaborative task management application with real-time updates, team collaboration, drag-and-drop functionality, and progress tracking.',
     image: '/projects/project2.jpg',
     category: 'web',
-    technologies: ['Vue.js', 'Express', 'Socket.io'],
-    demoLink: '#',
-    codeLink: '#',
+    technologies: ['Vue.js', 'NuxtJS', 'Socket.io', 'PostgreSQL', 'TailwindCSS'],
+    demoLink: 'https://taskmanager-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/task-manager',
     status: 'coming-soon',
-    progress: 70
+    progress: 85
   },
   {
     id: 3,
     title: 'Fitness Tracker Mobile App',
-    description: 'A mobile application for tracking workouts, nutrition, and health metrics with personalized recommendations.',
+    description: 'A comprehensive mobile application for tracking workouts, nutrition, and health metrics with personalized recommendations and social features.',
     image: '/projects/project3.jpg',
     category: 'mobile',
-    technologies: ['React Native', 'Firebase', 'Redux'],
-    demoLink: '#',
-    codeLink: '#',
+    technologies: ['React Native', 'Firebase', 'Redux', 'Expo', 'Chart.js'],
+    demoLink: 'https://fitness-tracker-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/fitness-tracker',
     status: 'completed'
   },
   {
     id: 4,
     title: 'Portfolio Website',
-    description: 'A responsive portfolio website built with modern web technologies and animations.',
+    description: 'A responsive and visually stunning portfolio website with smooth animations, dark mode support, and optimized performance.',
     image: '/projects/project4.jpg',
     category: 'web',
-    technologies: ['Next.js', 'Tailwind CSS', 'Framer Motion'],
-    demoLink: '#',
-    codeLink: '#',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    demoLink: 'https://fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/my-portfolio',
     status: 'completed'
   },
   {
     id: 5,
-    title: 'Weather Dashboard',
-    description: 'A weather dashboard that displays current and forecasted weather data with interactive visualizations.',
+    title: 'Weather Analytics Dashboard',
+    description: 'An interactive weather dashboard with real-time data visualization, forecasting, and detailed analytics for weather patterns.',
     image: '/projects/project5.jpg',
     category: 'web',
-    technologies: ['React', 'Chart.js', 'Weather API'],
-    demoLink: '#',
-    codeLink: '#',
+    technologies: ['React', 'TypeScript', 'D3.js', 'Weather API', 'Recharts'],
+    demoLink: 'https://weather-dashboard-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/weather-dashboard',
     status: 'coming-soon',
-    progress: 40
+    progress: 65
   },
   {
     id: 6,
-    title: 'Social Media App',
-    description: 'A social media application with user profiles, posts, comments, and real-time notifications.',
+    title: 'Social Media Mobile App',
+    description: 'A feature-rich social media application with real-time messaging, photo sharing, stories, and advanced privacy controls.',
     image: '/projects/project6.jpg',
     category: 'mobile',
-    technologies: ['React Native', 'Node.js', 'MongoDB'],
-    demoLink: '#',
-    codeLink: '#',
+    technologies: ['React Native', 'Node.js', 'MongoDB', 'Socket.io', 'AWS S3'],
+    demoLink: 'https://social-app-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/social-media-app',
     status: 'coming-soon',
-    progress: 25
+    progress: 40
   }
 ];
 

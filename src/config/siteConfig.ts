@@ -3,7 +3,7 @@ const siteConfig = {
   // Feature flags
   features: {
     // Set to true to show the full projects section, false to show "coming soon"
-    showProjects: false,
+    showProjects: true,
   },
   
   // Site metadata
@@ -16,9 +16,9 @@ const siteConfig = {
   // Social links
   social: {
     github: "https://github.com/TheFahmi",
-    linkedin: "https://linkedin.com/in/your-linkedin",
-    twitter: "https://twitter.com/your-twitter",
-    email: "contact@example.com",
+    linkedin: "https://linkedin.com/in/thefahmhassan",
+    twitter: "https://twitter.com/thefahmhassan",
+    email: "hello.fahmihassan@gmail.com",
   },
 };
 
