@@ -20,6 +20,78 @@ interface Project {
   forks?: number;
   updated?: string;
 }
+// Project data
+const projects = [
+  {
+    id: 1,
+    title: 'Modern E-Commerce Platform',
+    description: 'A full-featured e-commerce platform with product management, shopping cart, payment integration, and admin dashboard. Built with modern web technologies.',
+    image: '/projects/project1.jpg',
+    category: 'web',
+    technologies: ['React', 'Node.js', 'MongoDB', 'Stripe', 'TypeScript'],
+    demoLink: 'https://ecommerce-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/ecommerce-platform',
+    status: 'completed'
+  },
+  {
+    id: 2,
+    title: 'Real-time Task Management',
+    description: 'A collaborative task management application with real-time updates, team collaboration, drag-and-drop functionality, and progress tracking.',
+    image: '/projects/project2.jpg',
+    category: 'web',
+    technologies: ['Vue.js', 'NuxtJS', 'Socket.io', 'PostgreSQL', 'TailwindCSS'],
+    demoLink: 'https://taskmanager-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/task-manager',
+    status: 'coming-soon',
+    progress: 85
+  },
+  {
+    id: 3,
+    title: 'Fitness Tracker Mobile App',
+    description: 'A comprehensive mobile application for tracking workouts, nutrition, and health metrics with personalized recommendations and social features.',
+    image: '/projects/project3.jpg',
+    category: 'mobile',
+    technologies: ['React Native', 'Firebase', 'Redux', 'Expo', 'Chart.js'],
+    demoLink: 'https://fitness-tracker-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/fitness-tracker',
+    status: 'completed'
+  },
+  {
+    id: 4,
+    title: 'Portfolio Website',
+    description: 'A responsive and visually stunning portfolio website with smooth animations, dark mode support, and optimized performance.',
+    image: '/projects/project4.jpg',
+    category: 'web',
+    technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+    demoLink: 'https://fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/my-portfolio',
+    status: 'completed'
+  },
+  {
+    id: 5,
+    title: 'Weather Analytics Dashboard',
+    description: 'An interactive weather dashboard with real-time data visualization, forecasting, and detailed analytics for weather patterns.',
+    image: '/projects/project5.jpg',
+    category: 'web',
+    technologies: ['React', 'TypeScript', 'D3.js', 'Weather API', 'Recharts'],
+    demoLink: 'https://weather-dashboard-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/weather-dashboard',
+    status: 'coming-soon',
+    progress: 65
+  },
+  {
+    id: 6,
+    title: 'Social Media Mobile App',
+    description: 'A feature-rich social media application with real-time messaging, photo sharing, stories, and advanced privacy controls.',
+    image: '/projects/project6.jpg',
+    category: 'mobile',
+    technologies: ['React Native', 'Node.js', 'MongoDB', 'Socket.io', 'AWS S3'],
+    demoLink: 'https://social-app-demo.fahmihassan.com',
+    codeLink: 'https://github.com/TheFahmi/social-media-app',
+    status: 'coming-soon',
+    progress: 40
+  }
+];
 
 // Project filter categories
 const categories = [
@@ -68,7 +140,7 @@ const ProjectsSection = () => {
   }, []);
 
   // Apply both category and status filters
-  const filteredProjects = projects.filter(project => {
+  const filteredProjects = projects.filter((project: Project) => {
     const matchesCategory = activeFilter === 'all' || project.category === activeFilter;
     const matchesStatus = activeStatusFilter === 'all' || project.status === activeStatusFilter;
     return matchesCategory && matchesStatus;
