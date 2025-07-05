@@ -10,9 +10,9 @@ const ProjectsSection = () => {
 
   const filters = ['All', 'Frontend', 'Full Stack', 'Mobile'];
 
-  const projects = [
-    {
-      id: 1,
+const projects = [
+  {
+    id: 1,
       title: 'E-Commerce Platform',
       description: 'A modern e-commerce platform built with Next.js, TypeScript, and Stripe integration for seamless online shopping experience.',
       category: 'Full Stack',
@@ -21,9 +21,9 @@ const ProjectsSection = () => {
       github: 'https://github.com/example/ecommerce',
       demo: 'https://ecommerce-demo.com',
       featured: true
-    },
-    {
-      id: 2,
+  },
+  {
+    id: 2,
       title: 'Task Management App',
       description: 'A collaborative task management application with real-time updates, built using React and Socket.io.',
       category: 'Frontend',
@@ -32,9 +32,9 @@ const ProjectsSection = () => {
       github: 'https://github.com/example/task-app',
       demo: 'https://task-app-demo.com',
       featured: true
-    },
-    {
-      id: 3,
+  },
+  {
+    id: 3,
       title: 'Weather Mobile App',
       description: 'Cross-platform weather application with location-based forecasts and beautiful UI animations.',
       category: 'Mobile',
@@ -43,10 +43,10 @@ const ProjectsSection = () => {
       github: 'https://github.com/example/weather-app',
       demo: 'https://weather-app-demo.com',
       featured: false
-    },
-    {
-      id: 4,
-      title: 'Portfolio Website',
+  },
+  {
+    id: 4,
+    title: 'Portfolio Website',
       description: 'A responsive portfolio website showcasing modern web development techniques and clean design principles.',
       category: 'Frontend',
       technologies: ['Next.js', 'Framer Motion', 'TailwindCSS', 'TypeScript'],
@@ -54,9 +54,9 @@ const ProjectsSection = () => {
       github: 'https://github.com/example/portfolio',
       demo: 'https://portfolio-demo.com',
       featured: false
-    },
-    {
-      id: 5,
+  },
+  {
+    id: 5,
       title: 'Learning Management System',
       description: 'A comprehensive LMS platform with course management, video streaming, and progress tracking features.',
       category: 'Full Stack',
@@ -65,9 +65,9 @@ const ProjectsSection = () => {
       github: 'https://github.com/example/lms',
       demo: 'https://lms-demo.com',
       featured: true
-    },
-    {
-      id: 6,
+  },
+  {
+    id: 6,
       title: 'Social Media Dashboard',
       description: 'Analytics dashboard for social media management with data visualization and automated reporting.',
       category: 'Frontend',
@@ -131,7 +131,7 @@ const ProjectsSection = () => {
           className="flex flex-wrap justify-center gap-4 mb-12"
         >
           {filters.map((filter) => (
-            <button
+              <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
               className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
@@ -145,8 +145,8 @@ const ProjectsSection = () => {
               }`}
             >
               {filter}
-            </button>
-          ))}
+              </button>
+            ))}
         </motion.div>
 
         {/* Projects Grid */}
@@ -216,7 +216,7 @@ const ProjectsSection = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                   </a>
-                </div>
+                  </div>
               </div>
 
               {/* Project Content */}
@@ -255,12 +255,12 @@ const ProjectsSection = () => {
                     theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
                   }`}>
                     {project.category}
-                  </span>
+                    </span>
                   <div className="flex space-x-2">
-                    <a
+                      <a
                       href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       className={`text-sm font-medium ${
                         theme === 'dark' 
                           ? 'text-gray-400 hover:text-white' 
@@ -274,8 +274,8 @@ const ProjectsSection = () => {
                     }`}>•</span>
                     <a
                       href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                        target="_blank"
+                        rel="noopener noreferrer"
                       className={`text-sm font-medium ${
                         theme === 'dark' 
                           ? 'text-gray-400 hover:text-white' 

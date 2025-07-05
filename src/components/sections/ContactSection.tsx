@@ -86,7 +86,7 @@ const ContactSection = () => {
       }
           } catch {
         setSubmitStatus('error');
-      } finally {
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -139,7 +139,7 @@ const ContactSection = () => {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="space-y-8"
           >
-            <div>
+                  <div>
               <h3 className={`text-2xl font-bold mb-6 ${
                 theme === 'dark' ? 'text-white' : 'text-gray-900'
               }`}>
@@ -151,7 +151,7 @@ const ContactSection = () => {
                 I&apos;m always excited to take on new challenges and collaborate on interesting projects. 
                 Whether you have a specific project in mind or just want to connect, feel free to reach out!
               </p>
-            </div>
+                </div>
 
             {/* Contact Details */}
             <div className="space-y-6">
@@ -200,7 +200,7 @@ const ContactSection = () => {
                   </div>
                 </motion.div>
               ))}
-            </div>
+                </div>
 
             {/* Availability Status */}
             <motion.div
@@ -256,75 +256,75 @@ const ContactSection = () => {
                     theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                   }`}>
                     Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    value={formData.name}
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
                     onChange={handleInputChange}
-                    required
+                      required
                     className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       theme === 'dark' 
                         ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
                         : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                     }`}
                     placeholder="Your name"
-                  />
-                </div>
+                    />
+                  </div>
                 <div>
                   <label className={`block text-sm font-medium mb-2 ${
                     theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                   }`}>
                     Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
                     onChange={handleInputChange}
-                    required
+                      required
                     className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                       theme === 'dark' 
                         ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
                         : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                     }`}
                     placeholder="your.email@example.com"
-                  />
+                    />
+                  </div>
                 </div>
-              </div>
 
               <div>
                 <label className={`block text-sm font-medium mb-2 ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  value={formData.subject}
+                    Subject
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    value={formData.subject}
                   onChange={handleInputChange}
-                  required
+                    required
                   className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 ${
                     theme === 'dark' 
                       ? 'bg-gray-800 border-gray-600 text-white placeholder-gray-400' 
                       : 'bg-white border-gray-300 text-gray-900 placeholder-gray-500'
                   }`}
                   placeholder="What's this about?"
-                />
-              </div>
+                  />
+                </div>
 
               <div>
                 <label className={`block text-sm font-medium mb-2 ${
                   theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
                 }`}>
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  value={formData.message}
+                    Message
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
                   onChange={handleInputChange}
-                  required
+                    required
                   rows={6}
                   className={`w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none ${
                     theme === 'dark' 
@@ -333,7 +333,7 @@ const ContactSection = () => {
                   }`}
                   placeholder="Tell me about your project or what you'd like to discuss..."
                 />
-              </div>
+                </div>
 
               {/* Submit Status */}
               {submitStatus === 'success' && (
@@ -344,8 +344,8 @@ const ContactSection = () => {
                     </svg>
                     <span>Message sent successfully! I&apos;ll get back to you soon.</span>
                   </div>
-                </div>
-              )}
+                  </div>
+                )}
 
               {submitStatus === 'error' && (
                 <div className="p-4 rounded-lg bg-red-100 border border-red-200 text-red-800">
@@ -355,19 +355,19 @@ const ContactSection = () => {
                     </svg>
                     <span>Failed to send message. Please try again or contact me directly.</span>
                   </div>
-                </div>
-              )}
+                  </div>
+                )}
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
                                  className={`w-full px-8 py-4 rounded-lg font-semibold transition-all duration-300 ${
                    isSubmitting
                      ? 'bg-gray-400 text-gray-200 cursor-not-allowed'
                      : 'bg-blue-600 text-white hover:bg-blue-700'
                  } shadow-lg hover:shadow-xl transform hover:scale-[1.02]`}
-              >
-                {isSubmitting ? (
+                >
+                  {isSubmitting ? (
                   <div className="flex items-center justify-center space-x-2">
                     <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     <span>Sending...</span>
@@ -377,11 +377,11 @@ const ContactSection = () => {
                     <span>Send Message</span>
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                    </svg>
+                      </svg>
                   </div>
-                )}
-              </button>
-            </form>
+                  )}
+                </button>
+              </form>
           </motion.div>
         </div>
 
