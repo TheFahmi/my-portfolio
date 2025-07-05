@@ -131,7 +131,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Email</h4>
-                    <p className="text-gray-600 dark:text-gray-300 break-all">hello.fahmihassan@gmail.com</p>
+                    <p className="text-gray-700 dark:text-gray-300 break-all">hello.fahmihassan@gmail.com</p>
                   </div>
                 </div>
 
@@ -141,7 +141,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Location</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Indonesia</p>
+                    <p className="text-gray-700 dark:text-gray-300">Indonesia</p>
                   </div>
                 </div>
 
@@ -151,7 +151,7 @@ const ContactSection = () => {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Freelance</h4>
-                    <p className="text-gray-600 dark:text-gray-300">Available for freelance projects</p>
+                    <p className="text-gray-700 dark:text-gray-300">Available for freelance projects</p>
                   </div>
                 </div>
               </div>
