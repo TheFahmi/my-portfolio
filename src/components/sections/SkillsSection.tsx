@@ -4,6 +4,14 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 
+// Skill interface
+interface Skill {
+  name: string;
+  level: number;
+  icon: string;
+  iconType: string;
+}
+
 // Skill categories and data
 const skillCategories = [
   { id: "frontend", label: "Frontend" },
@@ -12,35 +20,35 @@ const skillCategories = [
 ];
 
 const frontendSkills = [
-  { name: "React.js", level: 90, icon: "react" },
-  { name: "Vue.js", level: 90, icon: "vuejs" },
-  { name: "NuxtJS", level: 85, icon: "vuejs" },
-  { name: "TypeScript", level: 85, icon: "js" },
-  { name: "SCSS/SASS", level: 85, icon: "sass" },
-  { name: "Tailwind CSS", level: 90, icon: "wind" },
-  { name: "React Native", level: 80, icon: "mobile-alt" },
+  { name: "React.js", level: 90, icon: "react", iconType: "fab" },
+  { name: "Vue.js", level: 90, icon: "vuejs", iconType: "fab" },
+  { name: "TypeScript", level: 85, icon: "js-square", iconType: "fab" },
+  { name: "NuxtJS", level: 85, icon: "js-square", iconType: "fab" },
+  { name: "SCSS/SASS", level: 85, icon: "sass", iconType: "fab" },
+  { name: "Tailwind CSS", level: 90, icon: "css3-alt", iconType: "fab" },
+  { name: "React Native", level: 80, icon: "mobile-alt", iconType: "fas" },
 ];
 
 const backendSkills = [
-  { name: "Node.js", level: 85, icon: "node-js" },
-  { name: "MongoDB", level: 80, icon: "database" },
-  { name: "MySQL", level: 85, icon: "database" },
-  { name: "Express", level: 80, icon: "server" },
+  { name: "Node.js", level: 85, icon: "node-js", iconType: "fab" },
+  { name: "MongoDB", level: 80, icon: "database", iconType: "fas" },
+  { name: "MySQL", level: 85, icon: "database", iconType: "fas" },
+  { name: "Express", level: 80, icon: "server", iconType: "fas" },
 ];
 
 const toolsSkills = [
-  { name: "Agile/Scrum", level: 95, icon: "tasks" },
-  { name: "Jira", level: 90, icon: "jira" },
-  { name: "Team Leadership", level: 90, icon: "users" },
-  { name: "Project Management", level: 90, icon: "project-diagram" },
-  { name: "Git & GitHub", level: 90, icon: "git-alt" },
-  { name: "Figma", level: 80, icon: "figma" },
+  { name: "Agile/Scrum", level: 95, icon: "tasks", iconType: "fas" },
+  { name: "Jira", level: 90, icon: "jira", iconType: "fab" },
+  { name: "Team Leadership", level: 90, icon: "users", iconType: "fas" },
+  { name: "Project Management", level: 90, icon: "project-diagram", iconType: "fas" },
+  { name: "Git & GitHub", level: 90, icon: "git-alt", iconType: "fab" },
+  { name: "Figma", level: 80, icon: "figma", iconType: "fab" },
 ];
 
 const SkillsSection = () => {
   const [activeTab, setActiveTab] = useState("frontend");
 
-  const getSkillsByCategory = (category: string) => {
+  const getSkillsByCategory = (category: string): Skill[] => {
     switch (category) {
       case "frontend":
         return frontendSkills;
@@ -53,10 +61,10 @@ const SkillsSection = () => {
     }
   };
 
-  // Get icon component based on icon name
-  const getIconComponent = (iconName: string) => {
+  // Get icon component based on icon name and type
+  const getIconComponent = (iconName: string, iconType: string = "fas") => {
     // This is a simplified approach - in a real app, you might want to use a proper icon library
-    return <i className={`fas fa-${iconName}`}></i>;
+    return <i className={`${iconType} fa-${iconName}`}></i>;
   };
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
@@ -201,8 +209,8 @@ const SkillsSection = () => {
                 className="card card-body bg-white dark:bg-gray-800 shadow-md rounded-lg p-5"
               >
                 <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-600 dark:text-blue-400 mr-4">
-                    {getIconComponent(skill.icon)}
+                  <div className="w-12 h-12 rounded-full bg-blue-100 dark:bg-blue-900/50 flex items-center justify-center text-blue-700 dark:text-blue-300 mr-4">
+                    {getIconComponent(skill.icon, skill.iconType)}
                   </div>
                   <h3 className="card-title">{skill.name}</h3>
                 </div>

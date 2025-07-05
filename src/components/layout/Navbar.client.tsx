@@ -363,7 +363,7 @@ const Navbar = () => {
                   >
                     <Link
                       href={link.href}
-                      className={`text-xl font-medium ${isDarkMode ? 'text-gray-200 hover:text-blue-400' : 'text-gray-800 hover:text-blue-600'} block py-2 transition-colors duration-300`}
+                      className={`text-xl font-medium ${isDarkMode ? 'text-gray-200 hover:text-blue-300' : 'text-gray-800 hover:text-blue-700'} block py-2 transition-colors duration-300`}
                       onClick={() => setMobileMenuOpen(false)}
                     >
                       {link.label}

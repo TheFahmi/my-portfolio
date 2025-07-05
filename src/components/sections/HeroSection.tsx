@@ -54,14 +54,14 @@ const HeroSection = () => {
             >
               <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                 Hi, I&apos;m{" "}
-                <span className="text-blue-600 dark:text-blue-400">
+                <span className="text-blue-700 dark:text-blue-300">
                   M Fahmi Hassan
                 </span>
               </h1>
               <h2 className="text-2xl md:text-3xl font-medium mb-6 text-gray-700 dark:text-gray-300">
                 Frontend Engineer & Team Lead
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-lg">
+              <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 max-w-lg">
                 A passionate Frontend Engineer with 4+ years of experience in
                 creating innovative and impactful web applications.
               </p>
@@ -127,7 +127,7 @@ const HeroSection = () => {
           >
             <Link
               href="#about"
-              className="group flex flex-col items-center text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors duration-300 cursor-pointer"
+              className="group flex flex-col items-center text-gray-600 dark:text-gray-300 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-300 cursor-pointer"
               aria-label="Scroll down to About section"
             >
               <span className="text-sm mb-2 hidden md:block font-medium">Scroll Down</span>

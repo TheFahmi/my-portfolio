@@ -69,46 +69,46 @@ const AboutSection = () => {
               Who Am I?
               <span className="absolute bottom-0 left-0 w-12 h-1 bg-blue-600"></span>
             </h3>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
-              I&apos;m a passionate <span className="font-semibold text-blue-600 dark:text-blue-400">Frontend Engineer</span> with over 4 years of experience in creating innovative and impactful web applications. My expertise extends to project management, team leadership, and implementing Agile methodologies for efficient task execution.
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
+              I&apos;m a passionate <span className="font-semibold text-blue-700 dark:text-blue-300">Frontend Engineer</span> with over 4 years of experience in creating innovative and impactful web applications. My expertise extends to project management, team leadership, and implementing Agile methodologies for efficient task execution.
             </p>
-            <p className="text-gray-600 dark:text-gray-300 mb-4">
+            <p className="text-gray-700 dark:text-gray-300 mb-4">
               I&apos;ve led frontend teams to success by implementing Agile practices like sprint planning and stand-ups, ensuring project delivery within deadlines. My technical toolkit includes TypeScript, NuxtJs, TailwindCSS, ReactJs, Vue.js, and React Native for mobile development.
             </p>
-            <p className="text-gray-600 dark:text-gray-300 mb-6">
+            <p className="text-gray-700 dark:text-gray-300 mb-6">
               I&apos;ve spearheaded redesign projects that improved user experience, migrated tech stacks to enhance performance, and maintained clear communication with stakeholders through regular progress reports.
             </p>
 
-            <div className="card p-6 mb-6 border-l-4 border-primary">
+            <div className="card p-4 md:p-6 mb-6 border-l-4 border-primary">
               <h4 className="card-title mb-4">Personal Information</h4>
               <div className="space-y-3">
-                <div className="flex items-center">
-                  <div className="w-32 font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                    <span className="w-3 h-3 bg-primary rounded-full mr-2"></span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0">
+                  <div className="flex items-center min-w-[120px] sm:w-32 font-medium text-gray-700 dark:text-gray-300">
+                    <span className="w-3 h-3 bg-primary rounded-full mr-2 flex-shrink-0"></span>
                     <span>Name:</span>
                   </div>
-                  <span className="text-secondary">Muhammad Fahmi Hassan</span>
+                  <span className="text-secondary sm:ml-0 ml-5">Muhammad Fahmi Hassan</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-32 font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                    <span className="w-3 h-3 bg-primary rounded-full mr-2"></span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0">
+                  <div className="flex items-center min-w-[120px] sm:w-32 font-medium text-gray-700 dark:text-gray-300">
+                    <span className="w-3 h-3 bg-primary rounded-full mr-2 flex-shrink-0"></span>
                     <span>Email:</span>
                   </div>
-                  <span className="text-secondary break-all">hello.fahmihassan@gmail.com</span>
+                  <span className="text-secondary break-all sm:ml-0 ml-5">hello.fahmihassan@gmail.com</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-32 font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                    <span className="w-3 h-3 bg-primary rounded-full mr-2"></span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0">
+                  <div className="flex items-center min-w-[120px] sm:w-32 font-medium text-gray-700 dark:text-gray-300">
+                    <span className="w-3 h-3 bg-primary rounded-full mr-2 flex-shrink-0"></span>
                     <span>Location:</span>
                   </div>
-                  <span className="text-secondary">Indonesia</span>
+                  <span className="text-secondary sm:ml-0 ml-5">Indonesia</span>
                 </div>
-                <div className="flex items-center">
-                  <div className="w-32 font-medium text-gray-700 dark:text-gray-300 flex items-center">
-                    <span className="w-3 h-3 bg-primary rounded-full mr-2"></span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-0">
+                  <div className="flex items-center min-w-[120px] sm:w-32 font-medium text-gray-700 dark:text-gray-300">
+                    <span className="w-3 h-3 bg-primary rounded-full mr-2 flex-shrink-0"></span>
                     <span>Experience:</span>
                   </div>
-                  <span className="text-secondary">4+ Years</span>
+                  <span className="text-secondary sm:ml-0 ml-5">4+ Years</span>
                 </div>
               </div>
             </div>
