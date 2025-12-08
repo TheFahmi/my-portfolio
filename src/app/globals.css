@@ -21,6 +21,7 @@
 :root {
   --background: 255 255 255;
   --foreground: 15 23 42;
+  --card-bg: #ffffff;
   --primary: 59 130 246;
   --primary-foreground: 255 255 255;
 }
@@ -29,12 +30,14 @@
   :root {
     --background: 2 6 23;
     --foreground: 248 250 252;
+    --card-bg: #1e293b;
   }
 }
 
 .dark {
   --background: 2 6 23;
   --foreground: 248 250 252;
+  --card-bg: #1e293b;
 }
 
 html {

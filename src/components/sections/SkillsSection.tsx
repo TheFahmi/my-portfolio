@@ -38,12 +38,12 @@ const SkillsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white dark:bg-slate-800 rounded-2xl p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:border-blue-500/20 transition-all duration-300"
+              className="bg-card rounded-2xl p-8 shadow-xl border border-slate-100 dark:border-slate-700 hover:shadow-2xl hover:border-blue-500/20 transition-all duration-300"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center bg-gradient-to-br ${idx === 0 ? "from-blue-500 to-cyan-500" :
-                    idx === 1 ? "from-purple-500 to-pink-500" :
-                      "from-amber-500 to-orange-500"
+                  idx === 1 ? "from-purple-500 to-pink-500" :
+                    "from-amber-500 to-orange-500"
                   } text-white shadow-lg`}>
                   <span className="font-bold text-lg">{idx + 1}</span>
                 </div>
@@ -60,8 +60,8 @@ const SkillsSection = () => {
                     <div className="h-2 w-full bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
                       <motion.div
                         className={`h-full rounded-full ${idx === 0 ? "bg-blue-500" :
-                            idx === 1 ? "bg-purple-500" :
-                              "bg-amber-500"
+                          idx === 1 ? "bg-purple-500" :
+                            "bg-amber-500"
                           }`}
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
