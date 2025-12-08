@@ -37,6 +37,10 @@
   --foreground: 248 250 252;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background-color: rgb(var(--background) / 1);
   color: rgb(var(--foreground) / 1);
