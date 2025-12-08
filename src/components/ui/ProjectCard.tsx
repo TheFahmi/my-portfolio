@@ -15,7 +15,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3 }}
-            className="group relative flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 dark:hover:border-blue-500/50 hover:border-blue-500/50"
+            className="group relative flex flex-col overflow-hidden rounded-2xl bg-card border border-slate-200 dark:border-slate-800 hover:shadow-2xl transition-all duration-300 dark:hover:border-blue-500/50 hover:border-blue-500/50"
         >
             <div className="relative aspect-video w-full overflow-hidden bg-slate-100 dark:bg-slate-800">
                 {project.image && !imgError ? (
@@ -30,7 +30,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                 ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-blue-50 to-slate-100 dark:from-slate-800 dark:to-slate-900">
                         <div className="flex flex-col items-center gap-2">
-                            <div className="p-3 rounded-full bg-white dark:bg-slate-800 shadow-sm">
+                            <div className="p-3 rounded-full bg-card shadow-sm">
                                 <span className="text-2xl">🚀</span>
                             </div>
                             <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Project Preview</span>
@@ -45,7 +45,7 @@ export const ProjectCard = ({ project }: { project: Project }) => {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-3 bg-white dark:bg-slate-800 text-slate-900 dark:text-white rounded-full hover:scale-110 transition-transform shadow-lg"
+                            className="p-3 bg-card text-slate-900 dark:text-white rounded-full hover:scale-110 transition-transform shadow-lg"
                             title="View Code"
                         >
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

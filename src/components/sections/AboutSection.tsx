@@ -46,7 +46,7 @@ const AboutSection = () => {
             viewport={{ once: true }}
             className="lg:col-span-4 space-y-8"
           >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-card border border-slate-200 dark:border-slate-700">
               <div className="aspect-[4/5] w-full relative group">
                 <ToggleableAboutImage
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
@@ -61,7 +61,7 @@ const AboutSection = () => {
               </div>
             </div>
 
-            <div className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
+            <div className="bg-card rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
               <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 border-b border-slate-100 dark:border-slate-700 pb-2">
                 Personal Info
               </h3>
@@ -100,7 +100,7 @@ const AboutSection = () => {
               </h3>
               <div className="space-y-8 pl-4 border-l-2 border-slate-200 dark:border-slate-800 ml-2">
                 {experience.map((exp, index) => (
-                  <div key={index} className="relative pl-8 group">
+                  <div key={index} className="relative pl-4 group">
                     {/* Main Dot */}
                     <span className="absolute -left-[25px] top-2 w-4 h-4 rounded-full border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 group-hover:border-blue-500 group-hover:bg-blue-500 transition-colors"></span>
 
@@ -110,17 +110,17 @@ const AboutSection = () => {
                         <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-500 transition-colors">
                           {exp.company}
                         </h4>
-                        <div className="space-y-8 relative border-l-2 border-slate-200 dark:border-slate-700/50 ml-1 pl-6">
+                        <div className="space-y-8 relative border-l-2 border-slate-200 dark:border-slate-700/50 ml-1 pl-4">
                           {exp.roles.map((role, rIdx) => (
                             <div key={rIdx} className="relative group/role">
-                              <span className="absolute -left-[31px] top-2 w-3 h-3 rounded-full border-2 border-blue-500 bg-white dark:bg-slate-900"></span>
+                              <span className="absolute -left-[23px] top-2 w-3 h-3 rounded-full border-2 border-blue-500 bg-white dark:bg-slate-900"></span>
 
                               <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
                                 <h5 className="text-lg font-bold text-slate-800 dark:text-slate-200">{role.title}</h5>
                                 <span className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full">{role.year}</span>
                               </div>
 
-                              <p className="text-slate-600 dark:text-slate-400 text-sm mb-2">{role.description}</p>
+                              <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">{role.description}</p>
 
                               {role.details && (
                                 <ul className="list-disc list-outside ml-4 space-y-1 text-slate-500 dark:text-slate-400 text-sm">
@@ -141,7 +141,7 @@ const AboutSection = () => {
                           <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">{exp.year}</span>
                         </div>
                         <p className="text-blue-600 dark:text-blue-400 font-medium mb-2">{exp.company}</p>
-                        <p className="text-slate-600 dark:text-slate-400 mb-3">{exp.description}</p>
+                        <p className="text-slate-600 dark:text-slate-300 mb-3">{exp.description}</p>
                         {exp.details && (
                           <ul className="list-disc list-outside ml-4 space-y-1 text-slate-500 dark:text-slate-400 text-sm">
                             {exp.details.map((detail, idx) => (
