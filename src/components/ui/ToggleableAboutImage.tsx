@@ -29,7 +29,6 @@ const ToggleableAboutImage = ({
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-top"
-              style={{ objectPosition: '50% 10%' }} /* Adjusted to show more of the lower part */
               priority
             />
           </div>
@@ -40,7 +39,7 @@ const ToggleableAboutImage = ({
 
       <motion.button
         onClick={() => setShowRealPhoto(!showRealPhoto)}
-        className="absolute bottom-4 right-4 bg-primary text-white p-2 rounded-full shadow-lg z-20 hover:bg-blue-700 transition-colors duration-300"
+        className="absolute bottom-4 right-4 bg-blue-600 text-white p-2 rounded-full shadow-lg z-20 hover:bg-blue-700 transition-colors duration-300 cursor-pointer"
         aria-label={showRealPhoto ? "Show animated avatar" : "Show real photo"}
         title={showRealPhoto ? "Show animated avatar" : "Show real photo"}
         whileHover={{ scale: 1.1 }}

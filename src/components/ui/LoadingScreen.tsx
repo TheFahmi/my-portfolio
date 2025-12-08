@@ -83,148 +83,62 @@ const LoadingScreen = () => {
     <AnimatePresence>
       {loading && (
         <motion.div
-          className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-colors duration-300 ${
-            theme === 'dark' ? 'bg-gray-900' : 'bg-white'
-          }`}
+          className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-colors duration-500 ${theme === 'dark' ? 'bg-slate-950' : 'bg-slate-50'
+            }`}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
         >
-          {/* Background Pattern */}
-          <div className="absolute inset-0 overflow-hidden">
-            <div className={`absolute inset-0 ${
-              theme === 'dark' 
-                ? 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900' 
-                : 'bg-gradient-to-br from-gray-50 via-white to-gray-50'
-            }`}>
-              {/* Floating Dots */}
-              {[...Array(6)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  className={`absolute w-2 h-2 rounded-full ${
-                    theme === 'dark' ? 'bg-blue-400/20' : 'bg-blue-600/20'
-                  }`}
-                  style={{
-                    left: `${20 + i * 15}%`,
-                    top: `${30 + (i % 3) * 20}%`,
-                  }}
-                  variants={dotVariants}
-                  animate={{
-                    y: [-10, 10, -10],
-                    opacity: [0.3, 0.7, 0.3],
-                  }}
-                  transition={{
-                    duration: 3 + i * 0.5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: i * 0.2,
-                  }}
-                />
-              ))}
-            </div>
-          </div>
-
           {/* Main Content */}
-          <div className="relative z-10 text-center px-4 max-w-md">
-            {/* Logo/Brand */}
+          <div className="relative z-10 flex flex-col items-center">
+            {/* Logo Animation */}
             <motion.div
               variants={logoVariants}
-              className="mb-12"
+              className="mb-8 relative"
             >
-              <div className={`inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6 ${
-                theme === 'dark' 
-                  ? 'bg-gradient-to-br from-blue-600 to-blue-700' 
-                  : 'bg-gradient-to-br from-blue-600 to-blue-700'
-              } shadow-2xl`}>
-                <span className="text-white text-2xl font-bold">FH</span>
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-2xl shadow-blue-500/20">
+                <span className="text-white text-3xl font-bold tracking-tighter">FH</span>
               </div>
-              
-              <motion.h1
-                className={`text-3xl font-bold mb-2 ${
-                  theme === 'dark' ? 'text-white' : 'text-gray-900'
-                }`}
-                variants={itemVariants}
-              >
-                Fahmi Hassan
-              </motion.h1>
-              
-              <motion.p
-                className={`text-lg ${
-                  theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                }`}
-                variants={itemVariants}
-              >
-                Full Stack Developer
-              </motion.p>
-              </motion.div>
-
-            {/* Loading Progress */}
               <motion.div
-              variants={itemVariants}
-              className="w-full"
-            >
-              {/* Progress Bar */}
-              <div className={`w-full h-1 rounded-full overflow-hidden mb-4 ${
-                theme === 'dark' ? 'bg-gray-700' : 'bg-gray-200'
-              }`}>
-              <motion.div
-                  className="h-full bg-gradient-to-r from-blue-600 to-blue-500 rounded-full"
-                  initial={{ width: '0%' }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-              />
-            </div>
-
-              {/* Progress Text */}
-              <motion.p
-                className={`text-sm ${
-                  theme === 'dark' ? 'text-gray-500' : 'text-gray-500'
-                }`}
-                animate={{ opacity: [0.5, 1, 0.5] }}
+                className="absolute -inset-4 rounded-3xl border border-blue-500/20"
+                animate={{ scale: [1, 1.1, 1], opacity: [0, 1, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
-              >
-                {progress < 100 ? 'Loading...' : 'Welcome!'}
-              </motion.p>
+              />
             </motion.div>
 
-            {/* Loading Dots Animation */}
+            <motion.div variants={itemVariants} className="text-center space-y-2 mb-12">
+              <h1 className={`text-3xl md:text-4xl font-bold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-slate-900'
+                }`}>
+                Fahmi<span className="text-blue-500">Hassan</span>
+              </h1>
+              <p className={`text-sm tracking-widest uppercase font-medium ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
+                }`}>
+                Full Stack Engineer
+              </p>
+            </motion.div>
+
+            {/* Progress Bar */}
             <motion.div
               variants={itemVariants}
-              className="flex justify-center space-x-2 mt-8"
+              className="w-64 max-w-[80vw]"
             >
-              {[...Array(3)].map((_, i) => (
+              <div className={`w-full h-1 rounded-full overflow-hidden mb-3 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-200'
+                }`}>
                 <motion.div
-                  key={i}
-                  className={`w-2 h-2 rounded-full ${
-                    theme === 'dark' ? 'bg-blue-400' : 'bg-blue-600'
-                  }`}
-                  animate={{
-                    scale: [1, 1.5, 1],
-                    opacity: [0.5, 1, 0.5],
-                  }}
-                  transition={{
-                    duration: 1.5,
-                    repeat: Infinity,
-                    delay: i * 0.2,
-                    ease: "easeInOut",
-                  }}
+                  className="h-full bg-blue-600 rounded-full shadow-[0_0_10px_rgba(37,99,235,0.5)]"
+                  initial={{ width: '0%' }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.1, ease: "linear" }}
                 />
-              ))}
+              </div>
+
+              <div className="flex justify-between text-[10px] font-medium tracking-wider uppercase">
+                <span className={theme === 'dark' ? 'text-slate-600' : 'text-slate-400'}>Loading Assets</span>
+                <span className={theme === 'dark' ? 'text-slate-500' : 'text-slate-500'}>{Math.round(progress)}%</span>
+              </div>
             </motion.div>
           </div>
-
-          {/* Bottom Text */}
-          <motion.div
-            variants={itemVariants}
-            className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          >
-            <p className={`text-xs ${
-              theme === 'dark' ? 'text-gray-600' : 'text-gray-400'
-            }`}>
-              © 2024 Fahmi Hassan Portfolio
-            </p>
-          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

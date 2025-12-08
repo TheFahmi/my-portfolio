@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 export default function ForceTheme() {
   useEffect(() => {
     // Function to apply theme based on preference
-    const applyTheme = (theme) => {
+    const applyTheme = (theme: string) => {
       if (theme === 'dark') {
         document.documentElement.classList.add('dark');
         document.documentElement.classList.remove('light');
@@ -18,7 +18,7 @@ export default function ForceTheme() {
 
     // Check for saved theme in localStorage
     const savedTheme = localStorage.getItem('theme');
-    
+
     // If there's a saved theme, apply it
     if (savedTheme) {
       applyTheme(savedTheme);
@@ -33,7 +33,7 @@ export default function ForceTheme() {
       mutations.forEach((mutation) => {
         if (mutation.attributeName === 'class') {
           const htmlElement = document.documentElement;
-          
+
           // Update localStorage based on current class
           if (htmlElement.classList.contains('dark')) {
             localStorage.setItem('theme', 'dark');

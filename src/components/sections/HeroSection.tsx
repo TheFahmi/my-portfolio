@@ -2,254 +2,142 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useTheme } from "next-themes";
+import siteConfig from "@/config/siteConfig";
 import ToggleableProfileImage from "@/components/ui/ToggleableProfileImage";
+import { TypewriterEffect } from "@/components/ui/TypewriterEffect";
 
 const HeroSection = () => {
-  const { theme } = useTheme();
+  const { hero, personalInfo } = siteConfig;
 
-  const quickStats = [
-    { number: '4+', label: 'Years' },
-    { number: '50+', label: 'Projects' },
-    { number: '100%', label: 'Quality' },
+  // Prepare words for typewriter
+  const words = [
+    { text: "Build", className: "text-blue-500 dark:text-blue-500" },
+    { text: "amazing", className: "text-blue-500 dark:text-blue-500" },
+    { text: "apps", className: "text-blue-500 dark:text-blue-500" },
+    { text: "with", className: "text-blue-500 dark:text-blue-500" },
+    { text: "Fahmi.", className: "text-blue-500 dark:text-blue-500" },
   ];
 
-  const techStack = ['React', 'Next.js', 'TypeScript', 'TailwindCSS'];
-
   return (
-    <section
-      id="home"
-      className={`min-h-screen flex items-center py-20 transition-colors duration-300 ${
-        theme === 'dark' 
-          ? 'bg-gray-900' 
-          : 'bg-white'
-      }`}
-    >
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-          {/* Left Content */}
-          <motion.div 
-            className="lg:w-1/2 text-center lg:text-left"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
-            {/* Status Badge */}
+    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4 md:px-8">
+      <div className="container mx-auto max-w-7xl z-10 relative">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+
+          {/* Text Content */}
+          <div className="w-full lg:w-1/2 flex flex-col items-start space-y-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className={`inline-flex items-center px-4 py-2 rounded-full text-sm font-medium mb-8 ${
-                theme === 'dark' 
-                  ? 'bg-gray-800 text-gray-300 border border-gray-700' 
-                  : 'bg-gray-100 text-gray-600 border border-gray-200'
-              }`}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-700 backdrop-blur-sm"
             >
-              <span className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></span>
-              Available for work
-            </motion.div>
-
-            {/* Main Heading */}
-            <motion.h1 
-              className={`text-5xl lg:text-6xl font-bold mb-6 leading-tight ${
-                theme === 'dark' ? 'text-white' : 'text-gray-900'
-              }`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-            >
-                             Hi, I&apos;m{" "}
-              <span className={`${
-                theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-              }`}>
-                Fahmi Hassan
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-            </motion.h1>
+              <span className="text-xs font-semibold text-blue-600 dark:text-blue-300 tracking-wide uppercase">
+                {hero.badge}
+              </span>
+            </motion.div>
 
-            {/* Subtitle */}
-            <motion.h2 
-              className={`text-xl lg:text-2xl font-medium mb-8 ${
-                theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-              }`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-            >
-              Frontend Engineer & Team Lead
-            </motion.h2>
+            <div className="space-y-4">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white"
+              >
+                Hi, I'm <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">
+                  {hero.titleHighlight}
+                </span>
+              </motion.h1>
 
-            {/* Description */}
-            <motion.p 
-              className={`text-lg mb-8 max-w-xl leading-relaxed ${
-                theme === 'dark' ? 'text-gray-300' : 'text-gray-700'
-              }`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.7 }}
-            >
-              I create innovative web applications with modern technologies. 
-              Passionate about clean code, user experience, and team collaboration.
-            </motion.p>
+              <TypewriterEffect words={hero.subtitle.split(" ").map(word => ({ text: word }))} className="!text-left text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium" cursorClassName="bg-blue-500 h-6 md:h-8" />
 
-            {/* Tech Stack */}
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed"
+              >
+                {hero.description}
+              </motion.p>
+            </div>
+
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.8 }}
-              className="mb-10"
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="flex flex-wrap gap-4 pt-4"
             >
-              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
-                {techStack.map((tech, index) => (
-                  <motion.span
-                    key={tech}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: 0.9 + index * 0.1 }}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium ${
-                      theme === 'dark' 
-                        ? 'bg-gray-800 text-gray-300 border border-gray-700' 
-                        : 'bg-gray-50 text-gray-700 border border-gray-200'
-                    }`}
-                  >
-                    {tech}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
+              <Link href="#projects" className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-600 px-8 font-medium text-white transition-all duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-900">
+                <span className="mr-2">View My Projects</span>
+                <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </Link>
 
-            {/* CTA Buttons */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.0 }}
-            >
-              <Link 
-                href="#projects" 
-                className={`px-8 py-3 rounded-lg font-semibold transition-all duration-300 ${
-                  theme === 'dark'
-                    ? 'bg-blue-600 text-white hover:bg-blue-700'
-                    : 'bg-blue-600 text-white hover:bg-blue-700'
-                }`}
-              >
-                View My Work
-              </Link>
-              <Link 
-                href="#contact" 
-                className={`px-8 py-3 rounded-lg font-semibold border-2 transition-all duration-300 ${
-                  theme === 'dark'
-                    ? 'border-gray-700 text-gray-300 hover:bg-gray-800'
-                    : 'border-gray-300 text-gray-700 hover:bg-gray-50'
-                }`}
-              >
-                Contact Me
-              </Link>
+              {siteConfig.features.enableDownloads && personalInfo.resumeUrl && (
+                <a
+                  href={personalInfo.resumeUrl}
+                  download
+                  className="inline-flex h-12 items-center justify-center rounded-md border border-slate-200 dark:border-slate-700 bg-transparent px-8 font-medium text-slate-900 dark:text-white transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-900"
+                >
+                  <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Resume
+                </a>
+              )}
             </motion.div>
 
             {/* Quick Stats */}
-            <motion.div 
-              className="flex justify-center lg:justify-start gap-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 0.8 }}
+              className="grid grid-cols-3 gap-6 pt-8 w-full max-w-md border-t border-slate-200 dark:border-slate-800 mt-4"
             >
-              {quickStats.map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 15 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 1.3 + index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className={`text-2xl font-bold ${
-                    theme === 'dark' ? 'text-blue-400' : 'text-blue-600'
-                  }`}>
-                    {stat.number}
-                  </div>
-                  <div className={`text-sm font-medium ${
-                    theme === 'dark' ? 'text-gray-400' : 'text-gray-600'
-                  }`}>
-                    {stat.label}
-                  </div>
-                </motion.div>
+              {hero.quickStats.map((stat, idx) => (
+                <div key={idx} className="flex flex-col">
+                  <span className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">{stat.number}</span>
+                  <span className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{stat.label}</span>
+                </div>
               ))}
             </motion.div>
-          </motion.div>
+          </div>
 
-          {/* Right Content - Profile Image */}
-          <motion.div 
-            className="lg:w-1/2 flex justify-center lg:justify-end"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <div className="relative">
-              {/* Main Profile Image Container */}
+          {/* Image / Graphic */}
+          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+            <div className="relative w-72 h-72 md:w-[500px] md:h-[500px]">
+              {/* Decorative blobs */}
+              <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
+              <div className="absolute -bottom-8 left-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+              <div className="absolute -bottom-8 right-20 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+
+              {/* Profile Image with modern frame */}
               <motion.div
-                className="relative w-80 h-80 lg:w-96 lg:h-96"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
+                animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+                className="relative z-10 w-full h-full rounded-[2rem] overflow-hidden border-4 border-white/50 dark:border-slate-800/50 shadow-2xl backdrop-blur-sm"
               >
-                {/* Simple Border */}
-                <div className={`absolute inset-0 rounded-full p-2 ${
-                  theme === 'dark' 
-                    ? 'bg-gray-800 border border-gray-700' 
-                    : 'bg-gray-100 border border-gray-200'
-                } shadow-xl`}>
-                  <div className="w-full h-full rounded-full overflow-hidden">
-                    <ToggleableProfileImage
-                      className="w-full h-full object-cover"
-                      imageUrl="/images/fahmi-profile.jpg"
-                      alt="Fahmi Hassan - Frontend Engineer"
-                    />
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" /> {/* Placeholder while loading */}
+                <ToggleableProfileImage
+                  imageUrl={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                  className="w-full h-full object-cover"
+                />
 
-                {/* Simple Badge */}
-                <motion.div
-                  className={`absolute -bottom-4 left-1/2 transform -translate-x-1/2 px-6 py-3 rounded-full text-sm font-semibold shadow-lg ${
-                    theme === 'dark' 
-                      ? 'bg-gray-800 text-gray-300 border border-gray-700' 
-                      : 'bg-white text-gray-700 border border-gray-200'
-                  }`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.4 }}
-                >
-                  Frontend Engineer
-                </motion.div>
+                {/* Glass overlay effect */}
+                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 dark:ring-white/10 rounded-[2rem]"></div>
               </motion.div>
-            </div>
-          </motion.div>
-        </div>
 
-        {/* Scroll Down Indicator */}
-        <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.6, duration: 0.5 }}
-        >
-          <Link
-            href="#about"
-            className={`flex flex-col items-center transition-colors duration-300 ${
-              theme === 'dark' ? 'text-gray-400 hover:text-gray-300' : 'text-gray-600 hover:text-gray-800'
-            }`}
-          >
-            <span className="text-sm mb-2">Scroll Down</span>
-            <div className={`w-6 h-10 border-2 rounded-full flex justify-center pt-2 ${
-              theme === 'dark' ? 'border-gray-600' : 'border-gray-400'
-            }`}>
-              <motion.div
-                className={`w-1 h-1 rounded-full ${
-                  theme === 'dark' ? 'bg-gray-400' : 'bg-gray-600'
-                }`}
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              />
+              {/* Floating tech stack icons could go here */}
             </div>
-          </Link>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
