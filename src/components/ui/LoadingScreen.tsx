@@ -97,11 +97,11 @@ const LoadingScreen = () => {
               variants={logoVariants}
               className="mb-8 relative"
             >
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center shadow-2xl shadow-blue-500/20">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-tr from-slate-700 to-slate-900 flex items-center justify-center shadow-2xl shadow-slate-500/20">
                 <span className="text-white text-3xl font-bold tracking-tighter">FH</span>
               </div>
               <motion.div
-                className="absolute -inset-4 rounded-3xl border border-blue-500/20"
+                className="absolute -inset-4 rounded-3xl border border-slate-500/20"
                 animate={{ scale: [1, 1.1, 1], opacity: [0, 1, 0] }}
                 transition={{ duration: 2, repeat: Infinity }}
               />
@@ -110,7 +110,7 @@ const LoadingScreen = () => {
             <motion.div variants={itemVariants} className="text-center space-y-2 mb-12">
               <h1 className={`text-3xl md:text-4xl font-bold tracking-tight ${theme === 'dark' ? 'text-white' : 'text-slate-900'
                 }`}>
-                Fahmi<span className="text-blue-500">Hassan</span>
+                Fahmi<span className="text-slate-500">Hassan</span>
               </h1>
               <p className={`text-sm tracking-widest uppercase font-medium ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'
                 }`}>
@@ -126,7 +126,7 @@ const LoadingScreen = () => {
               <div className={`w-full h-1 rounded-full overflow-hidden mb-3 ${theme === 'dark' ? 'bg-slate-800' : 'bg-slate-200'
                 }`}>
                 <motion.div
-                  className="h-full bg-blue-600 rounded-full shadow-[0_0_10px_rgba(37,99,235,0.5)]"
+                  className="h-full bg-slate-800 dark:bg-slate-200 rounded-full shadow-[0_0_10px_rgba(100,116,139,0.5)]"
                   initial={{ width: '0%' }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.1, ease: "linear" }}

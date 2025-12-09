@@ -31,130 +31,150 @@ const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 relative">
+    <section id="contact" className="py-32 relative bg-white dark:bg-black">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-          {/* Info Side */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
-            <div>
-              <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6">
-                Let's <span className="text-blue-500">Connect</span>
-              </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-lg leading-relaxed">
-                I'm actively looking for new opportunities. Whether you have a question, a project idea, or just want to say hi, I'll try my best to get back to you!
-              </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
+
+          {/* Left Column: CTA */}
+          <div>
+            <div className="flex justify-between items-start mb-8">
+              <span className="text-blue-500 font-semibold tracking-wider uppercase block mt-1">Contact</span>
             </div>
 
-            <div className="space-y-6">
-              <div className="flex items-start gap-4 p-6 bg-card rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
-                <div className="p-3 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-lg">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight"
+            >
+              Let's work <br /> <span className="text-slate-400 dark:text-slate-600">together.</span>
+            </motion.h2>
+
+            <div className="space-y-8 mt-12">
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-xl">
+                  📧
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">Email Me</h4>
-                  <a href={`mailto:${personalInfo.email}`} className="text-slate-600 dark:text-slate-400 hover:text-blue-500 transition-colors">
+                  <span className="block text-sm text-slate-500 uppercase tracking-wider mb-1">Email</span>
+                  <a href={`mailto:${personalInfo.email}`} className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white hover:text-blue-600 transition-colors">
                     {personalInfo.email}
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-4 p-6 bg-card rounded-xl shadow-sm border border-slate-100 dark:border-slate-700">
-                <div className="p-3 bg-purple-100 dark:bg-purple-900/30 text-purple-600 dark:text-purple-400 rounded-lg">
-                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-xl">
+                  📍
                 </div>
                 <div>
-                  <h4 className="font-bold text-slate-900 dark:text-white mb-1">Location</h4>
-                  <p className="text-slate-600 dark:text-slate-400">
+                  <span className="block text-sm text-slate-500 uppercase tracking-wider mb-1">Studio</span>
+                  <span className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
                     {personalInfo.location}
-                  </p>
+                  </span>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          {/* Form Side */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="bg-card rounded-2xl p-8 shadow-xl border border-slate-100 dark:border-slate-700"
-          >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Name</label>
+          {/* Right Column: Minimal Form */}
+          <div className="relative">
+            {/* Chapter Number Absolute for Grid layout */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="absolute -top-20 right-0 hidden lg:block text-right"
+            >
+              <span className="block text-6xl font-bold text-slate-200 dark:text-slate-800">05</span>
+              <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Get in Touch</span>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-slate-50 dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12"
+            >
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="text-sm font-bold text-slate-900 dark:text-white ml-1">NAME</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-6 py-4 rounded-xl bg-white dark:bg-slate-950 border-2 border-transparent focus:border-blue-500 outline-none transition-all placeholder:text-slate-400"
+                      placeholder="John Doe"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="text-sm font-bold text-slate-900 dark:text-white ml-1">EMAIL</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-6 py-4 rounded-xl bg-white dark:bg-slate-950 border-2 border-transparent focus:border-blue-500 outline-none transition-all placeholder:text-slate-400"
+                      placeholder="john@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="text-sm font-bold text-slate-900 dark:text-white ml-1">SUBJECT</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-                    placeholder="John Doe"
+                    className="w-full px-6 py-4 rounded-xl bg-white dark:bg-slate-950 border-2 border-transparent focus:border-blue-500 outline-none transition-all placeholder:text-slate-400"
+                    placeholder="Project Inquiry"
                   />
                 </div>
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
+
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-bold text-slate-900 dark:text-white ml-1">MESSAGE</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-                    placeholder="john@example.com"
+                    rows={6}
+                    className="w-full px-6 py-4 rounded-xl bg-white dark:bg-slate-950 border-2 border-transparent focus:border-blue-500 outline-none transition-all resize-none placeholder:text-slate-400"
+                    placeholder="Tell me about your project..."
                   />
                 </div>
-              </div>
 
-              <div>
-                <label htmlFor="subject" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Subject</label>
-                <input
-                  type="text"
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all"
-                  placeholder="Project Inquiry"
-                />
-              </div>
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold text-lg rounded-xl hover:scale-[1.02] transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? "Sending..." : "Send Message"}
+                </button>
 
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">Message</label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none transition-all resize-none"
-                  placeholder="Tell me about your project..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg shadow-lg hover:shadow-blue-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-              </button>
-
-              {submitStatus === "success" && (
-                <p className="text-green-600 dark:text-green-400 text-center font-medium">Message sent successfully!</p>
-              )}
-            </form>
-          </motion.div>
+                {submitStatus === "success" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-green-600 dark:text-green-400 text-center font-bold mt-4"
+                  >
+                    Message sent successfully! I'll be in touch soon.
+                  </motion.p>
+                )}
+              </form>
+            </motion.div>
+          </div>
         </div>
       </div>
     </section>

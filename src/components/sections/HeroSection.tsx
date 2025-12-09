@@ -4,139 +4,137 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import siteConfig from "@/config/siteConfig";
 import ToggleableProfileImage from "@/components/ui/ToggleableProfileImage";
-import { TypewriterEffect } from "@/components/ui/TypewriterEffect";
 
 const HeroSection = () => {
-  const { hero, personalInfo } = siteConfig;
+  const { personalInfo } = siteConfig;
 
-  // Prepare words for typewriter
-  const words = [
-    { text: "Build", className: "text-blue-500 dark:text-blue-500" },
-    { text: "amazing", className: "text-blue-500 dark:text-blue-500" },
-    { text: "apps", className: "text-blue-500 dark:text-blue-500" },
-    { text: "with", className: "text-blue-500 dark:text-blue-500" },
-    { text: "Fahmi.", className: "text-blue-500 dark:text-blue-500" },
-  ];
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.3,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+      },
+    },
+  };
 
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center overflow-hidden py-20 px-4 md:px-8">
-      <div className="container mx-auto max-w-7xl z-10 relative">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+    <section id="home" className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-slate-50 dark:bg-slate-950 pt-20">
+      {/* Background Elements - Monochromatic/Subtle */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-slate-200/50 dark:bg-slate-800/20 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 -right-1/4 w-1/2 h-1/2 bg-slate-200/50 dark:bg-slate-800/20 rounded-full blur-[120px]" />
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]" />
+      </div>
+
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Text Content */}
-          <div className="w-full lg:w-1/2 flex flex-col items-start space-y-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="inline-flex items-center space-x-2 bg-blue-50 dark:bg-blue-900/30 px-3 py-1 rounded-full border border-blue-200 dark:border-blue-700 backdrop-blur-sm"
-            >
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex flex-col space-y-8"
+          >
+            <motion.div variants={itemVariants} className="inline-flex items-center space-x-2 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-full px-4 py-2 w-fit">
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-slate-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-slate-500"></span>
               </span>
-              <span className="text-xs font-semibold text-blue-600 dark:text-blue-300 tracking-wide uppercase">
-                {hero.badge}
-              </span>
+              <span className="text-sm font-medium text-slate-600 dark:text-slate-300">Available for projects</span>
             </motion.div>
 
-            <div className="space-y-4">
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white"
+            <motion.div variants={itemVariants} className="relative">
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
+                Full Stack <br />
+                <span className="text-slate-500 dark:text-slate-400">
+                  Engineer
+                </span> <br />
+                & Team Lead
+              </h1>
+            </motion.div>
+
+            <motion.p variants={itemVariants} className="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed">
+              Full Stack Developer specializing in the MERN stack, Vue.js, and Project Management. Transforming complex requirements into seamless web experiences.
+            </motion.p>
+
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+              <Link
+                href="#contact"
+                className="px-8 py-4 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold hover:scale-105 transition-transform duration-200 shadow-lg shadow-slate-900/20 dark:shadow-white/20"
               >
-                Hi, I'm <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-500 dark:from-blue-400 dark:to-cyan-300">
-                  {hero.titleHighlight}
-                </span>
-              </motion.h1>
-
-              <TypewriterEffect words={hero.subtitle.split(" ").map(word => ({ text: word }))} className="!text-left text-xl md:text-2xl text-slate-600 dark:text-slate-300 font-medium" cursorClassName="bg-blue-500 h-6 md:h-8" />
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
-                className="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed"
-              >
-                {hero.description}
-              </motion.p>
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.6 }}
-              className="flex flex-wrap gap-4 pt-4"
-            >
-              <Link href="#projects" className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md bg-blue-600 px-8 font-medium text-white transition-all duration-300 hover:bg-blue-700 hover:scale-105 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-900">
-                <span className="mr-2">View My Projects</span>
-                <svg className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
+                Start a Project
               </Link>
-
-              {siteConfig.features.enableDownloads && personalInfo.resumeUrl && (
-                <a
-                  href={personalInfo.resumeUrl}
-                  download
-                  className="inline-flex h-12 items-center justify-center rounded-md border border-slate-200 dark:border-slate-700 bg-transparent px-8 font-medium text-slate-900 dark:text-white transition-all duration-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 dark:focus:ring-offset-slate-900"
-                >
-                  <svg className="mr-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Resume
-                </a>
-              )}
-            </motion.div>
-
-            {/* Quick Stats */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1, delay: 0.8 }}
-              className="grid grid-cols-3 gap-6 pt-8 w-full max-w-md border-t border-slate-200 dark:border-slate-800 mt-4"
-            >
-              {hero.quickStats.map((stat, idx) => (
-                <div key={idx} className="flex flex-col">
-                  <span className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">{stat.number}</span>
-                  <span className="text-xs uppercase tracking-wider text-slate-500 dark:text-slate-400">{stat.label}</span>
-                </div>
-              ))}
-            </motion.div>
-          </div>
-
-          {/* Image / Graphic */}
-          <div className="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
-            <div className="relative w-72 h-72 md:w-[500px] md:h-[500px]">
-              {/* Decorative blobs */}
-              <div className="absolute top-0 right-0 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob"></div>
-              <div className="absolute -bottom-8 left-0 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
-              <div className="absolute -bottom-8 right-20 w-72 h-72 bg-cyan-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
-
-              {/* Profile Image with modern frame */}
-              <motion.div
-                initial={{ opacity: 0, scale: 0.5, rotate: -10 }}
-                animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-                className="relative z-10 w-full h-full rounded-[2rem] overflow-hidden border-4 border-white/50 dark:border-slate-800/50 shadow-2xl backdrop-blur-sm"
+              <Link
+                href="#projects"
+                className="px-8 py-4 rounded-xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-800 font-semibold hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors duration-200"
               >
-                <div className="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse" /> {/* Placeholder while loading */}
-                <ToggleableProfileImage
-                  imageUrl={personalInfo.profileImage}
-                  alt={personalInfo.name}
-                  className="w-full h-full object-cover"
-                />
+                View Projects
+              </Link>
+            </motion.div>
 
-                {/* Glass overlay effect */}
-                <div className="absolute inset-0 ring-1 ring-inset ring-black/10 dark:ring-white/10 rounded-[2rem]"></div>
-              </motion.div>
+            <motion.div variants={itemVariants} className="pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-3 gap-8">
+              <div>
+                <h3 className="text-3xl font-bold text-slate-900 dark:text-white">5+</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Years Exp.</p>
+              </div>
+              <div>
+                <h3 className="text-3xl font-bold text-slate-900 dark:text-white">10+</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Projects</p>
+              </div>
+              <div>
+                <h3 className="text-3xl font-bold text-slate-900 dark:text-white">ID</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Indonesia</p>
+              </div>
+            </motion.div>
+          </motion.div>
 
-              {/* Floating tech stack icons could go here */}
+          {/* Image Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative lg:h-[600px] flex items-center justify-center p-4"
+          >
+            {/* Abstract Shapes behind - Monochrome */}
+            <div className="absolute inset-0 bg-slate-200/50 dark:bg-slate-800/30 rounded-[2rem] transform rotate-3 scale-95 blur-sm" />
+
+            <div className="relative w-full h-full max-h-[600px] rounded-[2rem] overflow-hidden border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-slate-900/50 backdrop-blur-sm shadow-2xl">
+              <ToggleableProfileImage
+                imageUrl={personalInfo.profileImage}
+                alt={personalInfo.name}
+                className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-700"
+              />
+
+              {/* Floating Badge */}
+              <div className="absolute bottom-8 right-8 bg-white/10 backdrop-blur-md border border-slate-200/20 dark:border-slate-700/30 p-4 rounded-2xl max-w-[200px]">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-3 h-3 rounded-full bg-slate-900 dark:bg-white" />
+                  <span className="text-xs font-semibold text-slate-900 dark:text-white">Latest Tech</span>
+                </div>
+                <p className="text-xs text-slate-600 dark:text-slate-300">
+                  Built with Next.js 14 & React Server Components
+                </p>
+              </div>
             </div>
-          </div>
+          </motion.div>
+
         </div>
       </div>
     </section>

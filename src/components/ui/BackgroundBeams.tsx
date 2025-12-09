@@ -15,9 +15,9 @@ export const BackgroundBeams = ({ className }: { className?: string }) => {
                 className="absolute h-full w-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-900/20 via-neutral-950 to-neutral-950"
             />
             <div className="absolute top-0 left-0 h-full w-full overflow-hidden">
-                <div className="absolute top-[-50%] left-[-20%] h-[200%] w-[150%] animate-blob rounded-full bg-blue-500/10 blur-[100px]" />
-                <div className="absolute top-[-20%] right-[-20%] h-[150%] w-[120%] animate-blob animation-delay-2000 rounded-full bg-purple-500/10 blur-[120px]" />
-                <div className="absolute bottom-[-50%] left-[20%] h-[150%] w-[150%] animate-blob animation-delay-4000 rounded-full bg-indigo-500/10 blur-[100px]" />
+                <div className="absolute top-[-50%] left-[-20%] h-[200%] w-[150%] animate-blob rounded-full bg-slate-500/10 blur-[100px]" />
+                <div className="absolute top-[-20%] right-[-20%] h-[150%] w-[120%] animate-blob animation-delay-2000 rounded-full bg-gray-500/10 blur-[120px]" />
+                <div className="absolute bottom-[-50%] left-[20%] h-[150%] w-[150%] animate-blob animation-delay-4000 rounded-full bg-slate-400/10 blur-[100px]" />
             </div>
         </div>
     );
