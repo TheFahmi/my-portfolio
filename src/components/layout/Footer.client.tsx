@@ -74,7 +74,7 @@ const Footer = () => {
               <div>
                 <p className="text-slate-400 dark:text-slate-500 text-sm font-medium mb-1">Drop me a line</p>
                 <p className="text-white dark:text-slate-900 font-bold text-lg md:text-xl break-all">
-                  hello.fahmihassan@
+                  hello.fahmihassan@gmail.com
                 </p>
               </div>
               <div className="w-10 h-10 rounded-full bg-white/10 dark:bg-slate-200 flex items-center justify-center group-hover:rotate-45 transition-transform duration-300">
