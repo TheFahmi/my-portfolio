@@ -26,14 +26,6 @@
   --primary-foreground: 255 255 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 2 6 23;
-    --foreground: 248 250 252;
-    --card-bg: #1e293b;
-  }
-}
-
 .dark {
   --background: 2 6 23;
   --foreground: 248 250 252;

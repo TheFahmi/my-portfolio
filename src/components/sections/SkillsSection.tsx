@@ -7,7 +7,7 @@ const SkillsSection = () => {
   const { skills } = siteConfig;
 
   return (
-    <section id="skills" className="py-32 relative bg-slate-50 dark:bg-slate-950">
+    <section id="skills" className="py-32 relative">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
 
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 relative">

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import dynamic from 'next/dynamic';
-import ForceTheme from './force-theme';
+
 
 // Use dynamic import for client components
 const ClientLayout = dynamic(() => import('../components/layout/ClientLayout'), { ssr: true });
@@ -25,7 +25,7 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
       </head>
       <body className="font-sans antialiased">
-        <ForceTheme />
+
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

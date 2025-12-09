@@ -8,7 +8,7 @@ const AboutSection = () => {
   const { personalInfo, experience, education } = siteConfig;
 
   // Bento Box Item Component
-  const BentoBox = ({ children, className = "", delay = 0 }) => (
+  const BentoBox = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -21,7 +21,7 @@ const AboutSection = () => {
   );
 
   return (
-    <section id="about" className="py-32 relative bg-slate-50 dark:bg-slate-950">
+    <section id="about" className="py-32 relative">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
 
         {/* Section Header */}

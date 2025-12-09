@@ -33,7 +33,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-slate-50 dark:bg-slate-950 pt-20">
+    <section id="home" className="relative min-h-[95vh] flex items-center justify-center overflow-hidden pt-20">
       {/* Background Elements - Monochromatic/Subtle */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-0 -left-1/4 w-1/2 h-1/2 bg-slate-200/50 dark:bg-slate-800/20 rounded-full blur-[120px]" />
