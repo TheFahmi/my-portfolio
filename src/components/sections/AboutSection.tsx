@@ -7,173 +7,200 @@ import ToggleableAboutImage from "@/components/ui/ToggleableAboutImage";
 const AboutSection = () => {
   const { personalInfo, experience, education } = siteConfig;
 
-  const infoList = [
-    { label: "Name", value: personalInfo.name },
-    { label: "Email", value: personalInfo.email },
-    { label: "Location", value: personalInfo.location },
-    { label: "Experience", value: personalInfo.experienceYears },
-  ];
+  // Bento Box Item Component
+  const BentoBox = ({ children, className = "", delay = 0 }) => (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.5, delay }}
+      className={`rounded-[2rem] bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 shadow-sm hover:shadow-md transition-shadow ${className}`}
+    >
+      {children}
+    </motion.div>
+  );
 
   return (
-    <section id="about" className="py-24 relative">
+    <section id="about" className="py-32 relative bg-slate-50 dark:bg-slate-950">
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
-        {/* Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white mb-6"
+
+        {/* Section Header */}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white"
+            >
+              Hello, I'm <span className="text-slate-400 dark:text-slate-600">{personalInfo.name.split(' ')[1]}.</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-xl text-slate-500 dark:text-slate-400 mt-4 max-w-2xl leading-relaxed"
+            >
+              I craft digital experiences with a focus on motion, interaction, and performance. Based in {personalInfo.location}.
+            </motion.p>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.2 }}
+            className="hidden lg:block text-right"
           >
-            About <span className="text-blue-500">Me</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-slate-600 dark:text-slate-400 text-lg"
-          >
-            Passionate about creating seamless user experiences and scalable applications.
-          </motion.p>
+            <span className="block text-6xl font-bold text-slate-200 dark:text-slate-800">02</span>
+            <span className="text-sm font-medium uppercase tracking-widest text-slate-400">About Chapter</span>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Left Column: Image & Personal Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-4 space-y-8"
-          >
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-card border border-slate-200 dark:border-slate-700">
-              <div className="aspect-[4/5] w-full relative group">
-                <ToggleableAboutImage
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  imageUrl={personalInfo.profileImage}
-                  alt={personalInfo.name}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                  <p className="text-white font-medium">
-                    &quot;Coding is not just about syntax, it&apos;s about solving problems.&quot;
-                  </p>
-                </div>
-              </div>
-            </div>
+        {/* Bento Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
 
-            <div className="bg-card rounded-xl p-6 shadow-lg border border-slate-200 dark:border-slate-700">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4 border-b border-slate-100 dark:border-slate-700 pb-2">
-                Personal Info
-              </h3>
-              <div className="space-y-3">
-                {infoList.map((item) => (
-                  <div key={item.label} className="flex justify-between items-center text-sm">
-                    <span className="text-slate-500 dark:text-slate-400">{item.label}</span>
-                    <span className="font-semibold text-slate-900 dark:text-slate-200 text-right">{item.value}</span>
-                  </div>
+          {/* 1. Large Bio with Photo */}
+          <BentoBox className="lg:col-span-2 min-h-[400px] md:min-h-[500px] flex flex-col md:flex-row gap-8 items-center bg-gradient-to-br from-slate-100 to-white dark:from-slate-900 dark:to-slate-950">
+            <div className="w-full md:w-1/2 h-64 md:h-full relative rounded-3xl overflow-hidden shadow-xl">
+              <ToggleableAboutImage
+                className="w-full h-full object-cover"
+                imageUrl={personalInfo.profileImage}
+                alt={personalInfo.name}
+              />
+              <div className="absolute inset-0 bg-black/10 dark:bg-black/20" />
+            </div>
+            <div className="w-full md:w-1/2 flex flex-col justify-center space-y-6">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">My Story</h3>
+              <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
+                {personalInfo.about.slice(0, 2).map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
                 ))}
               </div>
             </div>
-          </motion.div>
+          </BentoBox>
 
-          {/* Right Column: Bio & Timeline */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="lg:col-span-8 space-y-12"
-          >
-            {/* Bio */}
-            <div className="space-y-4">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Who am I?</h3>
-              {personalInfo.about.map((paragraph, idx) => (
-                <p key={idx} className="text-slate-600 dark:text-slate-300 leading-relaxed text-lg">
-                  {paragraph}
-                </p>
-              ))}
+          {/* 2. Professional Summary / What I Do */}
+          <BentoBox className="flex flex-col justify-between !bg-slate-900 dark:!bg-white text-white dark:text-slate-900 p-8">
+            <div>
+              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
+                <span className="w-2 h-8 bg-slate-500 rounded-full"></span>
+                What I Do
+              </h3>
+              <ul className="space-y-6">
+                <li className="flex items-start gap-3">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></div>
+                  <div>
+                    <strong className="block text-lg font-semibold mb-1">Full Stack Development</strong>
+                    <p className="text-sm text-slate-400 dark:text-slate-600 leading-relaxed">Building end-to-end web solutions using modern stacks like Next.js and Node.js.</p>
+                  </div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></div>
+                  <div>
+                    <strong className="block text-lg font-semibold mb-1">System Architecture</strong>
+                    <p className="text-sm text-slate-400 dark:text-slate-600 leading-relaxed">Designing scalable, secure, and performant application structures.</p>
+                  </div>
+                </li>
+              </ul>
             </div>
 
-            {/* Experience */}
-            <div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                <span className="w-8 h-1 bg-blue-500 rounded-full"></span> Experience
+            <div className="mt-8 pt-8 border-t border-white/10 dark:border-black/10">
+              <a
+                href={personalInfo.resumeUrl}
+                target="_blank"
+                className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download Resume
+              </a>
+            </div>
+          </BentoBox>
+
+          {/* 3. Experience Scroll */}
+          <BentoBox className="lg:col-span-2 lg:row-span-2 overflow-hidden flex flex-col max-h-[600px]">
+            <div className="flex justify-between items-center mb-8">
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                <span className="w-2 h-8 bg-slate-500 rounded-full"></span>
+                Career Journey
               </h3>
-              <div className="space-y-8 pl-4 border-l-2 border-slate-200 dark:border-slate-800 ml-2">
-                {experience.map((exp, index) => (
-                  <div key={index} className="relative pl-4 group">
-                    {/* Main Dot */}
-                    <span className="absolute -left-[25px] top-2 w-4 h-4 rounded-full border-2 border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950 group-hover:border-blue-500 group-hover:bg-blue-500 transition-colors"></span>
+              <span className="text-sm text-slate-400">Scrollable</span>
+            </div>
 
-                    {/* If grouped experience (has roles) */}
+            <div className="flex-1 overflow-y-auto pr-4 pl-4 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-700">
+              <div className="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-8 my-2">
+                {experience.map((exp, idx) => (
+                  <div key={idx} className="relative pl-8">
+                    <span className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-500 ring-4 ring-white dark:ring-slate-900 z-10"></span>
+
+                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
+                      <h4 className="text-lg font-bold text-slate-900 dark:text-white">{exp.company}</h4>
+                      <span className="text-sm font-medium text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">{exp.year}</span>
+                    </div>
+
                     {exp.roles ? (
-                      <div className="pb-2">
-                        <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-blue-500 transition-colors">
-                          {exp.company}
-                        </h4>
-                        <div className="space-y-8 relative border-l-2 border-slate-200 dark:border-slate-700/50 ml-1 pl-4">
-                          {exp.roles.map((role, rIdx) => (
-                            <div key={rIdx} className="relative group/role">
-                              <span className="absolute -left-[23px] top-2 w-3 h-3 rounded-full border-2 border-blue-500 bg-white dark:bg-slate-900"></span>
-
-                              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-1">
-                                <h5 className="text-lg font-bold text-slate-800 dark:text-slate-200">{role.title}</h5>
-                                <span className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded-full">{role.year}</span>
-                              </div>
-
-                              <p className="text-slate-600 dark:text-slate-300 text-sm mb-2">{role.description}</p>
-
-                              {role.details && (
-                                <ul className="list-disc list-outside ml-4 space-y-1 text-slate-500 dark:text-slate-400 text-sm">
-                                  {role.details.map((detail, dIdx) => (
-                                    <li key={dIdx}>{detail}</li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          ))}
-                        </div>
+                      <div className="space-y-6 mt-4">
+                        {exp.roles.map((role, rIdx) => (
+                          <div key={rIdx} className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl">
+                            <h5 className="font-semibold text-slate-800 dark:text-slate-200">{role.title}</h5>
+                            <span className="text-xs text-slate-500 block mb-2">{role.year}</span>
+                            <p className="text-sm text-slate-600 dark:text-slate-400">{role.description}</p>
+                          </div>
+                        ))}
                       </div>
                     ) : (
-                      /* Single Role Item */
-                      <>
-                        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-2">
-                          <h4 className="text-xl font-bold text-slate-800 dark:text-white group-hover:text-blue-500 transition-colors">{exp.title}</h4>
-                          <span className="text-sm font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">{exp.year}</span>
-                        </div>
-                        <p className="text-blue-600 dark:text-blue-400 font-medium mb-2">{exp.company}</p>
-                        <p className="text-slate-600 dark:text-slate-300 mb-3">{exp.description}</p>
+                      <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl mt-2">
+                        <h5 className="font-semibold text-slate-800 dark:text-slate-200">{exp.title}</h5>
+                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">{exp.description}</p>
                         {exp.details && (
-                          <ul className="list-disc list-outside ml-4 space-y-1 text-slate-500 dark:text-slate-400 text-sm">
-                            {exp.details.map((detail, idx) => (
-                              <li key={idx}>{detail}</li>
+                          <ul className="mt-3 space-y-1">
+                            {exp.details.slice(0, 2).map((d, i) => (
+                              <li key={i} className="text-xs text-slate-500 flex items-start gap-2">
+                                <span className="mt-1.5 w-1 h-1 rounded-full bg-slate-400"></span>
+                                {d}
+                              </li>
                             ))}
                           </ul>
                         )}
-                      </>
+                      </div>
                     )}
                   </div>
                 ))}
               </div>
             </div>
+          </BentoBox>
 
-            {/* Education */}
-            {education && (
-              <div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-2">
-                  <span className="w-8 h-1 bg-purple-500 rounded-full"></span> Education
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {education.map((edu, index) => (
-                    <div key={index} className="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-xl border border-slate-100 dark:border-slate-700/50 hover:border-purple-500/30 transition-colors">
-                      <span className="text-xs font-bold uppercase tracking-wider text-purple-600 dark:text-purple-400 mb-2 block">{edu.year}</span>
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white mb-1">{edu.degree}</h4>
-                      <p className="text-slate-600 dark:text-slate-400">{edu.institution}</p>
+          {/* 4. Education & Certs */}
+          <BentoBox className="flex flex-col justify-between space-y-6">
+            <div>
+              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Education</h3>
+              <div className="space-y-4">
+                {education && education.map((edu, idx) => (
+                  <div key={idx} className="group cursor-default">
+                    <div className="flex justify-between items-baseline mb-1">
+                      <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors pr-4">{edu.degree}</span>
+                      <span className="text-xs text-slate-400 whitespace-nowrap">{edu.year}</span>
                     </div>
-                  ))}
-                </div>
+                    <p className="text-sm text-slate-500">{edu.institution}</p>
+                  </div>
+                ))}
               </div>
-            )}
-          </motion.div>
+            </div>
+
+            <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Core Skills</h3>
+              <div className="flex flex-wrap gap-2">
+                {["JavaScript", "TypeScript", "React", "Next.js", "Node.js"].map((skill) => (
+                  <span key={skill} className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg text-sm font-medium">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </BentoBox>
+
         </div>
       </div>
     </section>
