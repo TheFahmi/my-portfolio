@@ -53,6 +53,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+@media (pointer: fine) {
+  body, a, button, [role="button"], .cursor-pointer {
+    cursor: none;
+  }
+}
+
 /* Animations */
 @keyframes blob {
   0% { transform: translate(0px, 0px) scale(1); }
