@@ -37,3 +37,17 @@
 - **State Management**: Implemented comprehensive loading, success, and error states using local React state.
 - **UX Feedback**: Added clear visual feedback for success/error scenarios using Framer Motion animations to guide user expectations.
 - **Validation**: Added explicit error handling for non-200 API responses.
+
+## Custom Cursor Implementation
+- **Implementation**: Created `CustomCursor` component using `framer-motion` for smooth, spring-based movement (`useSpring`, `useMotionValue`).
+- **Interactivity**: Added event listeners (`mouseover`, `mouseout`) to detect interactive elements (links, buttons) and expand the cursor for better affordance.
+- **Accessibility/Usability**:
+  - Implemented `(pointer: fine)` media query check to strictly disable the custom cursor on touch devices.
+  - Hid the default system cursor via `globals.css` only on supported devices.
+  - Added a persistent center dot to maintain pointing precision even when the outer ring expands.
+
+## Easter Eggs Implementation
+- **Separation of Concerns**: Logic for detecting key sequences (`useKonamiCode`) was separated from the visual effect (`EasterEgg`), allowing for better testability and reusability.
+- **Performance**: Framer Motion's `AnimatePresence` efficiently handles the mounting/unmounting of the heavy confetti DOM elements, ensuring they don't impact performance when not active.
+- **Developer Experience**: Added styled console logs to greet other developers who inspect the site, adding a layer of personality without affecting the UI.
+- **Micro-interactions**: Added a "hidden" click counter on the logo to trigger a spin animation, rewarding curious users with subtle feedback.
