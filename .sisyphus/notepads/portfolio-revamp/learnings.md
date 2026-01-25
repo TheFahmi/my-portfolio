@@ -32,3 +32,16 @@ _Accumulated knowledge about code patterns and conventions used in this project_
 - **Global Transitions**:
   - Updated `globals.css` to use `ease-in-out` for smoother background and color transitions (300ms).
   - Included `border-color` in transitions to prevent jarring border changes in dark mode.
+
+### Hero Section Redesign (Task 3)
+- **Visual Treatment**:
+  - **Typography**: Switched to `font-black` and massive scaling (`text-6xl lg:text-8xl`) for the name to create a bold statement.
+  - **Photo**: Used a multi-layered approach with a rotating gradient ring (`animate-[spin_10s_linear_infinite]`) and a glowing pulse effect (`blur-[80px]`) to make the profile photo pop.
+  - **Shapes**: Implemented CSS-only `animate-blob` shapes with `mix-blend-mode` for dynamic background ambiance without Three.js overhead.
+- **Interactivity**:
+  - **Counters**: Created `AnimatedCounter` using `framer-motion`'s `useSpring` driven by `useInView`. This ensures numbers animate only when the user sees them.
+  - **Typewriter**: Integrated `TypewriterEffect` for the subtitle, splitting words into individual characters for a staggered reveal.
+- **Mobile Responsiveness**:
+  - Adopted a "content-first" stack order on mobile (Text -> Image) but used `order-2 lg:order-1` classes to flip this on desktop, ensuring the text is always primary content.
+- **Tech Stack**:
+  - Displayed `techStack` as pill badges for quick readability.
