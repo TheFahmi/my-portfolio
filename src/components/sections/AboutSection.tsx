@@ -6,7 +6,7 @@ import siteConfig from "@/config/siteConfig";
 import ToggleableAboutImage from "@/components/ui/ToggleableAboutImage";
 
 const AboutSection = () => {
-  const { personalInfo, experience, education } = siteConfig;
+  const { personalInfo, education } = siteConfig;
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
@@ -130,74 +130,35 @@ const AboutSection = () => {
           transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
         >
           <div className="space-y-8">
-            <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-              <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
-              Experience
-            </h3>
-            <div className="space-y-8 relative border-l border-slate-200 dark:border-slate-800 ml-2 pl-8">
-              {experience.map((exp, idx) => (
-                <div key={idx} className="relative">
-                  <span className="absolute -left-[37px] top-2 w-4 h-4 rounded-full bg-white dark:bg-black border-4 border-slate-200 dark:border-slate-800" />
-                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">{exp.company}</h4>
-                  
-                  {exp.roles ? (
-                    <div className="mt-2 space-y-4">
-                      {exp.roles.map((role, rIdx) => (
-                        <div key={rIdx}>
-                          <div className="flex justify-between items-baseline mb-1">
-                             <span className="font-medium text-slate-700 dark:text-slate-300">{role.title}</span>
-                             <span className="text-xs font-mono text-slate-400">{role.year}</span>
-                          </div>
-                          <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{role.description}</p>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="mt-2">
-                       <div className="flex justify-between items-baseline mb-1">
-                          <span className="font-medium text-slate-700 dark:text-slate-300">{exp.title}</span>
-                          <span className="text-xs font-mono text-slate-400">{exp.year}</span>
-                       </div>
-                       <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{exp.description}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
+             <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+               <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
+               Education
+             </h3>
+             <div className="space-y-6">
+               {education && education.map((edu, idx) => (
+                 <div key={idx} className="flex gap-4 group">
+                   <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-cyan-400 transition-colors shrink-0" />
+                   <div>
+                     <h4 className="text-base font-bold text-slate-900 dark:text-white">{edu.degree}</h4>
+                     <p className="text-sm text-slate-500 dark:text-slate-400">{edu.institution}</p>
+                     <p className="text-xs text-slate-400 mt-1">{edu.year}</p>
+                   </div>
+                 </div>
+               ))}
+             </div>
           </div>
 
-          <div className="space-y-12">
-             <div className="space-y-8">
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                  <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
-                  Education
-                </h3>
-                <div className="space-y-6">
-                  {education && education.map((edu, idx) => (
-                    <div key={idx} className="flex gap-4 group">
-                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-cyan-400 transition-colors shrink-0" />
-                      <div>
-                        <h4 className="text-base font-bold text-slate-900 dark:text-white">{edu.degree}</h4>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">{edu.institution}</p>
-                        <p className="text-xs text-slate-400 mt-1">{edu.year}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-             </div>
-
-             <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                  <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
-                  Skills
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Vue.js", "TailwindCSS"].map((skill) => (
-                    <span key={skill} className="px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-cyan-50 dark:hover:bg-cyan-900/20 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors cursor-default">
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+          <div className="space-y-6">
+             <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+               <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
+               Skills
+             </h3>
+             <div className="flex flex-wrap gap-2">
+               {["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Vue.js", "TailwindCSS"].map((skill) => (
+                 <span key={skill} className="px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-cyan-50 dark:hover:bg-cyan-900/20 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors cursor-default">
+                   {skill}
+                 </span>
+               ))}
              </div>
           </div>
 

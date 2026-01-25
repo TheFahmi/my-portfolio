@@ -18,12 +18,27 @@ const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    // Simulate generic submission
-    setTimeout(() => {
-      setSubmitStatus("success");
+    setSubmitStatus("idle");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitStatus("error");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setSubmitStatus("error");
+    } finally {
       setIsSubmitting(false);
-      setFormData({ name: "", email: "", subject: "", message: "" });
-    }, 1500);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -72,6 +87,31 @@ const ContactSection = () => {
                   <span className="text-xl md:text-2xl font-bold text-slate-900 dark:text-white">
                     {personalInfo.location}
                   </span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-6">
+                <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-xl">
+                  🌏
+                </div>
+                <div>
+                  <span className="block text-sm text-slate-500 uppercase tracking-wider mb-1">Socials</span>
+                  <div className="flex gap-4 mt-1">
+                    {Object.entries(siteConfig.social).map(([key, url]) => {
+                      if (key === 'email') return null;
+                      return (
+                        <a
+                          key={key}
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-lg font-bold text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors capitalize"
+                        >
+                          {key}
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
@@ -170,6 +210,15 @@ const ContactSection = () => {
                     className="text-green-600 dark:text-green-400 text-center font-bold mt-4"
                   >
                     Message sent successfully! I'll be in touch soon.
+                  </motion.p>
+                )}
+                {submitStatus === "error" && (
+                  <motion.p
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="text-red-600 dark:text-red-400 text-center font-bold mt-4"
+                  >
+                    Something went wrong. Please try again later.
                   </motion.p>
                 )}
               </form>

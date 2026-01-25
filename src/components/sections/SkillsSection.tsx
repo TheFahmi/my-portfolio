@@ -1,29 +1,119 @@
 "use client";
 
-import { motion } from "framer-motion";
-import siteConfig from "@/config/siteConfig";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import siteConfig, { Skill } from "@/config/siteConfig";
+
+const getLevelLabel = (level: number) => {
+  if (level >= 90) return "Expert";
+  if (level >= 80) return "Advanced";
+  if (level >= 60) return "Intermediate";
+  return "Beginner";
+};
+
+const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div
+      className="relative h-48 w-full cursor-pointer [perspective:1000px] group"
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <motion.div
+        className="w-full h-full relative transition-all duration-500 [transform-style:preserve-3d]"
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      >
+        <div className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-2xl p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-shadow flex flex-col justify-between overflow-hidden">
+          <div className="absolute -right-4 -top-4 w-24 h-24 bg-cyan-400/10 rounded-full blur-2xl group-hover:bg-cyan-400/20 transition-colors" />
+          
+          <div className="relative z-10">
+            <h4 className="text-xl font-bold text-slate-900 dark:text-white mb-1">
+              {skill.name}
+            </h4>
+            <div className="h-1 w-12 bg-cyan-400 rounded-full" />
+          </div>
+
+          <div className="relative z-10 flex justify-between items-end">
+             <span className="text-sm font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wider">
+               Flip for details
+             </span>
+             <div className="w-8 h-8 rounded-full border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-400">
+               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+               </svg>
+             </div>
+          </div>
+        </div>
+
+        <div 
+          className="absolute inset-0 w-full h-full [backface-visibility:hidden] rounded-2xl p-6 bg-slate-900 text-white border border-cyan-500/30 shadow-xl flex flex-col justify-between overflow-hidden [transform:rotateY(180deg)]"
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 to-slate-900 z-0" />
+          
+          <div className="relative z-10">
+            <div className="flex justify-between items-start mb-2">
+              <h4 className="text-lg font-bold text-cyan-400">
+                {skill.name}
+              </h4>
+              <span className="px-2 py-0.5 text-xs font-bold bg-cyan-900/50 text-cyan-300 rounded-full border border-cyan-500/30">
+                {getLevelLabel(skill.level)}
+              </span>
+            </div>
+            <p className="text-sm text-slate-300 leading-relaxed">
+              {skill.description}
+            </p>
+          </div>
+
+          <div className="relative z-10">
+            <div className="flex justify-between text-xs font-medium text-slate-400 mb-1">
+              <span>Proficiency</span>
+              <span>{skill.level}%</span>
+            </div>
+            <div className="h-1.5 w-full bg-slate-800 rounded-full overflow-hidden">
+              <motion.div 
+                className="h-full bg-cyan-400"
+                initial={{ width: 0 }}
+                animate={{ width: isFlipped ? `${skill.level}%` : 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              />
+            </div>
+          </div>
+        </div>
+      </motion.div>
+
+    </div>
+  );
+};
 
 const SkillsSection = () => {
   const { skills } = siteConfig;
 
   return (
-    <section id="skills" className="py-32 relative">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
+        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl opacity-30" />
+        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl opacity-30" />
+      </div>
 
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 relative">
           <div>
-            <span className="text-slate-500 font-semibold tracking-wider uppercase mb-2 block">Technologies</span>
+            <span className="text-cyan-500 font-semibold tracking-wider uppercase mb-2 block">
+              Capabilities
+            </span>
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white"
             >
-              Technical <span className="text-slate-400 dark:text-slate-600">Expertise.</span>
+              Technical <span className="text-slate-400 dark:text-slate-600">Arsenal.</span>
             </motion.h2>
           </div>
 
-          {/* Chapter Number */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
@@ -34,69 +124,40 @@ const SkillsSection = () => {
             <span className="block text-6xl font-bold text-slate-200 dark:text-slate-800">03</span>
             <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Skillset</span>
           </motion.div>
-
-          <p className="text-lg text-slate-600 dark:text-slate-400 max-w-md text-right lg:hidden">
-            The tools and technologies I use to bring ideas to life.
-          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((category, idx) => (
-            <motion.div
-              key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-white dark:bg-slate-900/50 rounded-[2rem] p-8 border border-slate-200 dark:border-slate-800 hover:shadow-xl transition-all duration-300 group"
-            >
-              <div className="mb-8">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-white font-bold text-xl mb-4 group-hover:scale-110 transition-transform duration-300`}>
-                  {idx + 1}
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 dark:text-white">{category.title}</h3>
-              </div>
+        <div className="space-y-16">
+          {skills.map((category, catIndex) => (
+            <div key={category.title}>
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: catIndex * 0.1 }}
+                className="flex items-center gap-4 mb-8"
+              >
+                <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/50 to-transparent" />
+                <h3 className="text-2xl md:text-3xl font-bold text-slate-900 dark:text-white whitespace-nowrap">
+                  {category.title}
+                </h3>
+                <div className="h-px flex-1 bg-gradient-to-l from-cyan-500/50 to-transparent" />
+              </motion.div>
 
-              <div className="space-y-4">
-                {category.skills.map((skill) => (
-                  <div key={skill.name} className="relative">
-                    <div className="flex justify-between items-center mb-1">
-                      <span className="font-medium text-slate-700 dark:text-slate-300">{skill.name}</span>
-                      <span className="text-xs font-bold text-slate-400">{skill.level}%</span>
-                    </div>
-                    <div className="h-1.5 w-full bg-slate-100 dark:bg-slate-800 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-slate-900 dark:bg-white rounded-full"
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${skill.level}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                      />
-                    </div>
-                  </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {category.skills.map((skill, skillIndex) => (
+                  <motion.div
+                    key={skill.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (catIndex * 0.1) + (skillIndex * 0.05) }}
+                  >
+                    <SkillCard skill={skill} index={skillIndex} />
+                  </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
-
-          {/* Decorative Extra Card to fill grid if needed or show soft skills */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
-            className="bg-slate-900 rounded-[2rem] p-8 cursor-pointer group flex flex-col justify-between text-white border border-slate-800"
-          >
-            <div>
-              <h3 className="text-2xl font-bold mb-2">Always Learning</h3>
-              <p className="text-slate-400">Currently exploring Web3 and AI integration patterns.</p>
-            </div>
-            <div className="w-12 h-12 rounded-full border-2 border-white/20 flex items-center justify-center group-hover:bg-white group-hover:text-slate-900 transition-all">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-              </svg>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
