@@ -1,8 +1,9 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 import siteConfig, { Skill } from "@/config/siteConfig";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const getLevelLabel = (level: number) => {
   if (level >= 90) return "Expert";
@@ -90,12 +91,20 @@ const SkillCard = ({ skill, index }: { skill: Skill; index: number }) => {
 
 const SkillsSection = () => {
   const { skills } = siteConfig;
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   return (
-    <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden" ref={containerRef}>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl opacity-30" />
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl opacity-30" />
+        <motion.div style={{ y: y1 }} className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl opacity-30" />
+        <motion.div style={{ y: y2 }} className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl opacity-30" />
       </div>
 
       <div className="container mx-auto px-4 md:px-8 max-w-7xl">
@@ -104,36 +113,27 @@ const SkillsSection = () => {
             <span className="text-cyan-500 font-semibold tracking-wider uppercase mb-2 block">
               Capabilities
             </span>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white"
-            >
+            <ScrollReveal variant="slideUp" className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">
               Technical <span className="text-slate-400 dark:text-slate-600">Arsenal.</span>
-            </motion.h2>
+            </ScrollReveal>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+          <ScrollReveal
+            variant="fade"
+            delay={0.2}
             className="hidden lg:block text-right"
           >
             <span className="block text-6xl font-bold text-slate-200 dark:text-slate-800">03</span>
             <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Skillset</span>
-          </motion.div>
+          </ScrollReveal>
         </div>
 
         <div className="space-y-16">
           {skills.map((category, catIndex) => (
             <div key={category.title}>
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: catIndex * 0.1 }}
+              <ScrollReveal
+                variant="slideLeft"
+                delay={catIndex * 0.1}
                 className="flex items-center gap-4 mb-8"
               >
                 <div className="h-px flex-1 bg-gradient-to-r from-cyan-500/50 to-transparent" />
@@ -141,19 +141,17 @@ const SkillsSection = () => {
                   {category.title}
                 </h3>
                 <div className="h-px flex-1 bg-gradient-to-l from-cyan-500/50 to-transparent" />
-              </motion.div>
+              </ScrollReveal>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div
+                  <ScrollReveal
                     key={skill.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: (catIndex * 0.1) + (skillIndex * 0.05) }}
+                    variant="slideUp"
+                    delay={(catIndex * 0.1) + (skillIndex * 0.05)}
                   >
                     <SkillCard skill={skill} index={skillIndex} />
-                  </motion.div>
+                  </ScrollReveal>
                 ))}
               </div>
             </div>

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import siteConfig from "@/config/siteConfig";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const ContactSection = () => {
   const { personalInfo } = siteConfig;
@@ -52,21 +53,20 @@ const ContactSection = () => {
 
           {/* Left Column: CTA */}
           <div>
-            <div className="flex justify-between items-start mb-8">
+            <ScrollReveal variant="slideUp" className="flex justify-between items-start mb-8">
               <span className="text-blue-500 font-semibold tracking-wider uppercase block mt-1">Contact</span>
-            </div>
+            </ScrollReveal>
 
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <ScrollReveal
+              variant="slideUp"
+              delay={0.1}
               className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight"
             >
               Let's work <br /> <span className="text-slate-400 dark:text-slate-600">together.</span>
-            </motion.h2>
+            </ScrollReveal>
 
             <div className="space-y-8 mt-12">
-              <div className="flex items-center gap-6">
+              <ScrollReveal variant="slideLeft" delay={0.2} className="flex items-center gap-6">
                 <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-xl">
                   📧
                 </div>
@@ -76,9 +76,9 @@ const ContactSection = () => {
                     {personalInfo.email}
                   </a>
                 </div>
-              </div>
+              </ScrollReveal>
 
-              <div className="flex items-center gap-6">
+              <ScrollReveal variant="slideLeft" delay={0.3} className="flex items-center gap-6">
                 <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-xl">
                   📍
                 </div>
@@ -88,9 +88,9 @@ const ContactSection = () => {
                     {personalInfo.location}
                   </span>
                 </div>
-              </div>
+              </ScrollReveal>
 
-              <div className="flex items-center gap-6">
+              <ScrollReveal variant="slideLeft" delay={0.4} className="flex items-center gap-6">
                 <div className="w-16 h-16 rounded-full bg-slate-100 dark:bg-slate-900 flex items-center justify-center text-xl">
                   🌏
                 </div>
@@ -113,28 +113,25 @@ const ContactSection = () => {
                     })}
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
           </div>
 
           {/* Right Column: Minimal Form */}
           <div className="relative">
             {/* Chapter Number Absolute for Grid layout */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
+            <ScrollReveal
+              variant="fade"
+              delay={0.5}
               className="absolute -top-20 right-0 hidden lg:block text-right"
             >
               <span className="block text-6xl font-bold text-slate-200 dark:text-slate-800">05</span>
               <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Get in Touch</span>
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <ScrollReveal
+              variant="slideUp"
+              delay={0.2}
               className="bg-slate-50 dark:bg-slate-900 rounded-[2.5rem] p-8 md:p-12"
             >
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -222,7 +219,7 @@ const ContactSection = () => {
                   </motion.p>
                 )}
               </form>
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
       </div>
