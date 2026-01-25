@@ -47,7 +47,7 @@ body {
   background-color: rgb(var(--background) / 1);
   color: rgb(var(--foreground) / 1);
   font-family: var(--font-body);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border-color 0.3s ease-in-out;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

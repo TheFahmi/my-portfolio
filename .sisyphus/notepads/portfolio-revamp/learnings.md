@@ -23,3 +23,12 @@ _Accumulated knowledge about code patterns and conventions used in this project_
 - **Glassmorphism**:
   - `.glass-light` and `.glass-dark` utilities added for context-aware transparency.
   - Uses `backdrop-filter: blur(12px)` for a premium feel.
+
+### UI/UX Improvements (Task 2)
+- **Theme Toggle Animation**:
+  - Implemented a "morph" effect using `framer-motion`'s `AnimatePresence`.
+  - Icons rotate (-90deg to 0deg) and scale (0 to 1) during transition.
+  - `mode="wait"` ensures one icon clears before the other appears, preventing layout shifts, though we used absolute positioning for overlap.
+- **Global Transitions**:
+  - Updated `globals.css` to use `ease-in-out` for smoother background and color transitions (300ms).
+  - Included `border-color` in transitions to prevent jarring border changes in dark mode.
