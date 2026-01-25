@@ -113,7 +113,7 @@ const SkillsSection = () => {
             <span className="text-cyan-500 font-semibold tracking-wider uppercase mb-2 block">
               Capabilities
             </span>
-            <ScrollReveal variant="slideUp" className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">
+            <ScrollReveal variant="slideUp" className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">
               Technical <span className="text-slate-400 dark:text-slate-600">Arsenal.</span>
             </ScrollReveal>
           </div>
