@@ -162,7 +162,7 @@ const ProjectsSection = () => {
         
         <div className="mb-16 relative">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-6">
-            <ScrollReveal variant="slideUp" className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">
+            <ScrollReveal variant="slideUp" className="text-3xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">
               Selected <span className="text-slate-400 dark:text-slate-600">Works.</span>
             </ScrollReveal>
 

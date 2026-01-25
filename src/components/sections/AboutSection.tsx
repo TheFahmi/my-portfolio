@@ -26,7 +26,7 @@ const AboutSection = () => {
 
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
         
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start mb-24">
           
           <ScrollReveal 
             className="lg:col-span-5 relative order-1 lg:order-1"
@@ -60,14 +60,14 @@ const AboutSection = () => {
 
           <div className="lg:col-span-7 flex flex-col space-y-8 order-2 lg:order-2 pt-4">
             <ScrollReveal variant="slideUp">
-              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
+              <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
                 About <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-400">Me.</span>
               </h2>
               <div className="w-20 h-1.5 bg-cyan-400 rounded-full" />
             </ScrollReveal>
 
             <ScrollReveal variant="slideUp" delay={0.1} className="relative pl-6 border-l-4 border-cyan-400">
-              <p className="text-xl md:text-2xl font-medium leading-relaxed text-slate-800 dark:text-slate-200 italic">
+              <p className="text-lg md:text-2xl font-medium leading-relaxed text-slate-800 dark:text-slate-200 italic">
                 "{personalInfo.role} dedicated to building scalable, high-performance web applications."
               </p>
             </ScrollReveal>
