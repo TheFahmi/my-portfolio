@@ -1,47 +1,35 @@
-# Learnings - Portfolio Revamp
 
-## Conventions & Patterns
-_Accumulated knowledge about code patterns and conventions used in this project_
+### About Section Enhancement (Task 4)
+- **Layout Restructuring**:
+  - Moved from a Bento Grid to a clear **Two-Column Hierarchy**:
+    - **Top**: "Photo + Bio" (The emotional/personal hook).
+    - **Bottom**: "Experience + Education" (The logical/professional proof).
+  - This separates the "Story" from the "Resume" while keeping them in the same section context.
 
----
+- **Visual Treatments**:
+  - **Photo**: Implemented a "Stacked Card" effect:
+    - Layer 1: The Image (masked, rounded).
+    - Layer 2: A rotated, blurred, accent-colored backdrop (`rotate-3`, `blur-sm`).
+    - Layer 3: A wireframe border offset (`-inset-4`).
+    - This creates depth and visual interest without needing 3D libraries.
+  - **Typography**:
+    - **Pull Quote**: Added a distinct `border-l-4 border-cyan-400` quote block for the Role/Statement.
+    - **First Paragraph Emphasis**: Bolded the first 3 words of the bio to act as a "Drop Cap" alternative and lead the eye.
+    - **Gradient Text**: Applied `bg-clip-text` to the period in "About Me." to tie in the slate/white theme subtlely.
 
-### Design System Implementation (Task 1)
-- **Tailwind CSS 4 @theme Strategy**:
-  - We use the `@theme` directive in `globals.css` to define project-wide tokens.
-  - CSS Variables defined inside `@theme` (e.g., `--color-cyan-400`) automatically generate Tailwind utility classes (`text-cyan-400`, `bg-cyan-400`).
-  - Animation utilities are created by mapping CSS variables to keyframe definitions (e.g., `--animate-fade-in-up: fadeInUp 0.7s...`).
+- **Animation Strategy**:
+  - **Section Trigger**: Single `useInView` trigger for the whole section with a large offset (`margin: "-100px"`) to start animations as soon as the section enters the viewport.
+  - **Staggered Reveal**: The Bio column uses `staggerChildren: 0.2` to reveal the Title -> Divider -> Quote -> Paragraphs -> Buttons sequentially. This forces the user to scan the content in order.
+  - **Directional Entrance**: Photo enters from left (`x: -50`), Content enters from right/bottom, creating a converging effect.
 
-- **Bold Black & White Aesthetic**:
-  - **Base**: Strict adherence to Pure Black (#000000) and Pure White (#ffffff) for maximum contrast.
-  - **Accent**: Cyan-400 (#22d3ee) selected for its high visibility and "electric" feel against dark backgrounds.
-  - **Neutrals**: Slate scale used for subtle depth to prevent flat UI, but kept minimal.
+- **Mobile Considerations**:
+  - On mobile, the Photo comes first (`order-1`), followed by Bio (`order-2`).
+  - Decorative elements (offset borders, dot patterns) are hidden on mobile to reduce visual noise and preserve horizontal space.
 
-- **Animation Library**:
-  - Added standard entry animations: `fadeInUp`, `fadeInLeft`, `scaleIn`, `slideReveal`.
-  - These are exposed as Tailwind utilities: `animate-fade-in-up`, `animate-scale-in`, etc.
-
-- **Glassmorphism**:
-  - `.glass-light` and `.glass-dark` utilities added for context-aware transparency.
-  - Uses `backdrop-filter: blur(12px)` for a premium feel.
-
-### UI/UX Improvements (Task 2)
-- **Theme Toggle Animation**:
-  - Implemented a "morph" effect using `framer-motion`'s `AnimatePresence`.
-  - Icons rotate (-90deg to 0deg) and scale (0 to 1) during transition.
-  - `mode="wait"` ensures one icon clears before the other appears, preventing layout shifts, though we used absolute positioning for overlap.
-- **Global Transitions**:
-  - Updated `globals.css` to use `ease-in-out` for smoother background and color transitions (300ms).
-  - Included `border-color` in transitions to prevent jarring border changes in dark mode.
-
-### Hero Section Redesign (Task 3)
-- **Visual Treatment**:
-  - **Typography**: Switched to `font-black` and massive scaling (`text-6xl lg:text-8xl`) for the name to create a bold statement.
-  - **Photo**: Used a multi-layered approach with a rotating gradient ring (`animate-[spin_10s_linear_infinite]`) and a glowing pulse effect (`blur-[80px]`) to make the profile photo pop.
-  - **Shapes**: Implemented CSS-only `animate-blob` shapes with `mix-blend-mode` for dynamic background ambiance without Three.js overhead.
-- **Interactivity**:
-  - **Counters**: Created `AnimatedCounter` using `framer-motion`'s `useSpring` driven by `useInView`. This ensures numbers animate only when the user sees them.
-  - **Typewriter**: Integrated `TypewriterEffect` for the subtitle, splitting words into individual characters for a staggered reveal.
-- **Mobile Responsiveness**:
-  - Adopted a "content-first" stack order on mobile (Text -> Image) but used `order-2 lg:order-1` classes to flip this on desktop, ensuring the text is always primary content.
-- **Tech Stack**:
-  - Displayed `techStack` as pill badges for quick readability.
+## Task 5: Stats & Metrics Component Enhancement
+- **Component Extraction**: Extracted `AnimatedCounter` from `HeroSection.tsx` to `src/components/ui/AnimatedCounter.tsx`.
+- **Props Interface**: Designed `AnimatedCounterProps` to accept `value: number`, `suffix?: string`, and optional `duration` and `className`.
+- **Logic Refactoring**: Moved string parsing logic (e.g., '4+' -> 4, '+') into `HeroSection` to keep `AnimatedCounter` focused on numeric animation.
+- **Animation Config**: Preserved `useSpring` settings (mass: 0.8, stiffness: 75, damping: 15) for smooth counting.
+- **Enhancement**: Added 'Total Projects' stat by counting `siteConfig.projects.length` (6 projects).
+- **Verification**: Validated with `npm run build` (passed).

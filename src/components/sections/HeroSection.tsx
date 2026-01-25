@@ -1,47 +1,11 @@
 "use client";
 
-import { motion, useSpring, useTransform, useInView } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import siteConfig from "@/config/siteConfig";
 import ToggleableProfileImage from "@/components/ui/ToggleableProfileImage";
 import { TypewriterEffect } from "@/components/ui/TypewriterEffect";
-
-const AnimatedCounter = ({ value, label }: { value: string, label: string }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-50px" });
-  
-  const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
-  const isNumber = !isNaN(numericValue);
-  const suffix = value.replace(/[0-9]/g, '');
-
-  const spring = useSpring(0, { mass: 0.8, stiffness: 75, damping: 15 });
-  const display = useTransform(spring, (current) => Math.round(current));
-
-  useEffect(() => {
-    if (isInView && isNumber) {
-      spring.set(numericValue);
-    }
-  }, [isInView, isNumber, numericValue, spring]);
-
-  return (
-    <div ref={ref} className="flex flex-col items-start">
-      <div className="flex items-baseline gap-0.5">
-        {isNumber ? (
-          <motion.span className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
-            {display}
-          </motion.span>
-        ) : (
-          <span className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
-            {value}
-          </span>
-        )}
-        {suffix && <span className="text-2xl font-bold text-cyan-500 dark:text-cyan-400">{suffix}</span>}
-      </div>
-      <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">{label}</p>
-    </div>
-  );
-};
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 const HeroSection = () => {
   const { personalInfo, hero } = siteConfig;
@@ -50,6 +14,15 @@ const HeroSection = () => {
     text: word,
     className: "text-xl lg:text-2xl text-cyan-600 dark:text-cyan-400 font-bold"
   }));
+
+  const parseStat = (value: string) => {
+    const numericValue = parseInt(value.replace(/[^0-9]/g, ''));
+    const suffix = value.replace(/[0-9]/g, '');
+    return { 
+      value: isNaN(numericValue) ? 0 : numericValue, 
+      suffix 
+    };
+  };
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-0 bg-white dark:bg-slate-950">
@@ -152,11 +125,22 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
-              className="pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-3 gap-8"
+              className="pt-8 border-t border-slate-200 dark:border-slate-800 grid grid-cols-2 lg:grid-cols-4 gap-8"
             >
-              {hero.quickStats.map((stat, idx) => (
-                <AnimatedCounter key={idx} value={stat.number} label={stat.label} />
-              ))}
+              {hero.quickStats.map((stat, idx) => {
+                const { value, suffix } = parseStat(stat.number);
+                return (
+                  <div key={idx} className="flex flex-col items-start">
+                    <AnimatedCounter value={value} suffix={suffix} />
+                    <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">{stat.label}</p>
+                  </div>
+                );
+              })}
+              
+              <div className="flex flex-col items-start">
+                <AnimatedCounter value={siteConfig.projects.length} />
+                <p className="text-sm font-semibold text-slate-500 dark:text-slate-400 mt-1 uppercase tracking-wider">Total Projects</p>
+              </div>
             </motion.div>
           </div>
 

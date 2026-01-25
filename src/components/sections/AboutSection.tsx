@@ -1,207 +1,208 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import siteConfig from "@/config/siteConfig";
 import ToggleableAboutImage from "@/components/ui/ToggleableAboutImage";
 
 const AboutSection = () => {
   const { personalInfo, experience, education } = siteConfig;
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
 
-  // Bento Box Item Component
-  const BentoBox = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-50px" }}
-      transition={{ duration: 0.5, delay }}
-      className={`rounded-[2rem] bg-white dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800 p-8 shadow-sm hover:shadow-md transition-shadow ${className}`}
-    >
-      {children}
-    </motion.div>
-  );
+  const fadeInUp = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
 
   return (
-    <section id="about" className="py-32 relative">
-      <div className="container mx-auto px-4 md:px-8 max-w-7xl">
+    <section id="about" className="py-24 md:py-32 relative bg-white dark:bg-black overflow-hidden" ref={containerRef}>
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute top-1/4 left-[-10%] w-[40%] h-[40%] bg-slate-50 dark:bg-slate-900/50 rounded-full blur-3xl opacity-60" />
+        <div className="absolute bottom-1/3 right-[-5%] w-[30%] h-[30%] bg-cyan-50 dark:bg-cyan-900/10 rounded-full blur-3xl opacity-40" />
+      </div>
 
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-          <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white"
-            >
-              Hello, I'm <span className="text-slate-400 dark:text-slate-600">{personalInfo.name.split(' ')[1]}.</span>
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-slate-500 dark:text-slate-400 mt-4 max-w-2xl leading-relaxed"
-            >
-              I craft digital experiences with a focus on motion, interaction, and performance. Based in {personalInfo.location}.
-            </motion.p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="hidden lg:block text-right"
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+        
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24">
+          
+          <motion.div 
+            className="lg:col-span-5 relative order-1 lg:order-1"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <span className="block text-6xl font-bold text-slate-200 dark:text-slate-800">02</span>
-            <span className="text-sm font-medium uppercase tracking-widest text-slate-400">About Chapter</span>
-          </motion.div>
-        </div>
-
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-          {/* 1. Large Bio with Photo */}
-          <BentoBox className="lg:col-span-2 min-h-[400px] md:min-h-[500px] flex flex-col md:flex-row gap-8 items-center bg-gradient-to-br from-slate-100 to-white dark:from-slate-900 dark:to-slate-950">
-            <div className="w-full md:w-1/2 h-64 md:h-full relative rounded-3xl overflow-hidden shadow-xl">
-              <ToggleableAboutImage
-                className="w-full h-full object-cover"
-                imageUrl={personalInfo.profileImage}
-                alt={personalInfo.name}
-              />
-              <div className="absolute inset-0 bg-black/10 dark:bg-black/20" />
-            </div>
-            <div className="w-full md:w-1/2 flex flex-col justify-center space-y-6">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white">My Story</h3>
-              <div className="space-y-4 text-slate-600 dark:text-slate-300 leading-relaxed">
-                {personalInfo.about.slice(0, 2).map((paragraph, idx) => (
-                  <p key={idx}>{paragraph}</p>
-                ))}
+            <div className="relative">
+              <div className="absolute -inset-4 border-2 border-slate-100 dark:border-slate-800 rounded-[2.5rem] hidden lg:block" />
+              <div className="absolute inset-0 bg-cyan-400/10 dark:bg-cyan-900/20 rounded-[2rem] transform rotate-3 scale-105 blur-sm -z-10" />
+              
+              <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-slate-100 dark:bg-slate-900 aspect-[4/5]">
+                <ToggleableAboutImage 
+                  className="w-full h-full object-cover"
+                  imageUrl={personalInfo.profileImage}
+                  alt={personalInfo.name}
+                />
+                
+                <div className="absolute bottom-0 left-0 w-full p-6 bg-gradient-to-t from-black/80 to-transparent text-white">
+                  <p className="font-mono text-xs tracking-widest uppercase text-cyan-400 mb-1">
+                    {personalInfo.location}
+                  </p>
+                  <p className="font-bold text-lg">
+                    {personalInfo.experienceYears} Experience
+                  </p>
+                </div>
               </div>
-            </div>
-          </BentoBox>
 
-          {/* 2. Professional Summary / What I Do */}
-          <BentoBox className="flex flex-col justify-between !bg-slate-900 dark:!bg-white text-white dark:text-slate-900 p-8">
-            <div>
-              <h3 className="text-2xl font-bold mb-6 flex items-center gap-3">
-                <span className="w-2 h-8 bg-slate-500 rounded-full"></span>
-                What I Do
-              </h3>
-              <ul className="space-y-6">
-                <li className="flex items-start gap-3">
-                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></div>
-                  <div>
-                    <strong className="block text-lg font-semibold mb-1">Full Stack Development</strong>
-                    <p className="text-sm text-slate-400 dark:text-slate-600 leading-relaxed">Building end-to-end web solutions using modern stacks like Next.js and Node.js.</p>
-                  </div>
-                </li>
-                <li className="flex items-start gap-3">
-                  <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-400 shrink-0"></div>
-                  <div>
-                    <strong className="block text-lg font-semibold mb-1">System Architecture</strong>
-                    <p className="text-sm text-slate-400 dark:text-slate-600 leading-relaxed">Designing scalable, secure, and performant application structures.</p>
-                  </div>
-                </li>
-              </ul>
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-dots-pattern opacity-20 hidden lg:block" />
             </div>
+          </motion.div>
 
-            <div className="mt-8 pt-8 border-t border-white/10 dark:border-black/10">
+          <motion.div 
+            className="lg:col-span-7 flex flex-col space-y-8 order-2 lg:order-2 pt-4"
+            variants={staggerContainer}
+            initial="hidden"
+            animate={isInView ? "visible" : "hidden"}
+          >
+            <motion.div variants={fadeInUp}>
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
+                About <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-400">Me.</span>
+              </h2>
+              <div className="w-20 h-1.5 bg-cyan-400 rounded-full" />
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="relative pl-6 border-l-4 border-cyan-400">
+              <p className="text-xl md:text-2xl font-medium leading-relaxed text-slate-800 dark:text-slate-200 italic">
+                "{personalInfo.role} dedicated to building scalable, high-performance web applications."
+              </p>
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="space-y-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+              {personalInfo.about.map((paragraph, idx) => (
+                <p key={idx}>
+                  {idx === 0 ? (
+                    <span className="text-slate-900 dark:text-white font-semibold">
+                      {paragraph.split(' ').slice(0, 3).join(' ')}
+                    </span>
+                  ) : null}
+                  {idx === 0 ? ' ' + paragraph.split(' ').slice(3).join(' ') : paragraph}
+                </p>
+              ))}
+            </motion.div>
+
+            <motion.div variants={fadeInUp} className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-6 items-center">
               <a
                 href={personalInfo.resumeUrl}
                 target="_blank"
-                className="w-full inline-flex items-center justify-center gap-2 py-4 rounded-xl bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-bold hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-3 bg-slate-900 dark:bg-white text-white dark:text-black rounded-full font-bold hover:bg-slate-800 dark:hover:bg-slate-200 transition-all hover:scale-105"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <span>Download Resume</span>
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                 </svg>
-                Download Resume
               </a>
-            </div>
-          </BentoBox>
-
-          {/* 3. Experience Scroll */}
-          <BentoBox className="lg:col-span-2 lg:row-span-2 overflow-hidden flex flex-col max-h-[600px]">
-            <div className="flex justify-between items-center mb-8">
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                <span className="w-2 h-8 bg-slate-500 rounded-full"></span>
-                Career Journey
-              </h3>
-              <span className="text-sm text-slate-400">Scrollable</span>
-            </div>
-
-            <div className="flex-1 overflow-y-auto pr-4 pl-4 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-700">
-              <div className="relative border-l border-slate-200 dark:border-slate-800 ml-3 space-y-8 my-2">
-                {experience.map((exp, idx) => (
-                  <div key={idx} className="relative pl-8">
-                    <span className="absolute -left-[5px] top-2 w-2.5 h-2.5 rounded-full bg-slate-500 ring-4 ring-white dark:ring-slate-900 z-10"></span>
-
-                    <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                      <h4 className="text-lg font-bold text-slate-900 dark:text-white">{exp.company}</h4>
-                      <span className="text-sm font-medium text-slate-500 bg-slate-100 dark:bg-slate-800 px-3 py-1 rounded-full">{exp.year}</span>
-                    </div>
-
-                    {exp.roles ? (
-                      <div className="space-y-6 mt-4">
-                        {exp.roles.map((role, rIdx) => (
-                          <div key={rIdx} className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl">
-                            <h5 className="font-semibold text-slate-800 dark:text-slate-200">{role.title}</h5>
-                            <span className="text-xs text-slate-500 block mb-2">{role.year}</span>
-                            <p className="text-sm text-slate-600 dark:text-slate-400">{role.description}</p>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className="bg-slate-50 dark:bg-slate-800/50 p-4 rounded-xl mt-2">
-                        <h5 className="font-semibold text-slate-800 dark:text-slate-200">{exp.title}</h5>
-                        <p className="text-sm text-slate-600 dark:text-slate-400 mt-2">{exp.description}</p>
-                        {exp.details && (
-                          <ul className="mt-3 space-y-1">
-                            {exp.details.slice(0, 2).map((d, i) => (
-                              <li key={i} className="text-xs text-slate-500 flex items-start gap-2">
-                                <span className="mt-1.5 w-1 h-1 rounded-full bg-slate-400"></span>
-                                {d}
-                              </li>
-                            ))}
-                          </ul>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                ))}
+              
+              <div className="flex gap-4">
+                <a href={siteConfig.social.github} target="_blank" className="p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <a href={siteConfig.social.linkedin} target="_blank" className="p-3 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors">
+                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
               </div>
-            </div>
-          </BentoBox>
-
-          {/* 4. Education & Certs */}
-          <BentoBox className="flex flex-col justify-between space-y-6">
-            <div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-6">Education</h3>
-              <div className="space-y-4">
-                {education && education.map((edu, idx) => (
-                  <div key={idx} className="group cursor-default">
-                    <div className="flex justify-between items-baseline mb-1">
-                      <span className="font-semibold text-slate-800 dark:text-slate-200 group-hover:text-slate-600 dark:group-hover:text-slate-400 transition-colors pr-4">{edu.degree}</span>
-                      <span className="text-xs text-slate-400 whitespace-nowrap">{edu.year}</span>
-                    </div>
-                    <p className="text-sm text-slate-500">{edu.institution}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="pt-6 border-t border-slate-100 dark:border-slate-800">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">Core Skills</h3>
-              <div className="flex flex-wrap gap-2">
-                {["JavaScript", "TypeScript", "React", "Next.js", "Node.js"].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 rounded-lg text-sm font-medium">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </BentoBox>
-
+            </motion.div>
+          </motion.div>
         </div>
+
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-slate-100 dark:border-slate-800"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+        >
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+              <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
+              Experience
+            </h3>
+            <div className="space-y-8 relative border-l border-slate-200 dark:border-slate-800 ml-2 pl-8">
+              {experience.map((exp, idx) => (
+                <div key={idx} className="relative">
+                  <span className="absolute -left-[37px] top-2 w-4 h-4 rounded-full bg-white dark:bg-black border-4 border-slate-200 dark:border-slate-800" />
+                  <h4 className="text-lg font-bold text-slate-900 dark:text-white">{exp.company}</h4>
+                  
+                  {exp.roles ? (
+                    <div className="mt-2 space-y-4">
+                      {exp.roles.map((role, rIdx) => (
+                        <div key={rIdx}>
+                          <div className="flex justify-between items-baseline mb-1">
+                             <span className="font-medium text-slate-700 dark:text-slate-300">{role.title}</span>
+                             <span className="text-xs font-mono text-slate-400">{role.year}</span>
+                          </div>
+                          <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{role.description}</p>
+                        </div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="mt-2">
+                       <div className="flex justify-between items-baseline mb-1">
+                          <span className="font-medium text-slate-700 dark:text-slate-300">{exp.title}</span>
+                          <span className="text-xs font-mono text-slate-400">{exp.year}</span>
+                       </div>
+                       <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{exp.description}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="space-y-12">
+             <div className="space-y-8">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                  <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
+                  Education
+                </h3>
+                <div className="space-y-6">
+                  {education && education.map((edu, idx) => (
+                    <div key={idx} className="flex gap-4 group">
+                      <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-slate-300 dark:bg-slate-700 group-hover:bg-cyan-400 transition-colors shrink-0" />
+                      <div>
+                        <h4 className="text-base font-bold text-slate-900 dark:text-white">{edu.degree}</h4>
+                        <p className="text-sm text-slate-500 dark:text-slate-400">{edu.institution}</p>
+                        <p className="text-xs text-slate-400 mt-1">{edu.year}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+             </div>
+
+             <div className="space-y-6">
+                <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
+                  <span className="w-8 h-1 bg-cyan-400 rounded-full"></span>
+                  Skills
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Vue.js", "TailwindCSS"].map((skill) => (
+                    <span key={skill} className="px-4 py-2 bg-slate-100 dark:bg-slate-900 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-cyan-50 dark:hover:bg-cyan-900/20 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors cursor-default">
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+             </div>
+          </div>
+
+        </motion.div>
+
       </div>
     </section>
   );
