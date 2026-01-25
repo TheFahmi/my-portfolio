@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import siteConfig, { Project } from "@/config/siteConfig";
 import { ProjectCard } from "@/components/ui/ProjectCard";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const getGradient = (id: number) => {
   const gradients = [
@@ -19,8 +20,6 @@ const getGradient = (id: number) => {
 };
 
 const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
-  const [imgError, setImgError] = useState(false);
-
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -56,13 +55,12 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
         </button>
 
         <div className="relative aspect-video w-full bg-slate-100 dark:bg-slate-800">
-          {project.image && !imgError ? (
+          {project.image ? (
             <Image
               src={project.image}
               alt={project.title}
               fill
               className="object-cover"
-              onError={() => setImgError(true)}
             />
           ) : (
             <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br ${getGradient(project.id)}`}>
@@ -145,6 +143,8 @@ const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => v
   );
 };
 
+import { useEffect } from "react";
+
 const ProjectsSection = () => {
   const { projects } = siteConfig;
   const [activeFilter, setActiveFilter] = useState("All");
@@ -162,43 +162,32 @@ const ProjectsSection = () => {
         
         <div className="mb-16 relative">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-6 mb-6">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white"
-            >
+            <ScrollReveal variant="slideUp" className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white">
               Selected <span className="text-slate-400 dark:text-slate-600">Works.</span>
-            </motion.h2>
+            </ScrollReveal>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <ScrollReveal
+              variant="fade"
+              delay={0.2}
               className="hidden lg:block text-right mb-2"
             >
               <span className="block text-6xl font-bold text-slate-200 dark:text-slate-800">04</span>
               <span className="text-sm font-medium uppercase tracking-widest text-slate-400">Portfolio</span>
-            </motion.div>
+            </ScrollReveal>
           </div>
 
           <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+            <ScrollReveal
+              variant="slideUp"
+              delay={0.1}
               className="text-xl text-slate-600 dark:text-slate-400 max-w-xl"
             >
               A collection of projects where I've challenged myself to solve complex problems.
-            </motion.p>
+            </ScrollReveal>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <ScrollReveal
+              variant="slideLeft"
+              delay={0.2}
               className="flex flex-wrap gap-2"
             >
               {categories.map((category) => (
@@ -213,21 +202,23 @@ const ProjectsSection = () => {
                   {category}
                 </button>
               ))}
-            </motion.div>
+            </ScrollReveal>
           </div>
         </div>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-[minmax(400px,auto)]">
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
-              <ProjectCard 
-                key={project.id} 
-                project={project} 
-                onClick={setSelectedProject}
-              />
-            ))}
-          </AnimatePresence>
-        </motion.div>
+        <ScrollReveal variant="slideUp" delay={0.4} width="100%">
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-[minmax(400px,auto)]">
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project) => (
+                <ProjectCard 
+                  key={project.id} 
+                  project={project} 
+                  onClick={setSelectedProject}
+                />
+              ))}
+            </AnimatePresence>
+          </motion.div>
+        </ScrollReveal>
 
         <div className="mt-16 text-center">
           <a href="https://github.com/mhmmdfahmidev" target="_blank" className="inline-flex items-center gap-2 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors border-b border-transparent hover:border-slate-900 dark:hover:border-white">

@@ -1,46 +1,37 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import siteConfig from "@/config/siteConfig";
 import ToggleableAboutImage from "@/components/ui/ToggleableAboutImage";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const AboutSection = () => {
   const { personalInfo, education } = siteConfig;
   const containerRef = useRef(null);
-  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
 
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
-  };
-
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   return (
     <section id="about" className="py-24 md:py-32 relative bg-white dark:bg-black overflow-hidden" ref={containerRef}>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-[-10%] w-[40%] h-[40%] bg-slate-50 dark:bg-slate-900/50 rounded-full blur-3xl opacity-60" />
-        <div className="absolute bottom-1/3 right-[-5%] w-[30%] h-[30%] bg-cyan-50 dark:bg-cyan-900/10 rounded-full blur-3xl opacity-40" />
+        <motion.div style={{ y: y1 }} className="absolute top-1/4 left-[-10%] w-[40%] h-[40%] bg-slate-50 dark:bg-slate-900/50 rounded-full blur-3xl opacity-60" />
+        <motion.div style={{ y: y2 }} className="absolute bottom-1/3 right-[-5%] w-[30%] h-[30%] bg-cyan-50 dark:bg-cyan-900/10 rounded-full blur-3xl opacity-40" />
       </div>
 
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start mb-24">
           
-          <motion.div 
+          <ScrollReveal 
             className="lg:col-span-5 relative order-1 lg:order-1"
-            initial={{ opacity: 0, x: -50 }}
-            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            variant="slideLeft"
+            duration={0.8}
           >
             <div className="relative">
               <div className="absolute -inset-4 border-2 border-slate-100 dark:border-slate-800 rounded-[2.5rem] hidden lg:block" />
@@ -65,28 +56,23 @@ const AboutSection = () => {
 
               <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-dots-pattern opacity-20 hidden lg:block" />
             </div>
-          </motion.div>
+          </ScrollReveal>
 
-          <motion.div 
-            className="lg:col-span-7 flex flex-col space-y-8 order-2 lg:order-2 pt-4"
-            variants={staggerContainer}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-          >
-            <motion.div variants={fadeInUp}>
+          <div className="lg:col-span-7 flex flex-col space-y-8 order-2 lg:order-2 pt-4">
+            <ScrollReveal variant="slideUp">
               <h2 className="text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
                 About <span className="text-transparent bg-clip-text bg-gradient-to-r from-slate-900 to-slate-500 dark:from-white dark:to-slate-400">Me.</span>
               </h2>
               <div className="w-20 h-1.5 bg-cyan-400 rounded-full" />
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div variants={fadeInUp} className="relative pl-6 border-l-4 border-cyan-400">
+            <ScrollReveal variant="slideUp" delay={0.1} className="relative pl-6 border-l-4 border-cyan-400">
               <p className="text-xl md:text-2xl font-medium leading-relaxed text-slate-800 dark:text-slate-200 italic">
                 "{personalInfo.role} dedicated to building scalable, high-performance web applications."
               </p>
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div variants={fadeInUp} className="space-y-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
+            <ScrollReveal variant="slideUp" delay={0.2} className="space-y-6 text-lg text-slate-600 dark:text-slate-400 leading-relaxed">
               {personalInfo.about.map((paragraph, idx) => (
                 <p key={idx}>
                   {idx === 0 ? (
@@ -97,9 +83,9 @@ const AboutSection = () => {
                   {idx === 0 ? ' ' + paragraph.split(' ').slice(3).join(' ') : paragraph}
                 </p>
               ))}
-            </motion.div>
+            </ScrollReveal>
 
-            <motion.div variants={fadeInUp} className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-6 items-center">
+            <ScrollReveal variant="slideUp" delay={0.3} className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-wrap gap-6 items-center">
               <a
                 href={personalInfo.resumeUrl}
                 target="_blank"
@@ -119,15 +105,14 @@ const AboutSection = () => {
                   <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
               </div>
-            </motion.div>
-          </motion.div>
+            </ScrollReveal>
+          </div>
         </div>
 
-        <motion.div 
+        <ScrollReveal 
           className="grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-slate-100 dark:border-slate-800"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          variant="slideUp"
+          delay={0.4}
         >
           <div className="space-y-8">
              <h3 className="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-3">
@@ -161,8 +146,7 @@ const AboutSection = () => {
                ))}
              </div>
           </div>
-
-        </motion.div>
+        </ScrollReveal>
 
       </div>
     </section>

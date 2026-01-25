@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
-import { motion, useScroll } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import siteConfig from "@/config/siteConfig";
+import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const ExperienceSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -11,20 +12,21 @@ const ExperienceSection = () => {
     offset: ["start end", "end start"],
   });
 
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
+
   const { experience } = siteConfig;
 
   return (
     <section id="experience" className="py-24 md:py-32 bg-slate-50 dark:bg-slate-900/50 relative overflow-hidden" ref={containerRef}>
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-slate-300 dark:via-slate-700 to-transparent opacity-50" />
-      <div className="absolute top-0 right-0 w-[40%] h-[40%] bg-blue-50 dark:bg-blue-900/10 rounded-full blur-3xl opacity-30 pointer-events-none" />
-      <div className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-cyan-50 dark:bg-cyan-900/10 rounded-full blur-3xl opacity-30 pointer-events-none" />
+      <motion.div style={{ y: y1 }} className="absolute top-0 right-0 w-[40%] h-[40%] bg-blue-50 dark:bg-blue-900/10 rounded-full blur-3xl opacity-30 pointer-events-none" />
+      <motion.div style={{ y: y2 }} className="absolute bottom-0 left-0 w-[30%] h-[30%] bg-cyan-50 dark:bg-cyan-900/10 rounded-full blur-3xl opacity-30 pointer-events-none" />
 
       <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+        <ScrollReveal
+          variant="slideUp"
+          duration={0.6}
           className="text-center mb-20"
         >
           <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
@@ -34,7 +36,7 @@ const ExperienceSection = () => {
           <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             My professional path from early beginnings to leading engineering teams.
           </p>
-        </motion.div>
+        </ScrollReveal>
 
         <div className="relative">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-slate-200 dark:bg-slate-800 -translate-x-1/2 hidden md:block" />
@@ -54,15 +56,12 @@ const ExperienceSection = () => {
 
 const TimelineItem = ({ data, index }: { data: any; index: number }) => {
   const isEven = index % 2 === 0;
-  const itemRef = useRef(null);
 
   return (
-    <motion.div
-      ref={itemRef}
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+    <ScrollReveal
+      variant="slideUp"
+      delay={index * 0.1}
+      threshold={0.1}
       className={`relative flex flex-col md:flex-row gap-8 md:gap-0 ${
         isEven ? "md:flex-row-reverse" : ""
       }`}
@@ -132,7 +131,7 @@ const TimelineItem = ({ data, index }: { data: any; index: number }) => {
       </div>
 
       <div className="hidden md:block md:w-1/2" />
-    </motion.div>
+    </ScrollReveal>
   );
 };
 
