@@ -53,6 +53,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [logoClicks, setLogoClicks] = useState(0);
 
   useEffect(() => {
     setMounted(true);
@@ -62,6 +63,13 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (logoClicks > 0) {
+      const timer = setTimeout(() => setLogoClicks(0), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [logoClicks]);
 
   if (!mounted) return null;
 
@@ -83,10 +91,20 @@ const Navbar = () => {
       >
         <div className="container mx-auto px-4 md:px-8 max-w-7xl flex items-center justify-between">
           {/* Logo Left */}
-          <Link href="/" className="group flex items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-900 dark:bg-white flex items-center justify-center text-white dark:text-slate-900 font-bold text-lg shadow-lg transition-all group-hover:scale-110">
+          <Link href="/" className="group flex items-center gap-2" onClick={(e) => {
+             setLogoClicks(c => c + 1);
+          }}>
+            <motion.div 
+              animate={logoClicks >= 3 ? { 
+                rotate: [0, 360, 720, 1080], 
+                scale: [1, 1.5, 1.5, 1],
+                color: ["#fff", "#22d3ee", "#f472b6", "#fff"]
+              } : {}}
+              transition={{ duration: 1 }}
+              className="w-8 h-8 rounded-full bg-slate-900 dark:bg-white flex items-center justify-center text-white dark:text-slate-900 font-bold text-lg shadow-lg transition-all group-hover:scale-110"
+            >
               M
-            </div>
+            </motion.div>
             <span className="font-bold text-xl tracking-tight text-slate-800 dark:text-white">
               MFAH<span className="text-cyan-500 dark:text-cyan-400">.ME</span>
             </span>
