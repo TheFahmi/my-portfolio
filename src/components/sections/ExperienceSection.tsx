@@ -29,11 +29,11 @@ const ExperienceSection = () => {
           duration={0.6}
           className="text-center mb-20"
         >
-          <h2 className="text-4xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-black tracking-tight text-slate-900 dark:text-white mb-6">
             Career <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600 dark:from-cyan-400 dark:to-blue-500">Journey.</span>
           </h2>
           <div className="w-24 h-1.5 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full mx-auto" />
-          <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+          <p className="mt-6 text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
             My professional path from early beginnings to leading engineering teams.
           </p>
         </ScrollReveal>

@@ -60,7 +60,7 @@ const ContactSection = () => {
             <ScrollReveal
               variant="slideUp"
               delay={0.1}
-              className="text-5xl md:text-7xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight"
+              className="text-4xl md:text-7xl font-bold text-slate-900 dark:text-white mb-8 tracking-tight"
             >
               Let's work <br /> <span className="text-slate-400 dark:text-slate-600">together.</span>
             </ScrollReveal>
