@@ -7,9 +7,13 @@ import Footer from "./Footer.client";
 import LoadingScreen from "@/components/ui/LoadingScreen";
 import { BackgroundBeams } from "@/components/ui/BackgroundBeams";
 import ScrollToTopButton from "../ui/ScrollToTopButton";
+import CustomCursor from "@/components/ui/CustomCursor";
+import { useKonamiCode } from "@/hooks/useKonamiCode";
+import { EasterEgg } from "@/components/ui/EasterEgg";
 
 export default function ClientLayout({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(true);
+  const konamiTriggered = useKonamiCode();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -18,8 +22,17 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    console.log(
+      "%c Welcome to the Portfolio! 🚀 \n%c If you're looking at this, we should probably talk. \n check out the source code: https://github.com/yourusername/portfolio",
+      "font-size: 24px; font-weight: bold; color: #22d3ee; text-shadow: 2px 2px 0px #0f172a;",
+      "font-size: 14px; color: #94a3b8;"
+    );
+  }, []);
+
   return (
     <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+      <EasterEgg triggered={konamiTriggered} />
       {isLoading ? (
         <LoadingScreen />
       ) : (
@@ -52,6 +65,7 @@ function PremiumLayout({ children }: { children: React.ReactNode }) {
         <Footer />
       </div>
       <ScrollToTopButton />
+      <CustomCursor />
     </div>
   );
 }
