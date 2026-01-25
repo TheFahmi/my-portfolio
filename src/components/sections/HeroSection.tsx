@@ -38,9 +38,9 @@ const HeroSection = () => {
       </div>
 
       <motion.div style={{ y: yContent }} className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           
-          <div className="flex flex-col space-y-8 order-2 lg:order-1">
+          <div className="flex flex-col space-y-6 lg:space-y-8 order-2 lg:order-1">
              <ScrollReveal 
               variant="slideLeft"
               delay={0.1}
@@ -57,14 +57,14 @@ const HeroSection = () => {
               <ScrollReveal 
                 variant="slideUp"
                 delay={0.2}
-                className="text-2xl lg:text-3xl font-medium text-slate-500 dark:text-slate-400"
+                className="text-xl md:text-2xl lg:text-3xl font-medium text-slate-500 dark:text-slate-400"
               >
                 {hero.titlePrefix}
               </ScrollReveal>
               <ScrollReveal 
                 variant="slideUp"
                 delay={0.3}
-                className="text-6xl lg:text-8xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.9] -ml-1"
+                className="text-4xl sm:text-6xl lg:text-8xl font-black tracking-tighter text-slate-900 dark:text-white leading-[0.9] -ml-1"
               >
                 {hero.titleHighlight.split(" ").map((word, i) => (
                   <span key={i} className="block">{word}</span>
@@ -83,7 +83,7 @@ const HeroSection = () => {
             <ScrollReveal 
               variant="slideUp"
               delay={0.6}
-              className="text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed font-medium"
+              className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-lg leading-relaxed font-medium"
             >
               {hero.description}
             </ScrollReveal>
@@ -146,7 +146,7 @@ const HeroSection = () => {
             duration={1}
             className="relative flex justify-center items-center order-1 lg:order-2 lg:h-[600px]"
           >
-            <div className="relative w-[320px] h-[320px] lg:w-[500px] lg:h-[500px]">
+            <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] lg:w-[500px] lg:h-[500px]">
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-cyan-400/30 to-purple-500/30 rounded-full blur-[40px] lg:blur-[80px] animate-pulse" />
                 
                 <div className="absolute inset-0 rounded-[40px] lg:rounded-[60px] border border-cyan-500/20 dark:border-cyan-400/20 animate-[spin_10s_linear_infinite]" />
