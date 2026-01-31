@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import siteConfig from "@/config/siteConfig";
 import ToggleableProfileImage from "@/components/ui/ToggleableProfileImage";
@@ -10,10 +10,6 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const HeroSection = () => {
   const { personalInfo, hero } = siteConfig;
-  const { scrollY } = useScroll();
-  const yBlob1 = useTransform(scrollY, [0, 1000], [0, 300]);
-  const yBlob2 = useTransform(scrollY, [0, 1000], [0, -300]);
-  const yContent = useTransform(scrollY, [0, 500], [0, 100]);
 
   const words = hero.subtitle.split(" ").map(word => ({
     text: word,
@@ -32,12 +28,12 @@ const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-0 bg-white dark:bg-slate-950">
       <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <motion.div style={{ y: yBlob1 }} className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-400/10 dark:bg-cyan-500/10 rounded-full blur-[120px] animate-blob mix-blend-multiply dark:mix-blend-screen" />
-        <motion.div style={{ y: yBlob2 }} className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-purple-400/10 dark:bg-purple-500/10 rounded-full blur-[120px] animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-screen" />
+        <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-cyan-400/10 dark:bg-cyan-500/10 rounded-full blur-[120px] animate-blob mix-blend-multiply dark:mix-blend-screen" />
+        <div className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] bg-purple-400/10 dark:bg-purple-500/10 rounded-full blur-[120px] animate-blob animation-delay-2000 mix-blend-multiply dark:mix-blend-screen" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-slate-100/50 dark:bg-slate-900/50 rounded-full blur-[100px]" />
       </div>
 
-      <motion.div style={{ y: yContent }} className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
+      <div className="container mx-auto px-4 md:px-8 max-w-7xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           
           <div className="flex flex-col space-y-6 lg:space-y-8 order-2 lg:order-1">
@@ -149,28 +145,12 @@ const HeroSection = () => {
             <div className="relative w-[280px] h-[280px] sm:w-[320px] sm:h-[320px] lg:w-[500px] lg:h-[500px]">
                 <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-br from-cyan-400/30 to-purple-500/30 rounded-full blur-[40px] lg:blur-[80px] animate-pulse" />
                 
-                <div className="absolute inset-0 rounded-[40px] lg:rounded-[60px] border border-cyan-500/20 dark:border-cyan-400/20 animate-[spin_10s_linear_infinite]" />
-                <div className="absolute inset-4 rounded-[30px] lg:rounded-[50px] border border-purple-500/20 dark:border-purple-400/20 animate-[spin_15s_linear_infinite_reverse]" />
+                 <div className="absolute inset-0 rounded-[40px] lg:rounded-[60px] border border-cyan-500/20 dark:border-cyan-400/20" />
+                <div className="absolute inset-4 rounded-[30px] lg:rounded-[50px] border border-purple-500/20 dark:border-purple-400/20" />
 
                 <div className="absolute inset-8 lg:inset-10 rounded-[2rem] lg:rounded-[3rem] overflow-hidden bg-slate-100 dark:bg-slate-800 shadow-2xl rotate-3 hover:rotate-0 transition-all duration-500 group z-10 border-4 border-white dark:border-slate-900">
-                    <ToggleableProfileImage
-                        imageUrl={personalInfo.profileImage}
-                        alt={personalInfo.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </div>
 
-                 <motion.div 
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: [0, -10, 0], opacity: 1 }}
-                    transition={{ 
-                        y: { repeat: Infinity, duration: 4, ease: "easeInOut" },
-                        opacity: { delay: 1.2, duration: 0.5 }
-                    }}
-                    className="absolute -bottom-4 -left-4 lg:bottom-10 lg:-left-10 z-20 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 max-w-[160px] lg:max-w-[200px]"
-                 >
+                 <div className="absolute -bottom-4 -left-4 lg:bottom-10 lg:-left-10 z-20 bg-white dark:bg-slate-900 p-4 rounded-xl shadow-xl border border-slate-100 dark:border-slate-800 max-w-[160px] lg:max-w-[200px] transform transition-transform duration-1000 hover:-translate-y-1 hover:shadow-lg">
                     <div className="flex items-center gap-2 mb-2">
                         <span className="flex h-2 w-2 relative">
                             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
@@ -184,19 +164,20 @@ const HeroSection = () => {
                                 {tag}
                             </span>
                         ))}
-                    </div>
-                 </motion.div>
+                     </div>
+                 </div>
 
                  <div className="absolute top-10 -right-4 lg:top-20 lg:-right-10 flex gap-2">
                     <div className="w-3 h-3 rounded-full bg-cyan-400/80" />
                     <div className="w-3 h-3 rounded-full bg-purple-400/80" />
                     <div className="w-3 h-3 rounded-full bg-slate-200/80 dark:bg-slate-700" />
                  </div>
+                </div>
             </div>
           </ScrollReveal>
 
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 };
