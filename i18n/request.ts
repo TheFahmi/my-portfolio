@@ -30,6 +30,19 @@ interface Messages {
     education: string;
     skillsSection: string;
   };
+  hero: {
+    badge: string;
+    titlePrefix: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
+    stats: {
+      yearsExperience: string;
+      platforms: string;
+      commitment: string;
+      totalProjects: string;
+    };
+    currentStack: string;
+  };
 }
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -39,8 +52,17 @@ export default getRequestConfig(async ({ requestLocale }) => {
     locale = routing.defaultLocale;
   }
 
-  const messages = (await import(`../messages/${locale}.json`)).default as Messages;
-  const fallbackMessages = (await import(`../messages/en.json`)).default as Messages;
+  const navigation = (await import(`../messages/${locale}/navigation.json`)).default;
+  const common = (await import(`../messages/${locale}/common.json`)).default;
+  const about = (await import(`../messages/${locale}/about.json`)).default;
+  const hero = (await import(`../messages/${locale}/hero.json`)).default;
+  const messages = { ...navigation, ...common, ...about, ...hero } as Messages;
+
+  const navigationFallback = (await import(`../messages/en/navigation.json`)).default;
+  const commonFallback = (await import(`../messages/en/common.json`)).default;
+  const aboutFallback = (await import(`../messages/en/about.json`)).default;
+  const heroFallback = (await import(`../messages/en/hero.json`)).default;
+  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback } as Messages;
 
   return {
     locale,

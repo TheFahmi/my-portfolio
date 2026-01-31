@@ -1,0 +1,32 @@
+{
+  "contact": {
+    "sectionLabel": "Kontak",
+    "heading": "Mari bekerja sama.",
+    "emailLabel": "Email",
+    "studioLabel": "Studio",
+    "socialsLabel": "Media Sosial",
+    "getInTouch": "Hubungi Saya",
+    "form": {
+      "name": {
+        "label": "NAMA",
+        "placeholder": "Budi Santoso"
+      },
+      "email": {
+        "label": "EMAIL",
+        "placeholder": "budi@contoh.com"
+      },
+      "subject": {
+        "label": "SUBJEK",
+        "placeholder": "Permintaan Proyek"
+      },
+      "message": {
+        "label": "PESAN",
+        "placeholder": "Ceritakan tentang proyek Anda..."
+      },
+      "submit": "Kirim Pesan",
+      "submitting": "Mengirim...",
+      "success": "Pesan berhasil dikirim! Saya akan segera menghubungi Anda.",
+      "error": "Terjadi kesalahan. Silakan coba lagi nanti."
+    }
+  }
+}

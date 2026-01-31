@@ -1,0 +1,12 @@
+{
+  "common": {
+    "loading": "Memuat...",
+    "readMore": "Baca Selengkapnya",
+    "viewProject": "Lihat Proyek",
+    "viewCode": "Lihat Kode",
+    "sendMessage": "Kirim Pesan",
+    "back": "Kembali",
+    "close": "Tutup",
+    "availableForWork": "Tersedia untuk kerja"
+  }
+}

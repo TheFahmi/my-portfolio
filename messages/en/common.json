@@ -1,0 +1,12 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "readMore": "Read More",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "sendMessage": "Send Message",
+    "back": "Back",
+    "close": "Close",
+    "availableForWork": "Available for work"
+  }
+}
