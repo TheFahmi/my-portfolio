@@ -1,8 +1,6 @@
-import dynamic from 'next/dynamic';
+import { redirect } from 'next/navigation';
+import { routing } from '../../i18n/routing';
 
-// Use dynamic import for client component
-const HomeClient = dynamic(() => import('./page.client'), { ssr: true });
-
-export default function Home() {
-  return <HomeClient />;
+export default function RootPage() {
+  redirect(`/${routing.defaultLocale}`);
 }
