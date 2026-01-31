@@ -38,57 +38,57 @@ const Navbar = () => {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled 
-            ? "bg-[#F5E6D3]/95 shadow-md py-4" 
-            : "bg-[#F5E6D3]/80 py-6"
-        } backdrop-blur-sm border-b border-[#704214]/10`}
+        className="fixed top-4 left-4 right-4 z-50"
       >
-        <div className="container mx-auto px-4 md:px-8 max-w-7xl flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="font-serif font-bold text-2xl text-[#704214] tracking-tight hover:text-[#D4AF37] transition-colors">
-            MFAH<span className="text-[#D4AF37]">.ME</span>
-          </Link>
+        <div
+          className={`mx-auto max-w-7xl transition-all duration-300 ${
+            scrolled 
+              ? "bg-[#F5E6D3]/95 shadow-lg py-3" 
+              : "bg-[#F5E6D3]/80 py-4"
+          } backdrop-blur-md rounded-2xl border border-[#704214]/10`}
+        >
+          <div className="container mx-auto px-4 md:px-8 max-w-7xl flex items-center justify-between">
+            <Link href="/" className="font-serif font-bold text-2xl text-[#704214] tracking-tight hover:text-[#D4AF37] transition-colors">
+              MFAH<span className="text-[#D4AF37]">.ME</span>
+            </Link>
 
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <nav>
-              <ul className="flex items-center gap-8 text-sm font-medium font-serif text-[#704214]">
-                {navLinks.map((link) => (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className="relative hover:text-[#D4AF37] transition-colors group py-2"
-                    >
-                      {link.label}
-                      <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            
-            <div className="w-px h-6 bg-[#704214]/20 mx-2" />
-            
-            <LanguageSwitcher />
-          </div>
+            <div className="hidden md:flex items-center gap-8">
+              <nav>
+                <ul className="flex items-center gap-8 text-sm font-medium font-serif text-[#704214]">
+                  {navLinks.map((link) => (
+                    <li key={link.href}>
+                      <Link
+                        href={link.href}
+                        className="relative hover:text-[#D4AF37] transition-colors group py-2"
+                      >
+                        {link.label}
+                        <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+              
+              <div className="w-px h-6 bg-[#704214]/20 mx-2" />
+              
+              <LanguageSwitcher />
+            </div>
 
-          {/* Mobile Toggle */}
-          <div className="flex md:hidden items-center gap-4">
-            <LanguageSwitcher />
-            <button
-              onClick={() => setMobileMenuOpen(true)}
-              className="p-2 text-[#704214] hover:text-[#D4AF37] transition-colors"
-            >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
+            <div className="flex md:hidden items-center gap-4">
+              <LanguageSwitcher />
+              <button
+                onClick={() => setMobileMenuOpen(true)}
+                className="p-2 text-[#704214] hover:text-[#D4AF37] transition-colors"
+              >
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div

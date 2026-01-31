@@ -101,7 +101,7 @@ const SkillsSection = () => {
   const y2 = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
   return (
-    <section id="skills" className="py-24 md:py-32 relative overflow-hidden" ref={containerRef}>
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden bg-[#F5F1E8] dark:bg-[#2C2416]" ref={containerRef}>
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden -z-10 pointer-events-none">
         <motion.div style={{ y: y1 }} className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-cyan-400/5 rounded-full blur-3xl opacity-30" />
         <motion.div style={{ y: y2 }} className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-indigo-500/5 rounded-full blur-3xl opacity-30" />
