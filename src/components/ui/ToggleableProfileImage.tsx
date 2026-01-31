@@ -16,22 +16,28 @@ const ToggleableProfileImage = ({
   imageUrl,
   alt
 }: ToggleableProfileImageProps) => {
-  const [showRealPhoto, setShowRealPhoto] = useState(false);
+  const [showRealPhoto, setShowRealPhoto] = useState(true);
 
   return (
     <div className={`relative ${className}`}>
       <div className="w-full h-full rounded-full overflow-hidden">
         {showRealPhoto ? (
           <div className="relative w-full h-full">
-            <Image
-              src={imageUrl}
-              alt={alt}
-              fill
-              sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover"
-              style={{ objectPosition: '50% 30%' }} /* Adjusted for better face positioning */
-              priority
-            />
+            <picture>
+              <source srcSet={imageUrl.replace('.jpg', '.webp')} type="image/webp" />
+              <source srcSet={imageUrl} type="image/jpeg" />
+              <Image
+                src={imageUrl}
+                alt={alt}
+                width={720}
+                height={1280}
+                sizes="(max-width: 768px) 100vw, 50vw"
+                className="object-cover"
+                style={{ objectPosition: '50% 30%' }}
+                priority
+                fetchPriority="high"
+              />
+            </picture>
           </div>
         ) : (
           <AnimatedProfileAvatar className="w-full h-full" />

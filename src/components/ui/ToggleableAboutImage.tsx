@@ -29,7 +29,7 @@ const ToggleableAboutImage = ({
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover object-top"
-              priority
+              loading="lazy"
             />
           </div>
         ) : (

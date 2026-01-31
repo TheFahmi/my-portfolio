@@ -1,0 +1,30 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "experience": "Experience",
+    "contact": "Contact",
+    "blog": "Blog"
+  },
+  "common": {
+    "loading": "Loading...",
+    "readMore": "Read More",
+    "viewProject": "View Project",
+    "viewCode": "View Code",
+    "sendMessage": "Send Message",
+    "back": "Back",
+    "close": "Close",
+    "availableForWork": "Available for work"
+  },
+  "about": {
+    "title": "About Me.",
+    "subtitle": "dedicated to building scalable, high-performance web applications.",
+    "paragraph1": "I am a passionate Full Stack Developer with experience in building web applications using modern technologies.",
+    "paragraph2": "My journey in web development started with a curiosity for how things work on the internet, which led me to learn HTML, CSS, and JavaScript. Fast forward to today, I have had the privilege of working on various projects, from simple landing pages to complex web applications.",
+    "downloadResume": "Download Resume",
+    "education": "Education",
+    "skillsSection": "Skills"
+  }
+}
