@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "badge": "Available for work",
+    "titlePrefix": "Hi, I'm",
+    "ctaPrimary": "Start a Project",
+    "ctaSecondary": "View Projects",
+    "stats": {
+      "yearsExperience": "Years Experience",
+      "platforms": "Major Platforms",
+      "commitment": "Commitment",
+      "totalProjects": "Total Projects"
+    },
+    "currentStack": "Current Stack"
+  }
+}

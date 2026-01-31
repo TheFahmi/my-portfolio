@@ -1,0 +1,15 @@
+{
+  "hero": {
+    "badge": "Tersedia untuk bekerja",
+    "titlePrefix": "Halo, saya",
+    "ctaPrimary": "Mulai Proyek",
+    "ctaSecondary": "Lihat Proyek",
+    "stats": {
+      "yearsExperience": "Pengalaman Tahun",
+      "platforms": "Platform Utama",
+      "commitment": "Komitmen",
+      "totalProjects": "Total Proyek"
+    },
+    "currentStack": "Stack Saat Ini"
+  }
+}

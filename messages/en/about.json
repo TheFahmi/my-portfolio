@@ -1,23 +1,4 @@
 {
-  "navigation": {
-    "home": "Home",
-    "about": "About",
-    "skills": "Skills",
-    "projects": "Projects",
-    "experience": "Experience",
-    "contact": "Contact",
-    "blog": "Blog"
-  },
-  "common": {
-    "loading": "Loading...",
-    "readMore": "Read More",
-    "viewProject": "View Project",
-    "viewCode": "View Code",
-    "sendMessage": "Send Message",
-    "back": "Back",
-    "close": "Close",
-    "availableForWork": "Available for work"
-  },
   "about": {
     "title": "About Me.",
     "subtitle": "dedicated to building scalable, high-performance web applications.",

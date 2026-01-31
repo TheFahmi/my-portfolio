@@ -1,0 +1,11 @@
+{
+  "navigation": {
+    "home": "Beranda",
+    "about": "Tentang",
+    "skills": "Keahlian",
+    "projects": "Proyek",
+    "experience": "Pengalaman",
+    "contact": "Kontak",
+    "blog": "Blog"
+  }
+}

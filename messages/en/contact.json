@@ -1,0 +1,32 @@
+{
+  "contact": {
+    "sectionLabel": "Contact",
+    "heading": "Let's work together.",
+    "emailLabel": "Email",
+    "studioLabel": "Studio",
+    "socialsLabel": "Socials",
+    "getInTouch": "Get in Touch",
+    "form": {
+      "name": {
+        "label": "NAME",
+        "placeholder": "John Doe"
+      },
+      "email": {
+        "label": "EMAIL",
+        "placeholder": "john@example.com"
+      },
+      "subject": {
+        "label": "SUBJECT",
+        "placeholder": "Project Inquiry"
+      },
+      "message": {
+        "label": "MESSAGE",
+        "placeholder": "Tell me about your project..."
+      },
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Message sent successfully! I'll be in touch soon.",
+      "error": "Something went wrong. Please try again later."
+    }
+  }
+}

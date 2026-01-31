@@ -1,28 +1,11 @@
 {
-  "navigation": {
-    "home": "Beranda",
-    "about": "Tentang",
-    "skills": "Keahlian",
-    "projects": "Proyek",
-    "experience": "Pengalaman",
-    "contact": "Kontak",
-    "blog": "Blog"
-  },
-  "common": {
-    "loading": "Memuat...",
-    "readMore": "Baca Selengkapnya",
-    "viewProject": "Lihat Proyek",
-    "viewCode": "Lihat Kode",
-    "sendMessage": "Kirim Pesan",
-    "back": "Kembali",
-    "close": "Tutup",
-    "availableForWork": "Tersedia untuk kerja"
-  },
   "about": {
     "title": "Tentang Saya.",
     "subtitle": "berdedikasi membangun aplikasi web yang scalable dan berperforma tinggi.",
     "paragraph1": "Saya adalah Full Stack Developer yang berpengalaman dalam membangun aplikasi web menggunakan teknologi modern.",
     "paragraph2": "Perjalanan saya dalam pengembangan web dimulai dari rasa ingin tahu tentang cara kerja internet, yang membawa saya belajar HTML, CSS, dan JavaScript. Hingga saat ini, saya telah memiliki kesempatan untuk mengerjakan berbagai proyek, dari halaman landing sederhana hingga aplikasi web yang kompleks.",
-    "downloadResume": "Unduh Resume"
+    "downloadResume": "Unduh Resume",
+    "education": "Pendidikan",
+    "skillsSection": "Keahlian"
   }
 }
