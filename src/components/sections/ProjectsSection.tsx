@@ -37,7 +37,10 @@ const techIcons: Record<string, string> = {
   "JavaScript": "JS",
   "Redux": "Rx",
   "NestJS": "Ne",
-  "Express": "Ex"
+  "Express": "Ex",
+  "Redis": "Rd",
+  "Supabase": "Sb",
+  "MinIO": "Mi"
 };
 
 const ProjectModal = ({ project, onClose }: { project: Project; onClose: () => void }) => {
@@ -335,7 +338,7 @@ const ProjectsSection = () => {
         <ScrollReveal variant="fade" delay={0.3}>
           <div className="mt-16 text-center">
             <a
-              href="https://github.com/mhmmdfahmidev"
+              href="https://github.com/TheFahmi"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-8 py-4 rounded-full bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-semibold hover:scale-105 transition-transform group"
