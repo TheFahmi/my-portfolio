@@ -52,7 +52,7 @@ export default function WorkPage() {
                     <Image
                       src={project.demo
                         ? `/api/screenshot?url=${encodeURIComponent(project.demo)}`
-                        : project.image}
+                        : (project.image || '/images/project-placeholder.svg')}
                       alt={project.title}
                       fill
                       unoptimized={!!project.demo}
