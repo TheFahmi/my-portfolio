@@ -222,6 +222,16 @@ const siteConfig = {
       demo: 'https://wasaas.mfah.me',
       featured: true
     },
+    {
+      id: 10,
+      title: 'Indonesian Cheer Association',
+      description: 'Official platform for Indonesia\'s national cheerleading governing body. Features championship management, membership registration, provincial team directories, news & updates, and certification programs for 1000+ athletes across 15+ provinces.',
+      category: 'Platform',
+      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+      image: '/images/project-ica.png',
+      demo: 'https://www.indonesiancheer.org',
+      featured: true
+    },
   ] as Project[],
 
   // Experience Section
