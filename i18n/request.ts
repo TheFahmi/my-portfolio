@@ -29,6 +29,10 @@ interface Messages {
     downloadResume: string;
     education: string;
     skillsSection: string;
+    story: string;
+    skills: string;
+    connect: string;
+    experience: string;
   };
   hero: {
     badge: string;
@@ -43,6 +47,30 @@ interface Messages {
     };
     currentStack: string;
   };
+  work: {
+    title: string;
+    subtitle: string;
+  };
+  contact: {
+    sectionLabel: string;
+    heading: string;
+    emailLabel: string;
+    studioLabel: string;
+    socialsLabel: string;
+    getInTouch: string;
+    title: string;
+    subtitle: string;
+    form: {
+      name: { label: string; placeholder: string };
+      email: { label: string; placeholder: string };
+      subject: { label: string; placeholder: string };
+      message: { label: string; placeholder: string };
+      submit: string;
+      submitting: string;
+      success: string;
+      error: string;
+    };
+  };
 }
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -56,13 +84,17 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const common = (await import(`../messages/${locale}/common.json`)).default;
   const about = (await import(`../messages/${locale}/about.json`)).default;
   const hero = (await import(`../messages/${locale}/hero.json`)).default;
-  const messages = { ...navigation, ...common, ...about, ...hero } as Messages;
+  const work = (await import(`../messages/${locale}/work.json`)).default;
+  const contact = (await import(`../messages/${locale}/contact.json`)).default;
+  const messages = { ...navigation, ...common, ...about, ...hero, ...work, ...contact } as Messages;
 
   const navigationFallback = (await import(`../messages/en/navigation.json`)).default;
   const commonFallback = (await import(`../messages/en/common.json`)).default;
   const aboutFallback = (await import(`../messages/en/about.json`)).default;
   const heroFallback = (await import(`../messages/en/hero.json`)).default;
-  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback } as Messages;
+  const workFallback = (await import(`../messages/en/work.json`)).default;
+  const contactFallback = (await import(`../messages/en/contact.json`)).default;
+  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback, ...workFallback, ...contactFallback } as Messages;
 
   return {
     locale,
