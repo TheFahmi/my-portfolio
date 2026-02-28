@@ -51,7 +51,7 @@ export default function WorkPage() {
                   <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#1a1a1a]">
                     <Image
                       src={project.demo
-                        ? `https://image.thum.io/get/width/1280/crop/720/${project.demo}`
+                        ? `/api/screenshot?url=${encodeURIComponent(project.demo)}`
                         : project.image}
                       alt={project.title}
                       fill
