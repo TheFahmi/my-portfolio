@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "./Navbar.client";
+import Footer from "./Footer";
 
 import ScrollToTopButton from "../ui/ScrollToTopButton";
 import { useKonamiCode } from "@/hooks/useKonamiCode";
@@ -17,6 +18,8 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
       <main className="relative z-10 flex-grow">
         {children}
       </main>
+
+      <Footer />
 
 
       <ScrollToTopButton />

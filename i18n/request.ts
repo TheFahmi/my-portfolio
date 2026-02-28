@@ -106,6 +106,10 @@ interface Messages {
       error: string;
     };
   };
+  footer: {
+    tagline: string;
+    madeWith: string;
+  };
 }
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -121,7 +125,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const hero = (await import(`../messages/${locale}/hero.json`)).default;
   const work = (await import(`../messages/${locale}/work.json`)).default;
   const contact = (await import(`../messages/${locale}/contact.json`)).default;
-  const messages = { ...navigation, ...common, ...about, ...hero, ...work, ...contact } as Messages;
+  const footer = (await import(`../messages/${locale}/footer.json`)).default;
+  const messages = { ...navigation, ...common, ...about, ...hero, ...work, ...contact, ...footer } as Messages;
 
   const navigationFallback = (await import(`../messages/en/navigation.json`)).default;
   const commonFallback = (await import(`../messages/en/common.json`)).default;
@@ -129,7 +134,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const heroFallback = (await import(`../messages/en/hero.json`)).default;
   const workFallback = (await import(`../messages/en/work.json`)).default;
   const contactFallback = (await import(`../messages/en/contact.json`)).default;
-  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback, ...workFallback, ...contactFallback } as Messages;
+  const footerFallback = (await import(`../messages/en/footer.json`)).default;
+  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback, ...workFallback, ...contactFallback, ...footerFallback } as Messages;
 
   return {
     locale,
