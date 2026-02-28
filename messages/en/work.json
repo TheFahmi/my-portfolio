@@ -1,6 +1,10 @@
 {
   "work": {
     "title": "My Work",
-    "subtitle": "Projects I've built from the ground up, ranging from SaaS platforms to corporate websites."
+    "subtitle": "Projects I've built from the ground up, ranging from SaaS platforms to corporate websites.",
+    "featured": "Featured",
+    "liveDemo": "Live Demo",
+    "technicalArsenal": "Technical Arsenal",
+    "technicalArsenalDesc": "Comprehensive breakdown of the tools, languages, and frameworks I use to build scalable digital products."
   }
 }

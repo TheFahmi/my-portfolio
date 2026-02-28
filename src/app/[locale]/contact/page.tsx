@@ -84,7 +84,7 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="space-y-6"
             >
-              <h2 className="text-2xl font-bold text-white mb-8">Contact Information</h2>
+              <h2 className="text-2xl font-bold text-white mb-8">{t('contactInfo')}</h2>
               
               <a href={`mailto:${personalInfo.email}`} className="group flex items-center gap-6 p-6 bg-[#111]/80 border border-white/[0.08] rounded-xl hover:bg-white/5 hover:border-white/[0.15] transition-all">
                 <div className="w-14 h-14 rounded-full bg-[#1a1a1a] flex items-center justify-center shrink-0 border border-white/[0.05] group-hover:scale-110 transition-transform">
@@ -93,7 +93,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <span className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">Email</span>
+                  <span className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">{t('emailLabel')}</span>
                   <span className="font-medium text-white text-lg">{personalInfo.email}</span>
                 </div>
               </a>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   </svg>
                 </div>
                 <div>
-                  <span className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">Based in</span>
+                  <span className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">{t('basedIn')}</span>
                   <span className="font-medium text-white text-lg">{personalInfo.location}</span>
                 </div>
               </div>
@@ -119,14 +119,14 @@ export default function ContactPage() {
                     </svg>
                   </div>
                   <div>
-                    <span className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">Phone</span>
+                    <span className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">{t('phone')}</span>
                     <span className="font-medium text-white text-lg">{personalInfo.phone}</span>
                   </div>
                 </div>
               )}
 
               <div className="pt-8">
-                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-6">Social Profiles</h3>
+                <h3 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-6">{t('socialProfiles')}</h3>
                 <div className="flex gap-4">
                   {[
                     { key: 'github', url: social.github, label: 'GitHub' },
@@ -154,12 +154,12 @@ export default function ContactPage() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="bg-[#111]/80 border border-white/[0.08] rounded-2xl p-8 lg:p-10"
             >
-              <h2 className="text-2xl font-bold text-white mb-8">Send a Message</h2>
+              <h2 className="text-2xl font-bold text-white mb-8">{t('sendMessage')}</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">Name</label>
+                    <label htmlFor="name" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">{t('nameLabel')}</label>
                     <input
                       type="text"
                       id="name"
@@ -168,11 +168,11 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       className="w-full px-5 py-3.5 rounded-xl bg-[#0a0a0a] border border-white/[0.08] text-white placeholder-gray-600 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 transition-all"
-                      placeholder="John Doe"
+                      placeholder={t('namePlaceholder')}
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">Email</label>
+                    <label htmlFor="email" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">{t('emailFieldLabel')}</label>
                     <input
                       type="email"
                       id="email"
@@ -181,13 +181,13 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       className="w-full px-5 py-3.5 rounded-xl bg-[#0a0a0a] border border-white/[0.08] text-white placeholder-gray-600 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 transition-all"
-                      placeholder="john@example.com"
+                      placeholder={t('emailPlaceholder')}
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">Subject</label>
+                  <label htmlFor="subject" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">{t('subjectLabel')}</label>
                   <input
                     type="text"
                     id="subject"
@@ -196,12 +196,12 @@ export default function ContactPage() {
                     onChange={handleChange}
                     required
                     className="w-full px-5 py-3.5 rounded-xl bg-[#0a0a0a] border border-white/[0.08] text-white placeholder-gray-600 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 transition-all"
-                    placeholder="Project Inquiry"
+                    placeholder={t('subjectPlaceholder')}
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">Message</label>
+                  <label htmlFor="message" className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-2">{t('messageLabel')}</label>
                   <textarea
                     id="message"
                     name="message"
@@ -210,7 +210,7 @@ export default function ContactPage() {
                     required
                     rows={6}
                     className="w-full px-5 py-3.5 rounded-xl bg-[#0a0a0a] border border-white/[0.08] text-white placeholder-gray-600 focus:border-white/30 focus:outline-none focus:ring-1 focus:ring-white/30 transition-all resize-none"
-                    placeholder="Tell me about your project..."
+                    placeholder={t('messagePlaceholder')}
                   />
                 </div>
 
@@ -225,10 +225,10 @@ export default function ContactPage() {
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
-                      <span>Sending...</span>
+                      <span>{t('submitting')}</span>
                     </>
                   ) : (
-                    "Send Message"
+                    t('submitButton')
                   )}
                 </button>
 
@@ -238,7 +238,7 @@ export default function ContactPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="p-4 rounded-xl border border-green-500/30 bg-green-500/10 text-green-400 font-medium text-center"
                   >
-                    Message sent successfully! I'll be in touch soon.
+                    {t('successMessage')}
                   </motion.div>
                 )}
                 {submitStatus === "error" && (
@@ -247,7 +247,7 @@ export default function ContactPage() {
                     animate={{ opacity: 1, y: 0 }}
                     className="p-4 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 font-medium text-center"
                   >
-                    Something went wrong. Please try again later.
+                    {t('errorMessage')}
                   </motion.div>
                 )}
               </form>

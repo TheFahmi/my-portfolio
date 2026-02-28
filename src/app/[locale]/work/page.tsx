@@ -64,7 +64,7 @@ export default function WorkPage() {
                       </span>
                       {project.featured && (
                         <span className="bg-white text-black text-xs font-bold px-3 py-1.5 rounded-full">
-                          Featured
+                          {t('featured')}
                         </span>
                       )}
                     </div>
@@ -93,7 +93,7 @@ export default function WorkPage() {
                           rel="noopener noreferrer"
                           className="flex items-center gap-2 text-white hover:text-gray-300 transition-colors text-sm font-medium"
                         >
-                          <span>Live Demo</span>
+                          <span>{t('liveDemo')}</span>
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                           </svg>
@@ -131,10 +131,10 @@ export default function WorkPage() {
               className="text-center mb-16"
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                Technical Arsenal
+                {t('technicalArsenal')}
               </h2>
               <p className="text-gray-400 max-w-2xl mx-auto">
-                Comprehensive breakdown of the tools, languages, and frameworks I use to build scalable digital products.
+                {t('technicalArsenalDesc')}
               </p>
             </motion.div>
 
