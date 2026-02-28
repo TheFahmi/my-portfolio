@@ -191,7 +191,37 @@ const siteConfig = {
       image: '/images/project-kil.png',
       demo: 'https://kil.co.id',
       featured: false
-    }
+    },
+    {
+      id: 7,
+      title: 'RumahSiapKerja.com',
+      description: 'Training platform for Indonesia\'s Prakerja program — providing professional upskilling courses, business development mentoring, and career readiness programs for job seekers nationwide.',
+      category: 'Platform',
+      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+      image: '/images/project-rsk.png',
+      demo: 'https://rumahsiapkerja.com',
+      featured: true
+    },
+    {
+      id: 8,
+      title: 'TemanUjian',
+      description: 'AI-powered learning platform for Indonesian students. Features gamified quizzes, AI tutor characters, progress tracking, and rewards system to make studying fun and engaging.',
+      category: 'EdTech',
+      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+      image: '/images/project-temanujian.png',
+      demo: 'https://ujian.mfah.me',
+      featured: true
+    },
+    {
+      id: 9,
+      title: 'WaSaaS',
+      description: 'E-commerce platform powered by AI WhatsApp integration. Enables businesses to manage online stores, process orders, and engage customers through automated WhatsApp conversations.',
+      category: 'SaaS',
+      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'TypeScript', 'Docker'],
+      image: '/images/project-wasaas.png',
+      demo: 'https://wasaas.mfah.me',
+      featured: true
+    },
   ] as Project[],
 
   // Experience Section
