@@ -169,7 +169,7 @@ const siteConfig = {
       description: 'Collaborative project management application for teams. Supports Kanban task boards, time tracking, milestone management, and real-time collaboration between team members.',
       category: 'Full Stack',
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
-      image: '/images/project-omomo.png',
+      image: '/images/project-placeholder.svg',
       featured: false
     },
     {
