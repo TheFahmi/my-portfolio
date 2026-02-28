@@ -6,6 +6,10 @@
     "paragraph2": "My journey in web development started with a curiosity for how things work on the internet, which led me to learn HTML, CSS, and JavaScript. Fast forward to today, I have had the privilege of working on various projects, from simple landing pages to complex web applications.",
     "downloadResume": "Download Resume",
     "education": "Education",
-    "skillsSection": "Skills"
+    "skillsSection": "Skills",
+    "story": "My Story",
+    "skills": "Skills & Technologies",
+    "connect": "Connect with Me",
+    "experience": "Experience"
   }
 }
