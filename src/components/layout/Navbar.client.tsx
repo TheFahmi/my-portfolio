@@ -94,12 +94,16 @@ const Navbar = () => {
 
           {/* Mobile Menu Button */}
           <button
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-full text-gray-400 hover:text-white hover:bg-white/10 transition-all"
-            aria-label="Open menu"
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              {mobileMenuOpen ? (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              ) : (
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              )}
             </svg>
           </button>
         </div>
@@ -109,51 +113,47 @@ const Navbar = () => {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[60] bg-[#030014]/95 backdrop-blur-xl flex flex-col"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
+            className="fixed top-[88px] left-1/2 -translate-x-1/2 z-[40] w-[90%] max-w-sm bg-[#141414] border border-white/[0.08] rounded-[24px] overflow-hidden flex flex-col md:hidden shadow-2xl"
           >
-            {/* Close button */}
-            <div className="flex justify-end p-6">
-              <button
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-3 rounded-full border border-white/10 text-white hover:bg-white/10 transition-all"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
+            <nav className="flex flex-col p-2 gap-1">
+              {navLinks.map((link) => {
+                // Remove locale prefix from pathname to check active state
+                const pathWithoutLocale = pathname.replace(/^\/[a-z]{2}(\/|$)/, '/') || '/';
+                const isActive = link.href === '/' 
+                  ? pathWithoutLocale === '/'
+                  : pathWithoutLocale.startsWith(link.href);
 
-            {/* Nav Links */}
-            <nav className="flex-1 flex flex-col justify-center px-12 gap-2">
-              {navLinks.map((link, idx) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, x: -30 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.08, duration: 0.5 }}
-                >
+                return (
                   <Link
+                    key={link.href}
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
-                    className="group flex items-center gap-4 py-4 border-b border-white/5 hover:border-white/30 transition-all"
+                    className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                      isActive 
+                        ? "bg-[#1f1f1f] text-white font-medium" 
+                        : "text-gray-500 font-normal hover:bg-white/5"
+                    }`}
                   >
-                    <span className="text-gray-400 font-mono text-sm w-8">
-                      0{idx + 1}
+                    <span className={`text-[12px] flex items-center justify-center ${isActive ? "text-white" : "text-gray-500"}`}>
+                      {link.icon}
                     </span>
-                    <span className="text-3xl font-bold text-white group-hover:text-gray-300 transition-colors">
+                    <span className="text-lg">
                       {link.label}
                     </span>
                   </Link>
-                </motion.div>
-              ))}
+                );
+              })}
+              
+              <div className="mx-4 my-2 border-t border-white/[0.08]"></div>
+              
+              <div className="px-4 py-2 pb-3">
+                <LanguageSwitcher />
+              </div>
             </nav>
-
-            <div className="px-12 pb-12">
-              <LanguageSwitcher />
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

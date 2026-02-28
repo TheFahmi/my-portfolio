@@ -1,10 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import siteConfig from '@/config/siteConfig';
 import { useTranslations } from 'next-intl';
 import PageTransition from '@/components/effects/PageTransition';
-
+import { Download } from 'lucide-react';
 export default function AboutPage() {
   const t = useTranslations('about');
   const { personalInfo, experience } = siteConfig;
@@ -12,13 +13,31 @@ export default function AboutPage() {
   return (
     <PageTransition>
       <main className="min-h-screen bg-black text-gray-400">
-        {/* Page Header */}
+        {/* Page Header with Photo */}
         <section className="pt-32 pb-16 px-6">
-          <div className="max-w-4xl mx-auto text-center">
+          <div className="max-w-4xl mx-auto flex flex-col items-center text-center">
+            {/* Profile Photo */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+              className="mb-8"
+            >
+              <div className="relative w-32 h-32 md:w-40 md:h-40 rounded-full overflow-hidden border-2 border-white/10 shadow-[0_0_40px_rgba(176,132,80,0.15)]">
+                <Image
+                  src="/images/fahmi-profile.webp"
+                  alt="M Fahmi Hassan"
+                  fill
+                  className="object-cover object-[center_20%]"
+                  priority
+                />
+              </div>
+            </motion.div>
+
             <motion.h1 
               initial={{ opacity: 0, y: 30 }} 
               animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.8 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent"
             >
               {t('title') || 'About Me'}
@@ -27,10 +46,23 @@ export default function AboutPage() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg leading-relaxed max-w-2xl mx-auto"
+              className="text-lg leading-relaxed max-w-2xl mx-auto mb-8"
             >
               {personalInfo.about[0]}
             </motion.p>
+
+            {/* Download CV Button */}
+            <motion.a
+              href="/cv.pdf"
+              download
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors"
+            >
+              <Download className="w-4 h-4" />
+              {t('downloadCV')}
+            </motion.a>
           </div>
         </section>
 

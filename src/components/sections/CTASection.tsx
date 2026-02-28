@@ -13,13 +13,12 @@ export default function CTASection() {
         </div>
         
         <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-          <span className="text-white">Let's Create</span>{' '}
-          <span className="text-gray-600">Something Epic</span>
+          <span className="text-white">{t('ctaTitle1')}</span>{' '}
+          <span className="text-gray-600">{t('ctaTitle2')}</span>
         </h2>
         
         <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
-          Ready to transform your ideas into extraordinary digital experiences? 
-          Let's build something beautiful together.
+          {t('ctaDescription')}
         </p>
         
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
@@ -27,7 +26,7 @@ export default function CTASection() {
             href="/contact" 
             className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto"
           >
-            <span>Start a Project</span>
+            <span>{t('startProject')}</span>
             <ArrowRight className="w-5 h-5" />
           </Link>
           
@@ -35,7 +34,7 @@ export default function CTASection() {
             href="/work" 
             className="flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors w-full sm:w-auto"
           >
-            <span>View My Work</span>
+            <span>{t('viewWork')}</span>
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

@@ -1,6 +1,10 @@
 {
   "work": {
     "title": "Karya Saya",
-    "subtitle": "Proyek yang saya bangun dari nol, mulai dari platform SaaS hingga website korporat."
+    "subtitle": "Proyek yang saya bangun dari nol, mulai dari platform SaaS hingga website perusahaan.",
+    "featured": "Unggulan",
+    "liveDemo": "Demo Langsung",
+    "technicalArsenal": "Arsenal Teknis",
+    "technicalArsenalDesc": "Breakdown lengkap tools, bahasa pemrograman, dan framework yang saya gunakan untuk membangun produk digital yang scalable."
   }
 }

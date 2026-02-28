@@ -42,7 +42,7 @@ export default async function LocaleLayout({
         <link rel="preload" href="/images/fahmi-profile.jpg" as="image" fetchPriority="high" />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={messages}>
           <ClientLayout>{children}</ClientLayout>
         </NextIntlClientProvider>
       </body>

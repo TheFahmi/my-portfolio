@@ -39,6 +39,20 @@ interface Messages {
     titlePrefix: string;
     ctaPrimary: string;
     ctaSecondary: string;
+    description: string;
+    whatIDo: string;
+    whatIDoSubtitle: string;
+    serviceFullStack: string;
+    serviceFullStackDesc: string;
+    serviceAPI: string;
+    serviceAPIDesc: string;
+    servicePerf: string;
+    servicePerfDesc: string;
+    ctaTitle1: string;
+    ctaTitle2: string;
+    ctaDescription: string;
+    startProject: string;
+    viewWork: string;
     stats: {
       yearsExperience: string;
       platforms: string;
@@ -50,11 +64,32 @@ interface Messages {
   work: {
     title: string;
     subtitle: string;
+    featured: string;
+    liveDemo: string;
+    technicalArsenal: string;
+    technicalArsenalDesc: string;
   };
   contact: {
     sectionLabel: string;
     heading: string;
+    contactInfo: string;
     emailLabel: string;
+    basedIn: string;
+    phone: string;
+    socialProfiles: string;
+    sendMessage: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailFieldLabel: string;
+    emailPlaceholder: string;
+    subjectLabel: string;
+    subjectPlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    submitButton: string;
+    submitting: string;
+    successMessage: string;
+    errorMessage: string;
     studioLabel: string;
     socialsLabel: string;
     getInTouch: string;

@@ -35,7 +35,7 @@ const HeroSection = () => {
       </div>
 
       {/* Text content: centered, on top of sphere */}
-      <div className="relative z-10 text-center max-w-3xl mx-auto px-6 mt-16">
+      <div className="relative z-10 text-center max-w-3xl mx-auto px-6 mt-16 pointer-events-none">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -53,7 +53,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-white/60 text-lg md:text-xl mb-8 leading-relaxed max-w-2xl mx-auto"
         >
-          {hero.description}
+          {t('description')}
         </motion.p>
         
         <motion.div
@@ -62,7 +62,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="flex justify-center"
         >
-          <Link href="/work" className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors">
+          <Link href="/work" className="pointer-events-auto inline-flex items-center justify-center px-8 py-3 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors">
             {t('ctaSecondary')}
           </Link>
         </motion.div>
