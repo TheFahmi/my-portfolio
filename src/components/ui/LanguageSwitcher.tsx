@@ -1,20 +1,20 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from '../../../i18n/navigation';
-import { useTransition } from 'react';
+import { usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 export default function LanguageSwitcher() {
   const locale = useLocale();
-  const router = useRouter();
   const pathname = usePathname();
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
 
   const handleLocaleChange = (newLocale: 'en' | 'id') => {
-    if (newLocale === locale) return;
-    startTransition(() => {
-      router.replace(pathname, { locale: newLocale });
-    });
+    if (newLocale === locale || isPending) return;
+    setIsPending(true);
+    // Strip all locale prefixes, then prepend the new one
+    const stripped = pathname.replace(/^(\/(?:en|id))+/, '') || '/';
+    window.location.href = `/${newLocale}${stripped}`;
   };
 
   return (
