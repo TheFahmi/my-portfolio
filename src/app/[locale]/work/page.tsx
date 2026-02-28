@@ -50,12 +50,9 @@ export default function WorkPage() {
                 >
                   <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-[#1a1a1a]">
                     <Image
-                      src={project.demo
-                        ? `/api/screenshot?url=${encodeURIComponent(project.demo)}`
-                        : (project.image || '/images/project-placeholder.svg')}
+                      src={project.image || '/images/project-placeholder.svg'}
                       alt={project.title}
                       fill
-                      unoptimized={!!project.demo}
                       className="object-cover object-top opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
