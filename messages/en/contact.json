@@ -6,6 +6,8 @@
     "studioLabel": "Studio",
     "socialsLabel": "Socials",
     "getInTouch": "Get in Touch",
+    "title": "Get in Touch",
+    "subtitle": "Have a project in mind? Let's talk about how I can help bring your ideas to life.",
     "form": {
       "name": {
         "label": "NAME",
