@@ -6,14 +6,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show button when page is scrolled down
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 500) {
-        setIsVisible(true);
-      } else {
-        setIsVisible(false);
-      }
+      setIsVisible(window.scrollY > 500);
     };
 
     window.addEventListener('scroll', toggleVisibility);
@@ -21,17 +16,14 @@ const ScrollToTopButton = () => {
   }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-10 h-10 md:w-12 md:h-12 bg-blue-600 dark:bg-blue-500 text-white rounded-full shadow-lg flex items-center justify-center hover:bg-blue-700 dark:hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition-colors duration-300 cursor-pointer"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 backdrop-blur-sm text-black border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center justify-center hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-colors duration-300 cursor-pointer"
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -43,7 +35,7 @@ const ScrollToTopButton = () => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 md:h-6 md:w-6"
+            className="h-5 w-5"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

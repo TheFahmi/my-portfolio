@@ -10,17 +10,17 @@ interface AnimatedCounterProps {
   className?: string;
 }
 
-export const AnimatedCounter = ({ 
-  value, 
-  suffix = "", 
-  className 
+export const AnimatedCounter = ({
+  value,
+  suffix = "",
+  className
 }: AnimatedCounterProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
-  
-  const spring = useSpring(0, { 
-    mass: 0.8, 
-    stiffness: 75, 
+
+  const spring = useSpring(0, {
+    mass: 0.8,
+    stiffness: 75,
     damping: 15,
   });
 
@@ -34,11 +34,11 @@ export const AnimatedCounter = ({
 
   return (
     <div ref={ref} className={`flex items-baseline gap-0.5 ${className || ""}`}>
-      <motion.span className="text-4xl lg:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-br from-slate-900 via-slate-700 to-slate-900 dark:from-white dark:via-slate-200 dark:to-slate-400">
+      <motion.span className="text-3xl lg:text-4xl font-bold text-gradient-primary">
         {display}
       </motion.span>
       {suffix && (
-        <span className="text-2xl font-bold text-cyan-500 dark:text-cyan-400">
+        <span className="text-xl font-bold text-gray-300">
           {suffix}
         </span>
       )}
