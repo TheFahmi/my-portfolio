@@ -8,7 +8,7 @@ interface ConfettiPieceProps {
   delay: number;
 }
 
-const colors = ['#22d3ee', '#f472b6', '#fbbf24', '#a3e635', '#60a5fa'];
+const colors = ['#ffffff', '#d1d5db', '#9ca3af', '#6b7280', '#e5e7eb'];
 
 const ConfettiPiece = ({ x, y, color, delay }: ConfettiPieceProps) => (
   <motion.div
@@ -60,8 +60,8 @@ export const EasterEgg = ({ triggered }: { triggered: boolean }) => {
                 exit={{ opacity: 0, scale: 0.5, y: -50 }}
                 className="fixed inset-0 z-[100] flex items-center justify-center pointer-events-none"
             >
-                <div className="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md px-8 py-6 rounded-2xl shadow-2xl border border-cyan-500/30 text-center transform">
-                    <h2 className="text-3xl font-bold bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent mb-2">
+                <div className="bg-black/90 backdrop-blur-md px-8 py-6 rounded-2xl shadow-2xl border border-white/20 text-center transform">
+                    <h2 className="text-3xl font-bold bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent mb-2">
                         LEVEL UP!
                     </h2>
                     <p className="text-slate-600 dark:text-slate-300 font-medium">

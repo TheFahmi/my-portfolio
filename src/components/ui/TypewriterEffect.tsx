@@ -83,7 +83,7 @@ export const TypewriterEffect = ({
                     repeat: Infinity,
                     repeatType: "reverse",
                 }}
-                className={`inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-blue-500 align-middle ${cursorClassName}`}
+                className={`inline-block rounded-sm w-[4px] h-4 md:h-6 lg:h-10 bg-white align-middle ${cursorClassName}`}
             ></motion.span>
         </div>
     );
