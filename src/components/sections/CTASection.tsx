@@ -1,5 +1,5 @@
 import { Link } from '../../../i18n/navigation';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export default function CTASection() {
@@ -8,10 +8,6 @@ export default function CTASection() {
   return (
     <section className="py-32 px-6 bg-[#0a0a14] border-t border-white/[0.02]">
       <div className="max-w-4xl mx-auto text-center flex flex-col items-center overflow-hidden">
-        <div className="text-gray-500 mb-6 flex justify-center">
-          <Sparkles className="w-8 h-8 opacity-60" />
-        </div>
-        
         <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-8 tracking-tight">
           <span className="text-white">{t('ctaTitle1')}</span>{' '}
           <span className="text-gray-600">{t('ctaTitle2')}</span>
