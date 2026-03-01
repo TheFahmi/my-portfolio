@@ -232,6 +232,16 @@ const siteConfig = {
       demo: 'https://www.indonesiancheer.org',
       featured: true
     },
+    {
+      id: 11,
+      title: 'Pokédex Explorer',
+      description: 'Interactive Pokédex web app for browsing and catching Pokémon. Features a searchable Pokémon catalog, detailed stats, type matchups, and a collection tracker — built as a fun side project.',
+      category: 'Fun',
+      technologies: ['Next.js', 'TypeScript', 'TailwindCSS'],
+      image: '/images/project-poke.png',
+      demo: 'https://poke.mfah.me',
+      featured: false
+    },
   ] as Project[],
 
   // Experience Section
