@@ -144,16 +144,6 @@ const siteConfig = {
       featured: true
     },
     {
-      id: 2,
-      title: 'MultiRentalSystems.com',
-      description: 'Complete vehicle rental management system with admin panel, fleet management, online booking, financial reporting, and distributed document storage using MinIO.',
-      category: 'Full Stack',
-      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
-      image: '/images/project-mrs.png',
-      demo: 'https://multirentalsystems.com',
-      featured: true
-    },
-    {
       id: 3,
       title: 'SEN.co.id',
       description: 'E-commerce platform for educational books and supplies (PT Sarana Ecommerce Nusantara). Features online book catalog, school package deals, shopping cart, order management, and payment integration for schools across Indonesia.',
@@ -241,6 +231,16 @@ const siteConfig = {
       image: '/images/project-poke.png',
       demo: 'https://poke.mfah.me',
       featured: false
+    },
+    {
+      id: 12,
+      title: 'MultiRentalSystems.com',
+      description: 'Complete vehicle rental management system with admin panel, fleet management, online booking, financial reporting, and distributed document storage using MinIO.',
+      category: 'Full Stack',
+      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+      image: '/images/project-mrs.png',
+      demo: 'https://multirentalsystems.com',
+      featured: true
     },
   ] as Project[],
 
