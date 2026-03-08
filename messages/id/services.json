@@ -1,0 +1,67 @@
+{
+  "services": {
+    "label": "Layanan",
+    "title": "Jasa Pembuatan Website",
+    "subtitle": "Dari konsep hingga peluncuran — saya membangun produk digital yang cepat, scalable, dan dirancang dengan indah untuk mendorong pertumbuhan bisnis Anda.",
+    "items": {
+      "website": {
+        "title": "Website Perusahaan",
+        "description": "Website profesional dan responsif yang membangun kehadiran online brand Anda dan meninggalkan kesan yang kuat.",
+        "features": [
+          "Desain custom sesuai brand Anda",
+          "SEO-optimized & performa cepat",
+          "Layout responsif mobile-first"
+        ]
+      },
+      "landingPage": {
+        "title": "Landing Page",
+        "description": "Landing page dengan konversi tinggi yang dirancang untuk menangkap leads, mendorong sign-up, dan memaksimalkan ROI marketing Anda.",
+        "features": [
+          "Desain yang dioptimalkan untuk konversi",
+          "Siap untuk A/B testing",
+          "Integrasi analytics & tracking"
+        ]
+      },
+      "ecommerce": {
+        "title": "E-Commerce",
+        "description": "Toko online lengkap dengan pengalaman belanja yang mulus, integrasi pembayaran, dan manajemen inventaris.",
+        "features": [
+          "Integrasi payment gateway",
+          "Manajemen produk & inventaris",
+          "Pelacakan pesanan & notifikasi"
+        ]
+      },
+      "webApp": {
+        "title": "Aplikasi Web",
+        "description": "Aplikasi web custom dengan logika bisnis yang kompleks, fitur real-time, dan arsitektur yang scalable.",
+        "features": [
+          "Logika bisnis & workflow custom",
+          "Data & notifikasi real-time",
+          "Arsitektur cloud yang scalable"
+        ]
+      },
+      "api": {
+        "title": "API & Backend",
+        "description": "Sistem backend dan API yang tangguh untuk mendukung aplikasi Anda dengan keandalan dan performa tinggi.",
+        "features": [
+          "Desain API RESTful & GraphQL",
+          "Arsitektur & optimasi database",
+          "Integrasi layanan pihak ketiga"
+        ]
+      },
+      "maintenance": {
+        "title": "Maintenance & Support",
+        "description": "Dukungan teknis berkelanjutan, pemantauan performa, dan pembaruan fitur untuk menjaga produk Anda tetap berjalan lancar.",
+        "features": [
+          "Perbaikan bug & update keamanan",
+          "Monitoring & optimasi performa",
+          "Peningkatan fitur & scaling"
+        ]
+      }
+    },
+    "cta": {
+      "text": "Punya proyek dalam pikiran? Mari diskusikan bagaimana saya bisa membantu mewujudkan visi Anda.",
+      "button": "Konsultasi Gratis"
+    }
+  }
+}

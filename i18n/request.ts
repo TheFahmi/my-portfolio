@@ -10,6 +10,7 @@ interface Messages {
     experience: string;
     contact: string;
     blog: string;
+    services: string;
   };
   common: {
     loading: string;
@@ -110,6 +111,20 @@ interface Messages {
     tagline: string;
     madeWith: string;
   };
+  services: {
+    label: string;
+    title: string;
+    subtitle: string;
+    items: Record<string, {
+      title: string;
+      description: string;
+      features: string[];
+    }>;
+    cta: {
+      text: string;
+      button: string;
+    };
+  };
 }
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -126,7 +141,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const work = (await import(`../messages/${locale}/work.json`)).default;
   const contact = (await import(`../messages/${locale}/contact.json`)).default;
   const footer = (await import(`../messages/${locale}/footer.json`)).default;
-  const messages = { ...navigation, ...common, ...about, ...hero, ...work, ...contact, ...footer } as Messages;
+  const services = (await import(`../messages/${locale}/services.json`)).default;
+  const messages = { ...navigation, ...common, ...about, ...hero, ...work, ...contact, ...footer, ...services } as Messages;
 
   const navigationFallback = (await import(`../messages/en/navigation.json`)).default;
   const commonFallback = (await import(`../messages/en/common.json`)).default;
@@ -135,7 +151,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const workFallback = (await import(`../messages/en/work.json`)).default;
   const contactFallback = (await import(`../messages/en/contact.json`)).default;
   const footerFallback = (await import(`../messages/en/footer.json`)).default;
-  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback, ...workFallback, ...contactFallback, ...footerFallback } as Messages;
+  const servicesFallback = (await import(`../messages/en/services.json`)).default;
+  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback, ...workFallback, ...contactFallback, ...footerFallback, ...servicesFallback } as Messages;
 
   return {
     locale,
