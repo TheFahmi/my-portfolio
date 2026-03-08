@@ -4,6 +4,7 @@ import Navbar from "./Navbar.client";
 import Footer from "./Footer";
 
 import ScrollToTopButton from "../ui/ScrollToTopButton";
+import SplashScreen from "../ui/SplashScreen";
 import { useKonamiCode } from "@/hooks/useKonamiCode";
 import { EasterEgg } from "@/components/ui/EasterEgg";
 
@@ -12,6 +13,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="relative min-h-screen w-full flex flex-col bg-black text-[#f1f5f9]">
+      <SplashScreen />
       <EasterEgg triggered={konamiTriggered} />
       <Navbar />
 
