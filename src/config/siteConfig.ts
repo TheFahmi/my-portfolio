@@ -165,7 +165,7 @@ const siteConfig = {
     {
       id: 5,
       title: 'SPKN.co.id',
-      description: 'Corporate website for PT Sarana Pancakarya Nusa — an education solutions provider since 1986. Features online book catalog, admin system, and Supabase CMS integration.',
+      description: 'Corporate website for PT Sarana Pancakarya Nusa — an education solutions provider. Features online book catalog, admin system, and Supabase CMS integration.',
       category: 'Corporate',
       technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Docker'],
       image: '/images/project-spkn.png',
@@ -475,7 +475,7 @@ const localizedContent: Record<string, {
       {
         id: 5,
         title: 'SPKN.co.id',
-        description: 'Website perusahaan PT Sarana Pancakarya Nusa — penyedia solusi pendidikan sejak 1986. Fitur meliputi katalog buku online, sistem admin, dan integrasi CMS Supabase.',
+        description: 'Website perusahaan PT Sarana Pancakarya Nusa — penyedia solusi pendidikan. Fitur meliputi katalog buku online, sistem admin, dan integrasi CMS Supabase.',
         category: 'Korporat',
         technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Docker'],
         image: '/images/project-spkn.png',
