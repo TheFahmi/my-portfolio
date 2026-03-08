@@ -181,9 +181,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, message: 'Email sent successfully' });
   } catch (error) {
-    console.error('Error sending email:', error);
+    const errMsg = error instanceof Error ? error.message : String(error);
+    const errStack = error instanceof Error ? error.stack : '';
+    console.log('[CONTACT API ERROR]', errMsg);
+    console.log('[CONTACT API STACK]', errStack);
+    console.log('[CONTACT API ENV CHECK] SMTP_HOST:', process.env.SMTP_HOST || 'NOT SET', 'SMTP_USER:', process.env.SMTP_USER || 'NOT SET', 'SMTP_PASS:', process.env.SMTP_PASS ? 'SET' : 'NOT SET');
     return NextResponse.json(
-      { error: 'Failed to send email' },
+      { error: 'Failed to send email', details: errMsg },
       { status: 500 }
     );
   }

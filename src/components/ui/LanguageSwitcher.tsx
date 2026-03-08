@@ -23,7 +23,7 @@ export default function LanguageSwitcher() {
         <button
           onClick={() => handleLocaleChange('en')}
           disabled={isPending}
-          className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 ${locale === 'en'
+          className={`cursor-pointer px-3 py-1.5 text-xs font-medium transition-all duration-300 ${locale === 'en'
               ? 'bg-white text-black'
               : 'bg-transparent text-gray-400 hover:text-white'
             }`}
@@ -34,7 +34,7 @@ export default function LanguageSwitcher() {
         <button
           onClick={() => handleLocaleChange('id')}
           disabled={isPending}
-          className={`px-3 py-1.5 text-xs font-medium transition-all duration-300 ${locale === 'id'
+          className={`cursor-pointer px-3 py-1.5 text-xs font-medium transition-all duration-300 ${locale === 'id'
               ? 'bg-white text-black'
               : 'bg-transparent text-gray-400 hover:text-white'
             }`}
