@@ -316,4 +316,248 @@ const siteConfig = {
   ] as Education[],
 };
 
+// Localized content for Indonesian
+const localizedContent: Record<string, {
+  personalInfo: { about: string[] };
+  experience: Experience[];
+  education: Education[];
+  projects: Project[];
+  skills: SkillCategory[];
+}> = {
+  id: {
+    personalInfo: {
+      about: [
+        'Full Stack Developer berpengalaman dengan keahlian di TypeScript, JavaScript, Node.JS, VueJS, ReactJS, dan React Native. Berperan penting dalam pengembangan platform besar seperti rumahsiapkerja.com.',
+        'Menguasai teknologi frontend maupun backend termasuk MySQL, MongoDB, dan SQL Server. Bersemangat untuk berkontribusi dengan keahlian dalam manajemen proyek, kepemimpinan tim, dan metodologi agile pada proyek-proyek perangkat lunak yang berdampak.',
+      ],
+    },
+    experience: [
+      {
+        company: 'Rumah Siap Kerja',
+        roles: [
+          {
+            year: 'Des 2021 - Apr 2024',
+            title: 'Frontend Developer Lead',
+            description: 'Memimpin tim frontend beranggotakan 5 orang, mengembangkan RSK 3.0 dan Back-office.',
+            details: [
+              'Memimpin tim frontend dengan 5 anggota, mengelola tugas dan tenggat waktu.',
+              'Menerapkan praktik Agile: sprint planning, stand-up, dan retrospektif.',
+              'Memimpin redesain RSK 3.0 dan migrasi stack dari Vue ke React.',
+              'Mengembangkan RSK Back-office menggunakan Nuxt.js dan TailwindCSS.',
+            ],
+          },
+          {
+            year: 'Apr 2020 - Des 2021',
+            title: 'Frontend Developer',
+            description: 'Mengembangkan platform untuk partner dan pengguna menggunakan Vue.js dan React.js.',
+            details: [
+              'Mengembangkan platform untuk partner perusahaan (Vue.js) dan pengguna akhir (React.js).',
+              'Menggunakan SCSS/Less untuk styling dan mengintegrasikan API RESTful.',
+              'Melakukan pengujian komprehensif (LambdaTest, Nightwatch, Mocha).',
+            ],
+          },
+          {
+            year: 'Mar 2020',
+            title: 'Jr. Full Stack Developer',
+            description: 'Berfokus pada arsitektur frontend dan manajemen database.',
+            details: [
+              'Berkolaborasi dalam merancang solusi dan arsitektur perangkat lunak.',
+              'Mengembangkan dan mengelola database (MySQL).',
+              'Mengimplementasikan API menggunakan NestJS.',
+            ],
+          },
+        ],
+      },
+      {
+        year: 'Okt 2019 - Mar 2020',
+        title: 'Siswa Bootcamp',
+        company: 'Purwadhika Startup School',
+        description: 'Kursus intensif Web & Mobile Development dengan spesialisasi MERN stack.',
+      },
+      {
+        year: 'Sep 2018 - Agu 2019',
+        title: 'IT Helpdesk',
+        company: 'Indosat Ooredoo (MII)',
+        description: 'Mengelola tiket insiden, akun pengguna, dan dukungan teknis.',
+      },
+    ],
+    education: [
+      {
+        year: '2019 - 2020',
+        degree: 'Web and Mobile Development',
+        institution: 'Purwadhika Startup and Coding School',
+      },
+      {
+        year: '2015 - 2018',
+        degree: 'Diploma, Teknik Informatika',
+        institution: 'Politeknik LP3I Jakarta',
+      },
+      {
+        year: '2012 - 2015',
+        degree: 'Sarjana (Tidak Selesai)',
+        institution: 'Universitas Bina Nusantara (Binus)',
+      },
+    ],
+    projects: [
+      {
+        id: 1,
+        title: 'Merdu.id',
+        description: 'Platform SaaS multi-tenant untuk integrasi WhatsApp Business. Fitur meliputi manajemen pesan, broadcast, chatbot, payment gateway QRIS, dan load balancing multi-server untuk performa tinggi.',
+        category: 'SaaS',
+        technologies: ['NestJS', 'Next.js', 'PostgreSQL', 'Redis', 'TypeScript', 'Docker'],
+        image: '/images/project-merdu.png',
+        demo: 'https://merdu.id',
+        featured: true,
+      },
+      {
+        id: 3,
+        title: 'SEN.co.id',
+        description: 'Platform e-commerce untuk buku dan perlengkapan pendidikan (PT Sarana Ecommerce Nusantara). Fitur meliputi katalog buku online, paket sekolah, keranjang belanja, manajemen pesanan, dan integrasi pembayaran untuk sekolah di seluruh Indonesia.',
+        category: 'E-Commerce',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-sen.png',
+        demo: 'https://sen.co.id',
+        featured: true,
+      },
+      {
+        id: 4,
+        title: 'oMoMoMo',
+        description: 'Aplikasi manajemen proyek kolaboratif untuk tim. Mendukung papan tugas Kanban, pelacakan waktu, manajemen milestone, dan kolaborasi real-time antar anggota tim.',
+        category: 'Full Stack',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-placeholder.svg',
+        featured: false,
+      },
+      {
+        id: 5,
+        title: 'SPKN.co.id',
+        description: 'Website perusahaan PT Sarana Pancakarya Nusa — penyedia solusi pendidikan sejak 1986. Fitur meliputi katalog buku online, sistem admin, dan integrasi CMS Supabase.',
+        category: 'Korporat',
+        technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Docker'],
+        image: '/images/project-spkn.png',
+        demo: 'https://spkn.co.id',
+        featured: false,
+      },
+      {
+        id: 6,
+        title: 'KIL.co.id',
+        description: 'Website perusahaan modern PT Katapang Indah Lestari — perusahaan solusi bisnis terpercaya. Fitur meliputi katalog produk, informasi layanan, dan desain responsif.',
+        category: 'Korporat',
+        technologies: ['Next.js', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-kil.png',
+        demo: 'https://kil.co.id',
+        featured: false,
+      },
+      {
+        id: 7,
+        title: 'RumahSiapKerja.com',
+        description: 'Platform pelatihan untuk program Prakerja Indonesia — menyediakan kursus peningkatan keterampilan profesional, mentoring pengembangan bisnis, dan program kesiapan karir bagi pencari kerja di seluruh nusantara.',
+        category: 'Platform',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-rsk.png',
+        demo: 'https://rumahsiapkerja.com',
+        featured: true,
+      },
+      {
+        id: 8,
+        title: 'TemanUjian',
+        description: 'Platform belajar berbasis AI untuk pelajar Indonesia. Fitur meliputi kuis bergamifikasi, karakter tutor AI, pelacakan progres, dan sistem reward untuk menjadikan belajar menyenangkan dan menarik.',
+        category: 'EdTech',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-temanujian.png',
+        demo: 'https://ujian.mfah.me',
+        featured: true,
+      },
+      {
+        id: 9,
+        title: 'WaSaaS',
+        description: 'Platform e-commerce yang didukung integrasi AI WhatsApp. Memungkinkan bisnis mengelola toko online, memproses pesanan, dan berinteraksi dengan pelanggan melalui percakapan WhatsApp otomatis.',
+        category: 'SaaS',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'TypeScript', 'Docker'],
+        image: '/images/project-wasaas.png',
+        demo: 'https://wasaas.mfah.me',
+        featured: true,
+      },
+      {
+        id: 10,
+        title: 'Indonesian Cheer Association',
+        description: 'Platform resmi badan pengelola cheerleading nasional Indonesia. Fitur meliputi manajemen kejuaraan, pendaftaran anggota, direktori tim provinsi, berita & info terkini, dan program sertifikasi untuk 1000+ atlet di 15+ provinsi.',
+        category: 'Platform',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-ica.png',
+        demo: 'https://www.indonesiancheer.org',
+        featured: true,
+      },
+      {
+        id: 11,
+        title: 'Pokédex Explorer',
+        description: 'Aplikasi web Pokédex interaktif untuk menjelajahi dan menangkap Pokémon. Fitur meliputi katalog Pokémon yang bisa dicari, statistik detail, kecocokan tipe, dan pelacak koleksi — dibuat sebagai proyek seru.',
+        category: 'Fun',
+        technologies: ['Next.js', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-poke.png',
+        demo: 'https://poke.mfah.me',
+        featured: false,
+      },
+      {
+        id: 12,
+        title: 'MultiRentalSystems.com',
+        description: 'Sistem manajemen rental kendaraan lengkap dengan panel admin, manajemen armada, pemesanan online, laporan keuangan, dan penyimpanan dokumen terdistribusi menggunakan MinIO.',
+        category: 'Full Stack',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-mrs.png',
+        demo: 'https://multirentalsystems.com',
+        featured: true,
+      },
+    ],
+    skills: [
+      {
+        title: 'Pengembangan Frontend',
+        skills: [
+          { name: 'JavaScript (ES6+)', level: 95, description: 'Penguasaan bahasa inti' },
+          { name: 'React.js & Next.js', level: 90, description: 'UI berbasis komponen modern' },
+          { name: 'Vue.js & Nuxt.js', level: 90, description: 'Keahlian framework progresif' },
+          { name: 'TypeScript', level: 85, description: 'Pengembangan type-safe' },
+          { name: 'TailwindCSS', level: 95, description: 'Styling UI yang cepat' },
+        ],
+      },
+      {
+        title: 'Backend & Database',
+        skills: [
+          { name: 'Node.js & Express', level: 80, description: 'Runtime server-side' },
+          { name: 'MySQL', level: 75, description: 'Manajemen database relasional' },
+          { name: 'MongoDB', level: 70, description: 'Database NoSQL' },
+          { name: 'NestJS', level: 70, description: 'Aplikasi server-side yang scalable' },
+        ],
+      },
+      {
+        title: 'Tools & Manajemen',
+        skills: [
+          { name: 'Git & Version Control', level: 90, description: 'Kolaborasi kode' },
+          { name: 'Jira & Agile', level: 85, description: 'Pelacakan proyek & metodologi' },
+          { name: 'React Native', level: 80, description: 'Aplikasi mobile cross-platform' },
+          { name: 'Testing (Jest/Mocha)', level: 75, description: 'Unit & integration testing' },
+        ],
+      },
+    ],
+  },
+};
+
+// Helper to get localized config
+export function getLocalizedConfig(locale: string) {
+  const localized = localizedContent[locale];
+  if (!localized) return siteConfig;
+
+  return {
+    ...siteConfig,
+    personalInfo: {
+      ...siteConfig.personalInfo,
+      about: localized.personalInfo.about,
+    },
+    experience: localized.experience,
+    education: localized.education,
+    projects: localized.projects,
+    skills: localized.skills,
+  };
+}
+
 export default siteConfig;

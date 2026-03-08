@@ -2,14 +2,17 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import siteConfig from '@/config/siteConfig';
+import siteConfig, { getLocalizedConfig } from '@/config/siteConfig';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import PageTransition from '@/components/effects/PageTransition';
 import { Download } from 'lucide-react';
 
 export default function AboutClient() {
   const t = useTranslations('about');
-  const { personalInfo, experience } = siteConfig;
+  const locale = useLocale();
+  const config = getLocalizedConfig(locale);
+  const { personalInfo, experience } = config;
 
   return (
     <PageTransition>
@@ -94,7 +97,7 @@ export default function AboutClient() {
             >
               <h2 className="text-2xl font-bold text-white mb-6">{t('skills') || 'Skills & Technologies'}</h2>
               <div className="flex flex-wrap gap-2">
-                {siteConfig.skills.flatMap(cat => cat.skills).map((skill, idx) => (
+                {config.skills.flatMap(cat => cat.skills).map((skill, idx) => (
                   <span 
                     key={idx} 
                     className="bg-[#1a1a1a] text-white text-sm rounded-full px-4 py-2 border border-white/[0.05]"
