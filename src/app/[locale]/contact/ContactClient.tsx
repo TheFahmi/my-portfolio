@@ -1,10 +1,88 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import siteConfig from '@/config/siteConfig';
 import { useTranslations } from 'next-intl';
 import PageTransition from '@/components/effects/PageTransition';
+
+// Turnstile widget component
+function TurnstileWidget({ 
+  onVerify, 
+  onError,
+  onExpire 
+}: { 
+  onVerify: (token: string) => void;
+  onError?: () => void;
+  onExpire?: () => void;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const widgetIdRef = useRef<string | null>(null);
+  const scriptLoadedRef = useRef(false);
+
+  const renderWidget = useCallback(() => {
+    if (!containerRef.current || !window.turnstile) return;
+    
+    // Clear any existing widget
+    if (widgetIdRef.current !== null) {
+      try {
+        window.turnstile.remove(widgetIdRef.current);
+      } catch {
+        // Widget may already be removed
+      }
+    }
+
+    widgetIdRef.current = window.turnstile.render(containerRef.current, {
+      sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA', // Test key fallback
+      theme: 'dark',
+      size: 'flexible',
+      callback: onVerify,
+      'error-callback': onError,
+      'expired-callback': onExpire,
+      appearance: 'interaction-only',
+    });
+  }, [onVerify, onError, onExpire]);
+
+  useEffect(() => {
+    // Load Turnstile script
+    if (!scriptLoadedRef.current && !document.querySelector('script[src*="turnstile"]')) {
+      const script = document.createElement('script');
+      script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      script.onload = () => {
+        scriptLoadedRef.current = true;
+        renderWidget();
+      };
+      document.head.appendChild(script);
+    } else if (window.turnstile) {
+      renderWidget();
+    }
+
+    return () => {
+      if (widgetIdRef.current !== null && window.turnstile) {
+        try {
+          window.turnstile.remove(widgetIdRef.current);
+        } catch {
+          // Ignore
+        }
+      }
+    };
+  }, [renderWidget]);
+
+  return <div ref={containerRef} className="flex justify-center" />;
+}
+
+// Declare Turnstile types on window
+declare global {
+  interface Window {
+    turnstile: {
+      render: (container: HTMLElement, options: Record<string, unknown>) => string;
+      remove: (widgetId: string) => void;
+      reset: (widgetId: string) => void;
+    };
+  }
+}
 
 export default function ContactClient() {
   const t = useTranslations('contact');
@@ -17,7 +95,20 @@ export default function ContactClient() {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error" | "rate-limited" | "captcha-failed">("idle");
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  const handleTurnstileVerify = useCallback((token: string) => {
+    setTurnstileToken(token);
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
+
+  const handleTurnstileExpire = useCallback(() => {
+    setTurnstileToken(null);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -28,12 +119,20 @@ export default function ContactClient() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+        }),
       });
 
       if (response.ok) {
         setSubmitStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
+        setTurnstileToken(null);
+      } else if (response.status === 429) {
+        setSubmitStatus("rate-limited");
+      } else if (response.status === 403) {
+        setSubmitStatus("captcha-failed");
       } else {
         setSubmitStatus("error");
       }
@@ -86,15 +185,15 @@ export default function ContactClient() {
             >
               <h2 className="text-2xl font-bold text-white mb-8">{t('contactInfo')}</h2>
               
-              <a href={`mailto:${personalInfo.email}`} className="group flex items-center gap-6 p-6 bg-[#111]/80 border border-white/[0.08] rounded-xl hover:bg-white/5 hover:border-white/[0.15] transition-all">
+              <a href={`mailto:${personalInfo.email}`} className="group flex items-center gap-6 p-6 bg-[#111]/80 border border-white/[0.08] rounded-xl hover:bg-white/5 hover:border-white/[0.15] transition-all overflow-hidden">
                 <div className="w-14 h-14 rounded-full bg-[#1a1a1a] flex items-center justify-center shrink-0 border border-white/[0.05] group-hover:scale-110 transition-transform">
                   <svg className="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
                   </svg>
                 </div>
-                <div>
+                <div className="min-w-0 flex-1">
                   <span className="block text-xs font-medium text-gray-500 uppercase tracking-widest mb-1">{t('emailLabel')}</span>
-                  <span className="font-medium text-white text-lg">{personalInfo.email}</span>
+                  <span className="font-medium text-white text-lg break-all">{personalInfo.email}</span>
                 </div>
               </a>
 
@@ -127,7 +226,7 @@ export default function ContactClient() {
 
               <div className="pt-8">
                 <h3 className="text-sm font-medium text-gray-500 uppercase tracking-widest mb-6">{t('socialProfiles')}</h3>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap gap-4">
                   {[
                     { key: 'github', url: social.github, label: 'GitHub' },
                     { key: 'linkedin', url: social.linkedin, label: 'LinkedIn' },
@@ -214,6 +313,13 @@ export default function ContactClient() {
                   />
                 </div>
 
+                {/* Turnstile CAPTCHA - interaction-only mode (invisible until needed) */}
+                <TurnstileWidget
+                  onVerify={handleTurnstileVerify}
+                  onError={handleTurnstileError}
+                  onExpire={handleTurnstileExpire}
+                />
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -248,6 +354,24 @@ export default function ContactClient() {
                     className="p-4 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 font-medium text-center"
                   >
                     {t('errorMessage')}
+                  </motion.div>
+                )}
+                {submitStatus === "rate-limited" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 rounded-xl border border-amber-500/30 bg-amber-500/10 text-amber-400 font-medium text-center"
+                  >
+                    {t('rateLimitMessage')}
+                  </motion.div>
+                )}
+                {submitStatus === "captcha-failed" && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="p-4 rounded-xl border border-red-500/30 bg-red-500/10 text-red-400 font-medium text-center"
+                  >
+                    {t('captchaFailedMessage')}
                   </motion.div>
                 )}
               </form>
