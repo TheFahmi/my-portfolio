@@ -20,6 +20,8 @@
     "submitting": "Mengirim...",
     "successMessage": "Pesan berhasil terkirim! Saya akan segera menghubungi Anda.",
     "errorMessage": "Terjadi kesalahan. Silakan coba lagi nanti.",
+    "rateLimitMessage": "Anda telah mengirim terlalu banyak pesan. Silakan coba lagi dalam satu jam.",
+    "captchaFailedMessage": "Verifikasi keamanan gagal. Silakan muat ulang halaman dan coba lagi.",
     "studioLabel": "Studio",
     "socialsLabel": "Media Sosial",
     "getInTouch": "Hubungi Saya",

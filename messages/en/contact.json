@@ -20,6 +20,8 @@
     "submitting": "Sending...",
     "successMessage": "Message sent successfully! I'll be in touch soon.",
     "errorMessage": "Something went wrong. Please try again later.",
+    "rateLimitMessage": "You've sent too many messages. Please try again in an hour.",
+    "captchaFailedMessage": "Security verification failed. Please refresh the page and try again.",
     "studioLabel": "Studio",
     "socialsLabel": "Socials",
     "getInTouch": "Get in Touch",
