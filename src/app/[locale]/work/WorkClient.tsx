@@ -2,13 +2,16 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import siteConfig from '@/config/siteConfig';
+import siteConfig, { getLocalizedConfig } from '@/config/siteConfig';
 import { useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 import PageTransition from '@/components/effects/PageTransition';
 
 export default function WorkClient() {
   const t = useTranslations('work');
-  const { projects, skills } = siteConfig;
+  const locale = useLocale();
+  const config = getLocalizedConfig(locale);
+  const { projects, skills } = config;
 
   return (
     <PageTransition>
