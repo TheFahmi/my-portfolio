@@ -251,12 +251,24 @@ const siteConfig = {
       title: 'Full Stack Developer',
       company: 'Freelance',
       description: 'Freelance full stack developer building custom web applications, e-commerce platforms, and business solutions for various clients. Specializing in TypeScript, React, Next.js, and Node.js.',
+      details: [
+        'Building custom web applications for various clients.',
+        'Developing e-commerce platforms and business solutions.',
+        'Specializing in TypeScript, React, Next.js, and Node.js.',
+      ],
     },
     {
       year: 'Apr 2024 - Jun 2025',
       title: 'Owner',
       company: 'PT Fokus Andal Inovasi',
       description: 'Founded and scaled a Shopee Live e-commerce operation with 25 employees, achieving Rp 1.5 billion GMV per month. Built custom automation tools for advertising campaigns and financial reporting, streamlining operations and maximizing ROI.',
+      details: [
+        'Founded and managed a Shopee Live e-commerce operation.',
+        'Scaled team to 25 employees across multiple departments.',
+        'Achieved Rp 1.5 billion GMV per month.',
+        'Built custom automation tools for advertising campaigns.',
+        'Developed financial reporting systems to streamline operations and maximize ROI.',
+      ],
     },
     {
       company: 'Rumah Siap Kerja',
@@ -349,12 +361,24 @@ const localizedContent: Record<string, {
         title: 'Full Stack Developer',
         company: 'Freelance',
         description: 'Freelance full stack developer membangun aplikasi web custom, platform e-commerce, dan solusi bisnis untuk berbagai klien. Spesialisasi di TypeScript, React, Next.js, dan Node.js.',
+        details: [
+          'Membangun aplikasi web custom untuk berbagai klien.',
+          'Mengembangkan platform e-commerce dan solusi bisnis.',
+          'Spesialisasi di TypeScript, React, Next.js, dan Node.js.',
+        ],
       },
       {
         year: 'Apr 2024 - Jun 2025',
         title: 'Owner',
         company: 'PT Fokus Andal Inovasi',
         description: 'Mendirikan dan mengembangkan operasi e-commerce Shopee Live dengan 25 karyawan, mencapai GMV Rp 1,5 miliar per bulan. Membangun tools otomasi custom untuk kampanye iklan dan laporan keuangan, mengoptimalkan operasi dan memaksimalkan ROI.',
+        details: [
+          'Mendirikan dan mengelola operasi e-commerce Shopee Live.',
+          'Mengembangkan tim hingga 25 karyawan di berbagai departemen.',
+          'Mencapai GMV Rp 1,5 miliar per bulan.',
+          'Membangun tools otomasi custom untuk kampanye iklan.',
+          'Mengembangkan sistem laporan keuangan untuk mengoptimalkan operasi dan memaksimalkan ROI.',
+        ],
       },
       {
         company: 'Rumah Siap Kerja',
