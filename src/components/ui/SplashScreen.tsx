@@ -3,7 +3,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SPLASH_DURATION = 2800; // ms before fade out starts
+const SPLASH_DURATION = 4500; // ms before fade out starts
 const SESSION_KEY = "mfah-splash-shown";
 
 export default function SplashScreen() {
@@ -31,7 +31,7 @@ export default function SplashScreen() {
       setShow(false);
       sessionStorage.setItem(SESSION_KEY, "1");
       document.body.style.overflow = "";
-    }, SPLASH_DURATION + 800);
+    }, SPLASH_DURATION + 1000);
 
     return () => {
       clearTimeout(exitTimer);
@@ -52,7 +52,7 @@ export default function SplashScreen() {
           exit={{
             opacity: 0,
             scale: 1.05,
-            transition: { duration: 0.7, ease: [0.4, 0, 0.2, 1] },
+            transition: { duration: 0.9, ease: [0.4, 0, 0.2, 1] },
           }}
         >
           {/* Subtle grid background */}
@@ -76,7 +76,7 @@ export default function SplashScreen() {
             }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
+            transition={{ duration: 1.8, ease: "easeOut" }}
           />
 
           {/* Main content */}
@@ -86,19 +86,19 @@ export default function SplashScreen() {
               className="flex items-center gap-3"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div
                 className="h-[1px] bg-gradient-to-r from-transparent to-white/40"
                 initial={{ width: 0 }}
                 animate={{ width: "60px" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 1.0, delay: 0.5 }}
               />
               <motion.span
                 className="text-white/30 text-xs font-mono tracking-[0.3em] uppercase"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 }}
+                transition={{ duration: 0.6, delay: 0.9 }}
               >
                 portfolio
               </motion.span>
@@ -106,7 +106,7 @@ export default function SplashScreen() {
                 className="h-[1px] bg-gradient-to-l from-transparent to-white/40"
                 initial={{ width: 0 }}
                 animate={{ width: "60px" }}
-                transition={{ duration: 0.8, delay: 0.3 }}
+                transition={{ duration: 1.0, delay: 0.5 }}
               />
             </motion.div>
 
@@ -127,8 +127,8 @@ export default function SplashScreen() {
                   initial={{ opacity: 0, y: 30, rotateX: -90 }}
                   animate={{ opacity: 1, y: 0, rotateX: 0 }}
                   transition={{
-                    duration: 0.6,
-                    delay: 0.4 + i * 0.15,
+                    duration: 0.8,
+                    delay: 0.7 + i * 0.2,
                     ease: [0.16, 1, 0.3, 1],
                   }}
                 >
@@ -142,14 +142,14 @@ export default function SplashScreen() {
               className="flex flex-col items-center gap-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.0 }}
+              transition={{ duration: 0.6, delay: 1.6 }}
             >
               <motion.p
                 className="text-sm sm:text-base font-light tracking-[0.2em] uppercase"
                 style={{ color: "#94a3b8" }}
                 initial={{ opacity: 0, letterSpacing: "0.5em" }}
                 animate={{ opacity: 1, letterSpacing: "0.2em" }}
-                transition={{ duration: 0.8, delay: 1.1 }}
+                transition={{ duration: 1.0, delay: 1.8 }}
               >
                 M. Fahmi Hassan
               </motion.p>
@@ -159,7 +159,7 @@ export default function SplashScreen() {
                 className="flex items-center gap-1"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.4, delay: 1.5 }}
+                transition={{ duration: 0.5, delay: 2.4 }}
               >
                 <span
                   className="text-xs font-mono tracking-wider"
@@ -184,7 +184,7 @@ export default function SplashScreen() {
               className="flex items-center gap-4 mt-2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 1.8 }}
+              transition={{ duration: 0.6, delay: 2.9 }}
             >
               {[0, 1, 2].map((i) => (
                 <motion.div
@@ -196,7 +196,7 @@ export default function SplashScreen() {
                     width: i === 1 ? "24px" : "8px",
                     height: "2px",
                   }}
-                  transition={{ duration: 0.4, delay: 1.9 + i * 0.1 }}
+                  transition={{ duration: 0.5, delay: 3.0 + i * 0.12 }}
                 />
               ))}
             </motion.div>
@@ -206,7 +206,7 @@ export default function SplashScreen() {
               className="absolute -bottom-16 left-1/2 -translate-x-1/2"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 2.0 }}
+              transition={{ delay: 3.2 }}
             >
               <motion.div
                 className="w-8 h-[1px]"
