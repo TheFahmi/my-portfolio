@@ -1,0 +1,67 @@
+{
+  "services": {
+    "label": "Services",
+    "title": "Web Development Services",
+    "subtitle": "From concept to launch — I build fast, scalable, and beautifully crafted digital products that drive results for your business.",
+    "items": {
+      "website": {
+        "title": "Company Website",
+        "description": "Professional, responsive websites that establish your brand's online presence and leave a lasting impression.",
+        "features": [
+          "Custom design tailored to your brand",
+          "SEO-optimized & blazing fast",
+          "Mobile-first responsive layout"
+        ]
+      },
+      "landingPage": {
+        "title": "Landing Page",
+        "description": "High-converting landing pages designed to capture leads, drive sign-ups, and maximize your marketing ROI.",
+        "features": [
+          "Conversion-optimized design",
+          "A/B testing ready",
+          "Analytics & tracking integration"
+        ]
+      },
+      "ecommerce": {
+        "title": "E-Commerce",
+        "description": "Full-featured online stores with seamless shopping experiences, payment integration, and inventory management.",
+        "features": [
+          "Payment gateway integration",
+          "Product & inventory management",
+          "Order tracking & notifications"
+        ]
+      },
+      "webApp": {
+        "title": "Web Application",
+        "description": "Custom web applications with complex business logic, real-time features, and scalable architecture.",
+        "features": [
+          "Custom business logic & workflows",
+          "Real-time data & notifications",
+          "Scalable cloud architecture"
+        ]
+      },
+      "api": {
+        "title": "API & Backend",
+        "description": "Robust backend systems and APIs that power your applications with reliability and performance.",
+        "features": [
+          "RESTful & GraphQL API design",
+          "Database architecture & optimization",
+          "Third-party service integration"
+        ]
+      },
+      "maintenance": {
+        "title": "Maintenance & Support",
+        "description": "Ongoing technical support, performance monitoring, and feature updates to keep your product running smoothly.",
+        "features": [
+          "Bug fixes & security updates",
+          "Performance monitoring & optimization",
+          "Feature enhancements & scaling"
+        ]
+      }
+    },
+    "cta": {
+      "text": "Have a project in mind? Let's discuss how I can help bring your vision to life.",
+      "button": "Get a Free Consultation"
+    }
+  }
+}

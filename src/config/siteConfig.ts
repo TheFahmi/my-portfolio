@@ -53,10 +53,10 @@ const siteConfig = {
 
   // Site metadata
   metadata: {
-    title: "M Fahmi Hassan | Full Stack Engineer",
-    description: "Portfolio of M Fahmi Hassan, a Full Stack Engineer & Team Lead with expertise in NestJS, Next.js, React, and scalable SaaS architecture.",
+    title: "M Fahmi Hassan | Full Stack Engineer & Web Development Services",
+    description: "Full Stack Engineer building production-grade web platforms. Offering professional web development services — websites, web apps, e-commerce, and SaaS solutions. Based in Jakarta, Indonesia.",
     author: "M Fahmi Hassan",
-    keywords: "Full Stack Engineer, NestJS, Next.js, React, TypeScript, Portfolio, Jakarta, Indonesia",
+    keywords: "Full Stack Engineer, Web Development Services, Jasa Pembuatan Web, NestJS, Next.js, React, TypeScript, Portfolio, Jakarta, Indonesia, E-Commerce, SaaS, Web Application",
     url: "https://mfah.me",
   },
 
@@ -90,7 +90,7 @@ const siteConfig = {
     titlePrefix: "Hi, I'm",
     titleHighlight: "M Fahmi Hassan",
     subtitle: "Full Stack Engineer & Team Lead",
-    description: "Full Stack Engineer specializing in NestJS, Next.js, and scalable SaaS architecture. Building production-grade platforms from WhatsApp integration to e-commerce.",
+    description: "I build production-grade web platforms — from SaaS products and e-commerce systems to API integrations. Specializing in Next.js, NestJS, and scalable architecture that grows with your business.",
     techStack: ['React', 'Next.js', 'NestJS', 'Node.js', 'TypeScript'],
     quickStats: [
       { number: '5+', label: 'Years Experience' },
