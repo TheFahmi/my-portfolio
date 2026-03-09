@@ -154,15 +154,6 @@ const siteConfig = {
       featured: true
     },
     {
-      id: 4,
-      title: 'oMoMoMo',
-      description: 'Collaborative project management application for teams. Supports Kanban task boards, time tracking, milestone management, and real-time collaboration between team members.',
-      category: 'Full Stack',
-      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
-      image: '/images/project-placeholder.svg',
-      featured: false
-    },
-    {
       id: 5,
       title: 'SPKN.co.id',
       description: 'Corporate website for PT Sarana Pancakarya Nusa — an education solutions provider since 1986. Features online book catalog, admin system, and Supabase CMS integration.',
@@ -241,6 +232,15 @@ const siteConfig = {
       image: '/images/project-mrs.png',
       demo: 'https://multirentalsystems.com',
       featured: true
+    },
+    {
+      id: 4,
+      title: 'oMoMoMo',
+      description: 'Collaborative project management application for teams. Supports Kanban task boards, time tracking, milestone management, and real-time collaboration between team members.',
+      category: 'Full Stack',
+      technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+      image: '/images/project-placeholder.svg',
+      featured: false
     },
   ] as Project[],
 
@@ -464,15 +464,6 @@ const localizedContent: Record<string, {
         featured: true,
       },
       {
-        id: 4,
-        title: 'oMoMoMo',
-        description: 'Aplikasi manajemen proyek kolaboratif untuk tim. Mendukung papan tugas Kanban, pelacakan waktu, manajemen milestone, dan kolaborasi real-time antar anggota tim.',
-        category: 'Full Stack',
-        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
-        image: '/images/project-placeholder.svg',
-        featured: false,
-      },
-      {
         id: 5,
         title: 'SPKN.co.id',
         description: 'Website perusahaan PT Sarana Pancakarya Nusa — penyedia solusi pendidikan sejak 1986. Fitur meliputi katalog buku online, sistem admin, dan integrasi CMS Supabase.',
@@ -551,6 +542,15 @@ const localizedContent: Record<string, {
         image: '/images/project-mrs.png',
         demo: 'https://multirentalsystems.com',
         featured: true,
+      },
+      {
+        id: 4,
+        title: 'oMoMoMo',
+        description: 'Aplikasi manajemen proyek kolaboratif untuk tim. Mendukung papan tugas Kanban, pelacakan waktu, manajemen milestone, dan kolaborasi real-time antar anggota tim.',
+        category: 'Full Stack',
+        technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
+        image: '/images/project-placeholder.svg',
+        featured: false,
       },
     ],
     skills: [
