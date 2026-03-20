@@ -234,6 +234,17 @@ const siteConfig = {
       featured: true
     },
     {
+      id: 13,
+      title: 'GitHub User Search',
+      description: 'Search tool for finding and exploring GitHub user profiles. Features username search, profile details, repository listings, and contribution stats — powered by the GitHub API.',
+      category: 'Fun',
+      technologies: ['React', 'TypeScript', 'TailwindCSS', 'GitHub API'],
+      image: '/images/project-ghsearch.png',
+      demo: 'https://gh-search.mfah.me',
+      github: 'https://github.com/TheFahmi/fahmi-user-search',
+      featured: false
+    },
+    {
       id: 4,
       title: 'oMoMoMo',
       description: 'Collaborative project management application for teams. Supports Kanban task boards, time tracking, milestone management, and real-time collaboration between team members.',
@@ -542,6 +553,17 @@ const localizedContent: Record<string, {
         image: '/images/project-mrs.png',
         demo: 'https://multirentalsystems.com',
         featured: true,
+      },
+      {
+        id: 13,
+        title: 'GitHub User Search',
+        description: 'Alat pencarian untuk menemukan dan menjelajahi profil pengguna GitHub. Fitur meliputi pencarian username, detail profil, daftar repositori, dan statistik kontribusi — didukung oleh GitHub API.',
+        category: 'Fun',
+        technologies: ['React', 'TypeScript', 'TailwindCSS', 'GitHub API'],
+        image: '/images/project-ghsearch.png',
+        demo: 'https://gh-search.mfah.me',
+        github: 'https://github.com/TheFahmi/fahmi-user-search',
+        featured: false,
       },
       {
         id: 4,
