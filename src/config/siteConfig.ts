@@ -253,6 +253,17 @@ const siteConfig = {
       image: '/images/project-placeholder.svg',
       featured: false
     },
+    {
+      id: 14,
+      title: 'FahmiStore',
+      description: 'Full-stack e-commerce platform with product catalog, shopping cart, checkout, wishlist, admin dashboard, promo codes, and payment confirmation. Features a premium, curated shopping experience.',
+      category: 'E-Commerce',
+      technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Express.js', 'MySQL'],
+      image: '/images/project-exam.png',
+      demo: 'https://exam.mfah.me',
+      github: 'https://github.com/TheFahmi/PwdFinalExam',
+      featured: false
+    },
   ] as Project[],
 
   // Experience Section
@@ -572,6 +583,17 @@ const localizedContent: Record<string, {
         category: 'Full Stack',
         technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
         image: '/images/project-placeholder.svg',
+        featured: false,
+      },
+      {
+        id: 14,
+        title: 'FahmiStore',
+        description: 'Platform e-commerce full-stack dengan katalog produk, keranjang belanja, checkout, wishlist, dashboard admin, kode promo, dan konfirmasi pembayaran. Menampilkan pengalaman belanja premium yang terkurasi.',
+        category: 'E-Commerce',
+        technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Express.js', 'MySQL'],
+        image: '/images/project-exam.png',
+        demo: 'https://exam.mfah.me',
+        github: 'https://github.com/TheFahmi/PwdFinalExam',
         featured: false,
       },
     ],
