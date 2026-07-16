@@ -5,6 +5,7 @@ import { Inter, JetBrains_Mono } from 'next/font/google';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages } from 'next-intl/server';
 import siteConfig from '@/config/siteConfig';
+import { ThemeProvider } from '@/components/ui/ThemeProvider';
 
 const ClientLayout = dynamic(() => import('../../components/layout/ClientLayout'), { ssr: true });
 
@@ -36,8 +37,8 @@ export async function generateMetadata({
     ? 'M Fahmi Hassan | Full Stack Engineer'
     : 'M Fahmi Hassan | Full Stack Engineer';
   const description = isId
-    ? 'Full Stack Engineer & Team Lead berpengalaman 5+ tahun di NestJS, Next.js, React, TypeScript, dan arsitektur SaaS scalable.'
-    : 'Full Stack Engineer & Team Lead with 5+ years of experience in NestJS, Next.js, React, TypeScript, and scalable SaaS architecture.';
+    ? 'M Fahmi Hassan adalah Full Stack Engineer & Team Lead berpengalaman 5+ tahun di NestJS, Next.js, React, TypeScript, dan arsitektur SaaS scalable.'
+    : 'M Fahmi Hassan is a Full Stack Engineer & Team Lead with 5+ years of experience in NestJS, Next.js, React, TypeScript, and scalable SaaS architecture.';
 
   return {
     metadataBase: new URL(SITE_URL),
@@ -47,7 +48,7 @@ export async function generateMetadata({
     },
     description,
     keywords: [
-      'Full Stack Engineer', 'NestJS', 'Next.js', 'React', 'TypeScript',
+      'M Fahmi Hassan', 'Full Stack Engineer', 'NestJS', 'Next.js', 'React', 'TypeScript',
       'Portfolio', 'Jakarta', 'Indonesia', 'SaaS', 'Web Developer',
       'Team Lead', 'Node.js', 'PostgreSQL',
     ],
@@ -77,7 +78,7 @@ export async function generateMetadata({
       description,
       images: [
         {
-          url: `${SITE_URL}/images/fahmi-profile.jpg`,
+          url: `${SITE_URL}/images/fahmi-og.jpg`,
           width: 800,
           height: 800,
           alt: 'M Fahmi Hassan - Full Stack Engineer',
@@ -86,11 +87,11 @@ export async function generateMetadata({
       ],
     },
     twitter: {
-      card: 'summary_large_image',
+      card: 'summary',
       title,
       description,
       creator: '@thefahmhassan',
-      images: [`${SITE_URL}/images/fahmi-profile.jpg`],
+      images: [`${SITE_URL}/images/fahmi-og.jpg`],
     },
     robots: {
       index: true,
@@ -117,7 +118,7 @@ function JsonLd({ locale }: { locale: string }) {
     '@type': 'Person',
     name: 'M Fahmi Hassan',
     url: SITE_URL,
-    image: `${SITE_URL}/images/fahmi-profile.jpg`,
+    image: `${SITE_URL}/images/fahmi-og.jpg`,
     jobTitle: 'Full Stack Engineer & Team Lead',
     worksFor: {
       '@type': 'Organization',
@@ -175,16 +176,18 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning className={`${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
-        <link rel="preload" href="/images/fahmi-profile.jpg" as="image" fetchPriority="high" />
+        <link rel="preload" href="/images/fahmi-profile.webp" as="image" fetchPriority="high" />
         <link rel="manifest" href="/site.webmanifest" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <meta name="theme-color" content="#000000" />
         <JsonLd locale={locale} />
       </head>
       <body className={`${inter.className} antialiased`}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <ClientLayout>{children}</ClientLayout>
-        </NextIntlClientProvider>
+        <ThemeProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <ClientLayout>{children}</ClientLayout>
+          </NextIntlClientProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -19,14 +19,21 @@ export default function LanguageSwitcher() {
 
   return (
     <div className="flex items-center">
-      <div className="flex rounded-full overflow-hidden border border-white/10 bg-white/5">
+      <div
+        className="flex rounded-full overflow-hidden"
+        style={{
+          border: '1px solid var(--theme-border-glass)',
+          background: 'var(--theme-social-hover-bg)',
+        }}
+      >
         <button
           onClick={() => handleLocaleChange('en')}
           disabled={isPending}
-          className={`cursor-pointer px-3 py-1.5 text-xs font-medium transition-all duration-300 ${locale === 'en'
-              ? 'bg-white text-black'
-              : 'bg-transparent text-gray-400 hover:text-white'
-            }`}
+          className="cursor-pointer px-3 py-1.5 text-xs font-medium transition-all duration-300"
+          style={{
+            backgroundColor: locale === 'en' ? 'var(--theme-lang-active-bg)' : 'transparent',
+            color: locale === 'en' ? 'var(--theme-lang-active-fg)' : 'var(--theme-lang-inactive-fg)',
+          }}
           aria-label="Switch to English"
         >
           EN
@@ -34,10 +41,11 @@ export default function LanguageSwitcher() {
         <button
           onClick={() => handleLocaleChange('id')}
           disabled={isPending}
-          className={`cursor-pointer px-3 py-1.5 text-xs font-medium transition-all duration-300 ${locale === 'id'
-              ? 'bg-white text-black'
-              : 'bg-transparent text-gray-400 hover:text-white'
-            }`}
+          className="cursor-pointer px-3 py-1.5 text-xs font-medium transition-all duration-300"
+          style={{
+            backgroundColor: locale === 'id' ? 'var(--theme-lang-active-bg)' : 'transparent',
+            color: locale === 'id' ? 'var(--theme-lang-active-fg)' : 'var(--theme-lang-inactive-fg)',
+          }}
           aria-label="Switch to Indonesian"
         >
           ID
