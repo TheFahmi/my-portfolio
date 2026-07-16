@@ -23,7 +23,12 @@ const ScrollToTopButton = () => {
     <AnimatePresence>
       {isVisible && (
         <motion.button
-          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/80 backdrop-blur-sm text-black border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.1)] flex items-center justify-center hover:bg-white focus:outline-none focus:ring-2 focus:ring-white/40 transition-colors duration-300 cursor-pointer"
+          className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 w-10 h-10 md:w-12 md:h-12 rounded-full backdrop-blur-sm flex items-center justify-center focus:outline-none transition-colors duration-300 cursor-pointer"
+          style={{
+            backgroundColor: 'var(--theme-btn-primary-bg)',
+            color: 'var(--theme-btn-primary-fg)',
+            border: '1px solid var(--theme-border-glass)',
+          }}
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}

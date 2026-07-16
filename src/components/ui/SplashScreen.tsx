@@ -48,7 +48,7 @@ export default function SplashScreen() {
         <motion.div
           key="splash"
           className="fixed inset-0 z-[9999] flex items-center justify-center"
-          style={{ backgroundColor: "#030014" }}
+          style={{ backgroundColor: "var(--theme-splash-bg)" }}
           exit={{
             opacity: 0,
             scale: 1.05,
@@ -60,7 +60,7 @@ export default function SplashScreen() {
             className="absolute inset-0 opacity-[0.04]"
             style={{
               backgroundImage:
-                "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px)",
+                "linear-gradient(rgba(128,128,128,0.5) 1px, transparent 1px), linear-gradient(to right, rgba(128,128,128,0.5) 1px, transparent 1px)",
               backgroundSize: "60px 60px",
             }}
           />
@@ -72,7 +72,7 @@ export default function SplashScreen() {
               width: "600px",
               height: "600px",
               background:
-                "radial-gradient(circle, rgba(255,255,255,0.06) 0%, transparent 70%)",
+                "radial-gradient(circle, var(--theme-sphere-glow) 0%, transparent 70%)",
             }}
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -89,21 +89,24 @@ export default function SplashScreen() {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div
-                className="h-[1px] bg-gradient-to-r from-transparent to-white/40"
+                className="h-[1px]"
+                style={{ background: 'linear-gradient(to right, transparent, var(--theme-fg-dim))' }}
                 initial={{ width: 0 }}
                 animate={{ width: "60px" }}
                 transition={{ duration: 1.0, delay: 0.5 }}
               />
               <motion.span
-                className="text-white/30 text-xs font-mono tracking-[0.3em] uppercase"
+                className="text-xs font-mono tracking-[0.3em] uppercase"
+                style={{ color: 'var(--theme-splash-muted)' }}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
+                animate={{ opacity: 0.3 }}
                 transition={{ duration: 0.6, delay: 0.9 }}
               >
                 portfolio
               </motion.span>
               <motion.div
-                className="h-[1px] bg-gradient-to-l from-transparent to-white/40"
+                className="h-[1px]"
+                style={{ background: 'linear-gradient(to left, transparent, var(--theme-fg-dim))' }}
                 initial={{ width: 0 }}
                 animate={{ width: "60px" }}
                 transition={{ duration: 1.0, delay: 0.5 }}
@@ -118,8 +121,7 @@ export default function SplashScreen() {
                   className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-[-0.04em] select-none"
                   style={{
                     fontFamily: "var(--font-body), 'Inter', sans-serif",
-                    background:
-                      "linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%)",
+                    backgroundImage: 'var(--theme-gradient-heading)',
                     WebkitBackgroundClip: "text",
                     backgroundClip: "text",
                     color: "transparent",
@@ -146,7 +148,7 @@ export default function SplashScreen() {
             >
               <motion.p
                 className="text-sm sm:text-base font-light tracking-[0.2em] uppercase"
-                style={{ color: "#94a3b8" }}
+                style={{ color: 'var(--theme-fg-secondary)' }}
                 initial={{ opacity: 0, letterSpacing: "0.5em" }}
                 animate={{ opacity: 1, letterSpacing: "0.2em" }}
                 transition={{ duration: 1.0, delay: 1.8 }}
@@ -163,12 +165,13 @@ export default function SplashScreen() {
               >
                 <span
                   className="text-xs font-mono tracking-wider"
-                  style={{ color: "#64748b" }}
+                  style={{ color: 'var(--theme-splash-muted)' }}
                 >
                   Full Stack Engineer
                 </span>
                 <motion.span
-                  className="inline-block w-[2px] h-3 bg-white/50"
+                  className="inline-block w-[2px] h-3"
+                  style={{ backgroundColor: 'var(--theme-fg-dim)' }}
                   animate={{ opacity: [1, 0] }}
                   transition={{
                     duration: 0.7,
@@ -190,7 +193,7 @@ export default function SplashScreen() {
                 <motion.div
                   key={i}
                   className="rounded-full"
-                  style={{ backgroundColor: "rgba(255,255,255,0.3)" }}
+                  style={{ backgroundColor: 'var(--theme-fg-dim)' }}
                   initial={{ width: 0, height: "2px" }}
                   animate={{
                     width: i === 1 ? "24px" : "8px",
@@ -212,7 +215,7 @@ export default function SplashScreen() {
                 className="w-8 h-[1px]"
                 style={{
                   background:
-                    "linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)",
+                    "linear-gradient(90deg, transparent, var(--theme-fg-dim), transparent)",
                 }}
                 animate={{
                   scaleX: [0, 1, 0],
@@ -234,8 +237,8 @@ export default function SplashScreen() {
             animate={{ opacity: 0.2 }}
             transition={{ delay: 0.8 }}
           >
-            <div className="absolute top-0 left-0 w-full h-[1px] bg-white" />
-            <div className="absolute top-0 left-0 w-[1px] h-full bg-white" />
+            <div className="absolute top-0 left-0 w-full h-[1px]" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
+            <div className="absolute top-0 left-0 w-[1px] h-full" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
           </motion.div>
 
           <motion.div
@@ -244,8 +247,8 @@ export default function SplashScreen() {
             animate={{ opacity: 0.2 }}
             transition={{ delay: 0.8 }}
           >
-            <div className="absolute bottom-0 right-0 w-full h-[1px] bg-white" />
-            <div className="absolute bottom-0 right-0 w-[1px] h-full bg-white" />
+            <div className="absolute bottom-0 right-0 w-full h-[1px]" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
+            <div className="absolute bottom-0 right-0 w-[1px] h-full" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
           </motion.div>
         </motion.div>
       )}

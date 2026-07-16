@@ -56,7 +56,7 @@ const siteConfig = {
     title: "M Fahmi Hassan | Full Stack Engineer & Web Development Services",
     description: "Full Stack Engineer building production-grade web platforms. Offering professional web development services — websites, web apps, e-commerce, and SaaS solutions. Based in Jakarta, Indonesia.",
     author: "M Fahmi Hassan",
-    keywords: "Full Stack Engineer, Web Development Services, Jasa Pembuatan Web, NestJS, Next.js, React, TypeScript, Portfolio, Jakarta, Indonesia, E-Commerce, SaaS, Web Application",
+    keywords: "M Fahmi Hassan, Full Stack Engineer, Web Development Services, Jasa Pembuatan Web, NestJS, Next.js, React, TypeScript, Portfolio, Jakarta, Indonesia, E-Commerce, SaaS, Web Application",
     url: "https://mfah.me",
   },
 

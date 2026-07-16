@@ -3,35 +3,43 @@ import { ArrowRight } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 
 export default function CTASection() {
-  const t = useTranslations('hero'); // Reuse translations if applicable
+  const t = useTranslations('hero');
   
   return (
-    <section className="py-32 px-6 bg-[#0a0a14] border-t border-white/[0.02]">
-      <div className="max-w-4xl mx-auto text-center flex flex-col items-center overflow-hidden">
-        <h2 className="text-3xl sm:text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-          <span className="text-white">{t('ctaTitle1')}</span>{' '}
-          <span className="text-gray-600">{t('ctaTitle2')}</span>
+    <section className="py-32 px-6" style={{ borderTop: '1px solid var(--theme-divider)' }}>
+      <div className="max-w-3xl mx-auto text-center">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-6" style={{ color: 'var(--theme-fg)' }}>
+          {t('ctaTitle1')}{' '}
+          <span style={{ color: 'var(--theme-fg-muted)' }}>{t('ctaTitle2')}</span>
         </h2>
         
-        <p className="text-gray-400 text-lg md:text-xl mb-12 max-w-2xl mx-auto leading-relaxed">
+        <p className="text-lg mb-10 max-w-xl mx-auto leading-relaxed" style={{ color: 'var(--theme-fg-muted)' }}>
           {t('ctaDescription')}
         </p>
         
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link 
             href="/contact" 
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-200 transition-colors w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium transition-colors w-full sm:w-auto"
+            style={{
+              backgroundColor: 'var(--theme-btn-primary-bg)',
+              color: 'var(--theme-btn-primary-fg)',
+            }}
           >
             <span>{t('startProject')}</span>
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
           
           <Link 
             href="/work" 
-            className="flex items-center justify-center gap-2 px-8 py-4 rounded-full border border-white/20 text-white hover:bg-white/10 transition-colors w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium transition-colors w-full sm:w-auto"
+            style={{
+              border: '1px solid var(--theme-btn-outline-border)',
+              color: 'var(--theme-btn-outline-fg)',
+            }}
           >
             <span>{t('viewWork')}</span>
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
       </div>

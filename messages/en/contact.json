@@ -27,6 +27,11 @@
     "getInTouch": "Get in Touch",
     "title": "Get in Touch",
     "subtitle": "Have a project in mind? Let's talk about how I can help bring your ideas to life.",
+    "socialDesc": "Connect with me on social media or send me a direct message.",
+    "ctaTitle1": "Let's Build",
+    "ctaTitle2": "Something Great",
+    "ctaDescription": "Whether you need a new platform, a custom web app, or a reliable development partner — I'm ready to help turn your vision into reality.",
+    "viewWork": "View My Work",
     "form": {
       "name": {
         "label": "NAME",
