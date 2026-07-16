@@ -502,6 +502,10 @@ export default function AnimatedSphere({ className = '' }: { className?: string 
         [isDarkMode]
     );
 
+    const handleError = useCallback(() => {
+        setHasError(true);
+    }, []);
+
     useEffect(() => {
         if (!isWebGLAvailable()) {
             setWebglSupported(false);
@@ -516,10 +520,6 @@ export default function AnimatedSphere({ className = '' }: { className?: string 
     if (!webglSupported || hasError) {
         return <CSSFallbackSphere className={className} isDark={isDarkMode} />;
     }
-
-    const handleError = useCallback(() => {
-        setHasError(true);
-    }, []);
 
     return (
         <WebGLErrorBoundary fallback={<CSSFallbackSphere className={className} isDark={isDarkMode} />}>
