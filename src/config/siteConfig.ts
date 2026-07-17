@@ -619,22 +619,22 @@ const localizedContent: Record<string, {
       {
         id: 7,
         title: 'RumahSiapKerja.com',
-        description: 'Platform pelatihan untuk program Prakerja Indonesia — menyediakan kursus peningkatan keterampilan profesional, mentoring pengembangan bisnis, dan program kesiapan karir bagi pencari kerja di seluruh nusantara.',
+        description: 'Platform pelatihan terdepan di Indonesia untuk peserta Prakerja — menyediakan kursus kewirausahaan, mentoring bisnis, dan program pengembangan karier bagi lebih dari 900.000 pengguna terdaftar.',
         category: 'Platform',
         technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
         image: '/images/project-rsk.png',
         demo: 'https://rumahsiapkerja.com',
         featured: true,
         caseStudy: {
-          problem: 'Peserta Prakerja Indonesia membutuhkan cara yang lebih menarik dan mudah diakses untuk mengakses pelatihan vokasi berkualitas tinggi dan mentoring karier.',
-          solution: 'Mengarsiteki platform pelatihan yang skalabel dengan katalog kursus yang beragam, sesi mentoring interaktif, dan pengalaman pengguna yang mulus untuk peningkatan keterampilan cepat.',
+          problem: 'Peserta Prakerja di Indonesia membutuhkan cara yang lebih menarik dan mudah diakses untuk mendapatkan pelatihan vokasi berkualitas tinggi, mentoring kewirausahaan, dan program pengembangan karier.',
+          solution: 'Merancang arsitektur platform pelatihan yang scalable dengan katalog kursus yang beragam, sesi mentoring interaktif, dan pengalaman pengguna yang mulus untuk akselerasi keterampilan di bidang kewirausahaan, soft skill, dan pertanian.',
           impact: [
-            'Mendaftarkan lebih dari 10.000 pelajar aktif',
-            'Mencapai tingkat penyelesaian kursus 60%',
-            'Mengurangi latensi platform sebesar 50% melalui migrasi Next.js'
+            'Melayani lebih dari 900.000 peserta Prakerja terdaftar',
+            'Mencapai tingkat kelulusan kursus 60%',
+            'Mengurangi latensi platform sebesar 50% melalui migrasi ke Next.js'
           ],
           role: 'Frontend Lead Developer',
-          duration: '12 bulan'
+          duration: '4 tahun'
         }
       },
       {
