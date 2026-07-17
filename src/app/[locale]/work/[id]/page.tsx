@@ -93,7 +93,7 @@ export default function CaseStudyPage() {
             >
               <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">{t('theProblem')}</h2>
               <p className="text-2xl md:text-3xl font-medium leading-relaxed">
-                {project.caseStudy.problem}
+                {locale === 'id' && project.caseStudy.problemId ? project.caseStudy.problemId : project.caseStudy.problem}
               </p>
             </motion.div>
 
@@ -106,7 +106,7 @@ export default function CaseStudyPage() {
             >
               <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">{t('theSolution')}</h2>
               <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'var(--theme-fg-muted)' }}>
-                {project.caseStudy.solution}
+                {locale === 'id' && project.caseStudy.solutionId ? project.caseStudy.solutionId : project.caseStudy.solution}
               </p>
             </motion.div>
 
@@ -140,7 +140,7 @@ export default function CaseStudyPage() {
             >
               <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">{t('impactResults')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                {project.caseStudy.impact.map((item, i) => (
+                {(locale === 'id' && project.caseStudy.impactId ? project.caseStudy.impactId : project.caseStudy.impact).map((item, i) => (
                   <div key={i} className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--theme-card-bg)', border: '1px solid var(--theme-border-glass)' }}>
                     <div className="w-10 h-10 rounded-full flex items-center justify-center bg-[#0071e3]/10 text-[#0071e3] font-bold mb-4">
                       {i + 1}
