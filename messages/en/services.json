@@ -7,56 +7,56 @@
       "website": {
         "title": "Company Website",
         "description": "Professional, responsive websites that establish your brand's online presence and leave a lasting impression.",
-        "features": [
-          "Custom design tailored to your brand",
-          "SEO-optimized & blazing fast",
-          "Mobile-first responsive layout"
-        ]
+        "features": {
+          "0": "Custom design tailored to your brand",
+          "1": "SEO-optimized & blazing fast",
+          "2": "Mobile-first responsive layout"
+        }
       },
       "landingPage": {
         "title": "Landing Page",
         "description": "High-converting landing pages designed to capture leads, drive sign-ups, and maximize your marketing ROI.",
-        "features": [
-          "Conversion-optimized design",
-          "A/B testing ready",
-          "Analytics & tracking integration"
-        ]
+        "features": {
+          "0": "Conversion-optimized design",
+          "1": "A/B testing ready",
+          "2": "Analytics & tracking integration"
+        }
       },
       "ecommerce": {
         "title": "E-Commerce",
         "description": "Full-featured online stores with seamless shopping experiences, payment integration, and inventory management.",
-        "features": [
-          "Payment gateway integration",
-          "Product & inventory management",
-          "Order tracking & notifications"
-        ]
+        "features": {
+          "0": "Payment gateway integration",
+          "1": "Product & inventory management",
+          "2": "Order tracking & notifications"
+        }
       },
       "webApp": {
         "title": "Web Application",
         "description": "Custom web applications with complex business logic, real-time features, and scalable architecture.",
-        "features": [
-          "Custom business logic & workflows",
-          "Real-time data & notifications",
-          "Scalable cloud architecture"
-        ]
+        "features": {
+          "0": "Custom business logic & workflows",
+          "1": "Real-time data & notifications",
+          "2": "Scalable cloud architecture"
+        }
       },
       "api": {
         "title": "API & Backend",
         "description": "Robust backend systems and APIs that power your applications with reliability and performance.",
-        "features": [
-          "RESTful & GraphQL API design",
-          "Database architecture & optimization",
-          "Third-party service integration"
-        ]
+        "features": {
+          "0": "RESTful & GraphQL API design",
+          "1": "Database architecture & optimization",
+          "2": "Third-party service integration"
+        }
       },
       "maintenance": {
         "title": "Maintenance & Support",
         "description": "Ongoing technical support, performance monitoring, and feature updates to keep your product running smoothly.",
-        "features": [
-          "Bug fixes & security updates",
-          "Performance monitoring & optimization",
-          "Feature enhancements & scaling"
-        ]
+        "features": {
+          "0": "Bug fixes & security updates",
+          "1": "Performance monitoring & optimization",
+          "2": "Feature enhancements & scaling"
+        }
       }
     },
     "cta": {

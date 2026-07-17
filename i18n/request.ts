@@ -118,7 +118,7 @@ interface Messages {
     items: Record<string, {
       title: string;
       description: string;
-      features: string[];
+      features: Record<string, string>;
     }>;
     cta: {
       text: string;

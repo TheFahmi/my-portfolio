@@ -52,7 +52,9 @@
       "submit": "Send Message",
       "submitting": "Sending...",
       "success": "Message sent successfully! I'll be in touch soon.",
-      "error": "Something went wrong. Please try again later."
+      "error": "Something went wrong. Please try again later.",
+      "rateLimit": "You've sent too many messages. Please try again in an hour.",
+      "captchaFailed": "Security verification failed. Please refresh the page and try again."
     }
   }
 }

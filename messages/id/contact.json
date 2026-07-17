@@ -52,7 +52,9 @@
       "submit": "Kirim Pesan",
       "submitting": "Mengirim...",
       "success": "Pesan berhasil dikirim! Saya akan segera menghubungi Anda.",
-      "error": "Terjadi kesalahan. Silakan coba lagi nanti."
+      "error": "Terjadi kesalahan. Silakan coba lagi nanti.",
+      "rateLimit": "Anda telah mengirim terlalu banyak pesan. Silakan coba lagi dalam satu jam.",
+      "captchaFailed": "Verifikasi keamanan gagal. Silakan muat ulang halaman dan coba lagi."
     }
   }
 }
