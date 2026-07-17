@@ -27,6 +27,11 @@
     "getInTouch": "Hubungi Saya",
     "title": "Hubungi Saya",
     "subtitle": "Punya proyek dalam pikiran? Mari bicara tentang bagaimana saya bisa membantu mewujudkan ide Anda.",
+    "socialDesc": "Terhubung dengan saya di media sosial atau kirim pesan langsung.",
+    "ctaTitle1": "Mari Bangun",
+    "ctaTitle2": "Sesuatu yang Hebat",
+    "ctaDescription": "Apakah Anda butuh platform baru, web app custom, atau mitra pengembangan yang handal — saya siap membantu mewujudkan visi Anda.",
+    "viewWork": "Lihat Karya Saya",
     "form": {
       "name": {
         "label": "NAMA",

@@ -13,6 +13,7 @@ export default function CaseStudyPage() {
   const params = useParams();
   const id = Number(params.id);
   const locale = useLocale();
+  const t = useTranslations('work');
   const config = getLocalizedConfig(locale);
   const project = config.projects.find((p) => p.id === id);
 
@@ -20,9 +21,9 @@ export default function CaseStudyPage() {
     return (
       <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: 'var(--theme-bg)' }}>
         <div className="text-center">
-          <h1 className="text-2xl font-semibold mb-4" style={{ color: 'var(--theme-fg)' }}>Project not found</h1>
+          <h1 className="text-2xl font-semibold mb-4" style={{ color: 'var(--theme-fg)' }}>{t('projectNotFound')}</h1>
           <Link href={`/${locale}/work`} className="text-[#0071e3] hover:underline">
-            Back to Work
+            {t('backToWork')}
           </Link>
         </div>
       </div>
@@ -37,7 +38,7 @@ export default function CaseStudyPage() {
           <div className="max-w-6xl mx-auto flex items-center justify-between">
             <Link href={`/${locale}/work`} className="flex items-center gap-2 font-medium hover:text-[#0071e3] transition-colors">
               <ArrowLeft className="w-5 h-5" />
-              <span>Work</span>
+              <span>{t('sectionLabel')}</span>
             </Link>
             <div className="text-xs font-medium px-3 py-1 rounded-full" style={{ backgroundColor: 'var(--theme-social-hover-bg)', color: 'var(--theme-fg-muted)' }}>
               {project.category}
@@ -90,7 +91,7 @@ export default function CaseStudyPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">The Problem</h2>
+              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">{t('theProblem')}</h2>
               <p className="text-2xl md:text-3xl font-medium leading-relaxed">
                 {project.caseStudy.problem}
               </p>
@@ -103,7 +104,7 @@ export default function CaseStudyPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">The Solution</h2>
+              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">{t('theSolution')}</h2>
               <p className="text-lg md:text-xl leading-relaxed" style={{ color: 'var(--theme-fg-muted)' }}>
                 {project.caseStudy.solution}
               </p>
@@ -116,7 +117,7 @@ export default function CaseStudyPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">Tech Stack</h2>
+              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">{t('techStack')}</h2>
               <div className="flex flex-wrap gap-3">
                 {project.technologies.map((tech, i) => (
                   <span
@@ -137,7 +138,7 @@ export default function CaseStudyPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">Impact & Results</h2>
+              <h2 className="text-sm font-semibold uppercase tracking-widest mb-8 text-[#0071e3]">{t('impactResults')}</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {project.caseStudy.impact.map((item, i) => (
                   <div key={i} className="p-6 rounded-2xl" style={{ backgroundColor: 'var(--theme-card-bg)', border: '1px solid var(--theme-border-glass)' }}>
@@ -160,11 +161,11 @@ export default function CaseStudyPage() {
               style={{ borderColor: 'var(--theme-border)' }}
             >
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--theme-fg-muted)' }}>Role</h3>
+                <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--theme-fg-muted)' }}>{t('role')}</h3>
                 <p className="font-medium text-lg">{project.caseStudy.role}</p>
               </div>
               <div>
-                <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--theme-fg-muted)' }}>Duration</h3>
+                <h3 className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: 'var(--theme-fg-muted)' }}>{t('duration')}</h3>
                 <p className="font-medium text-lg">{project.caseStudy.duration}</p>
               </div>
             </motion.div>
@@ -182,7 +183,7 @@ export default function CaseStudyPage() {
               style={{ backgroundColor: '#0071e3', color: 'white' }}
             >
               <ExternalLink className="w-4 h-4" />
-              <span>View Live</span>
+              <span>{t('viewLive')}</span>
               <ArrowUpRight className="w-4 h-4" />
             </a>
           )}
@@ -191,7 +192,7 @@ export default function CaseStudyPage() {
             className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-medium transition-colors w-full sm:w-auto"
             style={{ border: '1px solid var(--theme-btn-outline-border)', color: 'var(--theme-btn-outline-fg)' }}
           >
-            <span>Back to Work</span>
+            <span>{t('backToWork')}</span>
           </Link>
         </section>
 

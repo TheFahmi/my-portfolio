@@ -2,9 +2,11 @@
 
 import { motion } from 'framer-motion';
 import { Calendar, Clock, Mail } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import siteConfig from '@/config/siteConfig';
 
 export default function AvailabilitySection() {
+  const t = useTranslations('availability');
   const { availability } = siteConfig;
   const isAvailable = availability.status === 'available';
 
@@ -27,19 +29,19 @@ export default function AvailabilitySection() {
               <div className="flex items-center gap-3 mb-6">
                 <div className={`w-3 h-3 rounded-full ${isAvailable ? 'bg-green-500' : 'bg-yellow-500'}`} />
                 <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: 'var(--theme-fg-muted)' }}>
-                  {isAvailable ? 'Available for Work' : 'Currently In a Project'}
+                  {isAvailable ? t('available') : t('busy')}
                 </span>
               </div>
               
               <h3 className="text-2xl md:text-3xl font-semibold mb-8" style={{ color: 'var(--theme-fg)' }}>
-                Let's build something great together.
+                {t('headline')}
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 <div className="flex items-center gap-4 p-4 rounded-xl" style={{ backgroundColor: 'var(--theme-social-hover-bg)' }}>
                   <Calendar className="w-6 h-6 text-[#0071e3]" />
                   <div>
-                    <p className="text-xs font-medium" style={{ color: 'var(--theme-fg-muted)' }}>Next Available</p>
+                    <p className="text-xs font-medium" style={{ color: 'var(--theme-fg-muted)' }}>{t('nextAvailable')}</p>
                     <p className="font-medium" style={{ color: 'var(--theme-fg)' }}>{availability.nextAvailable}</p>
                   </div>
                 </div>
@@ -47,7 +49,7 @@ export default function AvailabilitySection() {
                 <div className="flex items-center gap-4 p-4 rounded-xl" style={{ backgroundColor: 'var(--theme-social-hover-bg)' }}>
                   <Clock className="w-6 h-6 text-[#0071e3]" />
                   <div>
-                    <p className="text-xs font-medium" style={{ color: 'var(--theme-fg-muted)' }}>Response Time</p>
+                    <p className="text-xs font-medium" style={{ color: 'var(--theme-fg-muted)' }}>{t('responseTime')}</p>
                     <p className="font-medium" style={{ color: 'var(--theme-fg)' }}>{availability.responseTime}</p>
                   </div>
                 </div>
@@ -58,7 +60,7 @@ export default function AvailabilitySection() {
 
             <div className="flex-1 text-center md:text-left flex flex-col items-center md:items-start gap-6">
               <p className="text-lg font-medium" style={{ color: 'var(--theme-fg)' }}>
-                Ready to start your project?
+                {t('ready')}
               </p>
               <a
                 href={siteConfig.social.email}
@@ -69,7 +71,7 @@ export default function AvailabilitySection() {
                 }}
               >
                 <Mail className="w-4 h-4" />
-                <span>Get in Touch</span>
+                <span>{t('getInTouch')}</span>
               </a>
             </div>
           </div>
