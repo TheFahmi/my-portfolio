@@ -1,16 +1,57 @@
-'use client';
+import type { Metadata } from 'next';
+import siteConfig from '@/config/siteConfig';
+import BlogJsonLd from '@/components/seo/BlogJsonLd';
+import BlogPostClient from './BlogPostClient';
 
-import PageTransition from '@/components/effects/PageTransition';
+const SITE_URL = siteConfig.metadata.url;
 
-export default function BlogPost({ params }: { params: { slug: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const title = `${slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase())} | M Fahmi Hassan`;
+  const description = `Read about ${slug.replace(/-/g, ' ')} by M Fahmi Hassan.`;
+  const ogImage = `${SITE_URL}/images/fahmi-og.jpg`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}/blog/${slug}`,
+      siteName: 'M Fahmi Hassan',
+      locale: 'en_US',
+      type: 'article',
+      images: [{ url: ogImage, width: 800, height: 800, alt: `${slug} - M Fahmi Hassan` }],
+    },
+    twitter: {
+      card: 'summary',
+      title,
+      description,
+      creator: '@thefahmhassan',
+      images: [ogImage],
+    },
+    alternates: {
+      canonical: `${SITE_URL}/blog/${slug}`,
+    },
+  };
+}
+
+export default async function BlogPost({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const headline = slug.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
   return (
-    <PageTransition>
-      <main className="min-h-screen pt-24 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">Blog Post: {params.slug}</h1>
-          <p className="text-gray-400">Coming soon...</p>
-        </div>
-      </main>
-    </PageTransition>
+    <>
+      <BlogJsonLd headline={headline} />
+      <BlogPostClient slug={slug} />
+    </>
   );
 }
