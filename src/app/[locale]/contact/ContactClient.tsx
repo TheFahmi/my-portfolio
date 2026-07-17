@@ -32,43 +32,54 @@ function TurnstileWidget({
       }
     }
 
-    widgetIdRef.current = window.turnstile.render(containerRef.current, {
-      sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA', // Test key fallback
-      theme: 'auto',
-      size: 'flexible',
-      callback: onVerify,
-      'error-callback': onError,
-      'expired-callback': onExpire,
-      appearance: 'interaction-only',
-    });
+    try {
+      widgetIdRef.current = window.turnstile.render(containerRef.current, {
+        sitekey: process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY,
+        theme: 'auto',
+        size: 'normal',
+        callback: onVerify,
+        'error-callback': onError,
+        'expired-callback': onExpire,
+      });
+    } catch (e) {
+      console.error('Turnstile render failed:', e);
+    }
   }, [onVerify, onError, onExpire]);
 
   useEffect(() => {
-    // Load Turnstile script
-    if (!scriptLoadedRef.current && !document.querySelector('script[src*="turnstile"]')) {
+    const loadAndRender = () => {
+      if (window.turnstile) {
+        renderWidget();
+        return;
+      }
+      if (document.querySelector('script[src*="turnstile"]')) {
+        // Script already added, wait for it
+        const check = setInterval(() => {
+          if (window.turnstile) {
+            clearInterval(check);
+            renderWidget();
+          }
+        }, 100);
+        return () => clearInterval(check);
+      }
       const script = document.createElement('script');
       script.src = 'https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit';
       script.async = true;
-      script.defer = true;
       script.onload = () => {
         scriptLoadedRef.current = true;
         renderWidget();
       };
       document.head.appendChild(script);
-    } else if (window.turnstile) {
-      renderWidget();
-    }
+    };
+
+    loadAndRender();
 
     return () => {
       if (widgetIdRef.current !== null && window.turnstile) {
-        try {
-          window.turnstile.remove(widgetIdRef.current);
-        } catch {
-          // Ignore
-        }
+        try { window.turnstile.remove(widgetIdRef.current); } catch {}
       }
     };
-  }, [renderWidget]);
+  }, []);
 
   return <div ref={containerRef} className="flex justify-center" />;
 }
