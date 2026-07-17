@@ -396,13 +396,14 @@ function SphereCanvas({ config }: { config: SphereTheme }) {
         const ds = sharedDragState;
 
         const onPointerDown = (e: PointerEvent) => {
-            if (e.pointerType !== 'mouse') return;
             ds.isDragging = true;
             previousPointer.current = { x: e.clientX, y: e.clientY };
             ds.velocity = { x: 0, y: 0 };
             ds.autoBlend = 0;
             lastDragTime.current = performance.now();
-            el.setPointerCapture(e.pointerId);
+            if (e.pointerType === 'mouse') {
+                el.setPointerCapture(e.pointerId);
+            }
             el.style.cursor = 'grabbing';
         };
 
@@ -455,7 +456,7 @@ function SphereCanvas({ config }: { config: SphereTheme }) {
                 onCreated={({ gl }) => {
                     gl.setPixelRatio(Math.min(window.devicePixelRatio, 2));
                 }}
-                style={{ touchAction: 'none' }}
+                style={{ touchAction: 'pan-y' }}
             >
                 <color attach="background" args={[config.bgColor]} />
                 <fog attach="fog" args={[config.bgColor, 5, 15]} />
