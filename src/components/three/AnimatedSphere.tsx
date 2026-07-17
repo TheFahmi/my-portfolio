@@ -1,8 +1,7 @@
 'use client';
 
 import { useRef, useState, useMemo, useCallback, useEffect } from 'react';
-import { Canvas, useFrame, useThree, useStore } from '@react-three/fiber';
-import { OrbitControls, Html, Sphere, Html as HtmlWrapper } from '@react-three/drei';
+import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 
 // Theme-aware color palettes for the sphere
@@ -12,8 +11,6 @@ interface SphereTheme {
     wireOpacity: number;
     sphereColor: number;
     sphereOpacity: number;
-    sphereWireColor: number;
-    sphereWireOpacity: number;
     glowColor: number;
     particleColor: number;
     accentColor: number;
@@ -21,40 +18,26 @@ interface SphereTheme {
 
 const SPHERE_THEMES: Record<'light' | 'dark', SphereTheme> = {
     light: {
-        bgColor: 0xf5f0e8,           // warm cream base
-        wireColor: 0x000000,         // black wires
+        bgColor: 0xf5f0e8,
+        wireColor: 0x000000,
         wireOpacity: 0.12,
-        sphereColor: 0x0071e3,       // Apple blue
+        sphereColor: 0x0071e3,
         sphereOpacity: 0.15,
-        sphereWireColor: 0x0071e3,
-        sphereWireOpacity: 0.25,
         glowColor: 0x0071e3,
         particleColor: 0x0071e3,
         accentColor: 0x0071e3,
     },
     dark: {
-        bgColor: 0x0a0a0a,           // deep black
-        wireColor: 0xffffff,         // white wires
+        bgColor: 0x0a0a0a,
+        wireColor: 0xffffff,
         wireOpacity: 0.08,
-        sphereColor: 0x0071e3,       // Apple blue
+        sphereColor: 0x0071e3,
         sphereOpacity: 0.2,
-        sphereWireColor: 0x0071e3,
-        sphereWireOpacity: 0.35,
         glowColor: 0x0071e3,
         particleColor: 0xffffff,
         accentColor: 0x0071e3,
     },
 };
-
-// Extend RootState to include userData for drag interaction
-interface ExtendedRootState {
-    userData: {
-        isDragging: boolean;
-        dragOffset: { x: number; y: number };
-        velocity: { x: number; y: number };
-        autoBlend: number;
-    };
-}
 
 // Check if WebGL is available (client-side only)
 function isWebGLAvailable(): boolean {
@@ -131,14 +114,13 @@ function CSSFallbackSphere({ className = '', isDark = false }: { className?: str
 
 // Theme detector for SSR-safe theme reading
 function useThemeDetector() {
-    const [isDarkMode, setIsDarkMode] = useState(true); // default to dark to match HTML script
+    const [isDarkMode, setIsDarkMode] = useState(true);
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true);
         const root = document.documentElement;
-        const initialDark = root.classList.contains('dark');
-        setIsDarkMode(initialDark);
+        setIsDarkMode(root.classList.contains('dark'));
 
         const observer = new MutationObserver((mutations) => {
             for (const mutation of mutations) {
@@ -194,38 +176,42 @@ function WebGLErrorBoundary({
     return <>{children}</>;
 }
 
+// Shared mutable drag state (outside React, safe for R3F)
+const sharedDragState = {
+    isDragging: false,
+    dragOffset: { x: 0, y: 0 },
+    velocity: { x: 0, y: 0 },
+    autoBlend: 0,
+};
+
 // Inner sphere mesh component
 function InnerSphere({ config }: { config: SphereTheme }) {
     const meshRef = useRef<THREE.Mesh>(null);
-    const { userData } = useThree<ExtendedRootState>();
 
     useFrame((state) => {
         if (!meshRef.current) return;
 
         const { clock } = state;
+        const ds = sharedDragState;
 
-        if (userData.isDragging) {
-            meshRef.current.rotation.x = userData.dragOffset.x;
-            meshRef.current.rotation.y = userData.dragOffset.y;
+        if (ds.isDragging) {
+            meshRef.current.rotation.x = ds.dragOffset.x;
+            meshRef.current.rotation.y = ds.dragOffset.y;
         } else {
-            // Auto-rotate with momentum
-            userData.velocity.x *= 0.985;
-            userData.velocity.y *= 0.985;
+            ds.velocity.x *= 0.985;
+            ds.velocity.y *= 0.985;
+            ds.dragOffset.x += ds.velocity.x;
+            ds.dragOffset.y += ds.velocity.y;
 
-            userData.dragOffset.x += userData.velocity.x;
-            userData.dragOffset.y += userData.velocity.y;
+            meshRef.current.rotation.x = ds.dragOffset.x + Math.sin(clock.elapsedTime * 0.15) * 0.02;
+            meshRef.current.rotation.y = ds.dragOffset.y + Math.cos(clock.elapsedTime * 0.12) * 0.02;
 
-            // Subtle continuous rotation
-            meshRef.current.rotation.x = userData.dragOffset.x + Math.sin(clock.elapsedTime * 0.15) * 0.02;
-            meshRef.current.rotation.y = userData.dragOffset.y + Math.cos(clock.elapsedTime * 0.12) * 0.02;
-
-            // Auto-return to center when idle
-            if (Math.abs(userData.velocity.x) < 0.0001 && Math.abs(userData.velocity.y) < 0.0001) {
-                userData.autoBlend += 0.0008;
-                userData.dragOffset.x *= 1 - userData.autoBlend * 0.02;
-                userData.dragOffset.y *= 1 - userData.autoBlend * 0.02;
+            if (Math.abs(ds.velocity.x) < 0.0001 && Math.abs(ds.velocity.y) < 0.0001) {
+                ds.autoBlend += 0.0008;
+                ds.dragOffset.x *= 1 - ds.autoBlend * 0.02;
+                ds.dragOffset.y *= 1 - ds.autoBlend * 0.02;
             } else {
-                userData.autoBlend = 0;
+                ds.autoBlend = 0;
             }
         }
     });
@@ -252,30 +238,29 @@ function InnerSphere({ config }: { config: SphereTheme }) {
 // Wireframe sphere
 function WireSphere({ config }: { config: SphereTheme }) {
     const meshRef = useRef<THREE.Mesh>(null);
-    const { userData } = useThree<ExtendedRootState>();
 
     useFrame((state) => {
         if (!meshRef.current) return;
+        const ds = sharedDragState;
 
-        if (userData.isDragging) {
-            meshRef.current.rotation.x = userData.dragOffset.x;
-            meshRef.current.rotation.y = userData.dragOffset.y;
+        if (ds.isDragging) {
+            meshRef.current.rotation.x = ds.dragOffset.x;
+            meshRef.current.rotation.y = ds.dragOffset.y;
         } else {
-            userData.velocity.x *= 0.985;
-            userData.velocity.y *= 0.985;
+            ds.velocity.x *= 0.985;
+            ds.velocity.y *= 0.985;
+            ds.dragOffset.x += ds.velocity.x;
+            ds.dragOffset.y += ds.velocity.y;
 
-            userData.dragOffset.x += userData.velocity.x;
-            userData.dragOffset.y += userData.velocity.y;
+            meshRef.current.rotation.x = ds.dragOffset.x + Math.sin(state.clock.elapsedTime * 0.15) * 0.02;
+            meshRef.current.rotation.y = ds.dragOffset.y + Math.cos(state.clock.elapsedTime * 0.12) * 0.02;
 
-            meshRef.current.rotation.x = userData.dragOffset.x + Math.sin(state.clock.elapsedTime * 0.15) * 0.02;
-            meshRef.current.rotation.y = userData.dragOffset.y + Math.cos(state.clock.elapsedTime * 0.12) * 0.02;
-
-            if (Math.abs(userData.velocity.x) < 0.0001 && Math.abs(userData.velocity.y) < 0.0001) {
-                userData.autoBlend += 0.0008;
-                userData.dragOffset.x *= 1 - userData.autoBlend * 0.02;
-                userData.dragOffset.y *= 1 - userData.autoBlend * 0.02;
+            if (Math.abs(ds.velocity.x) < 0.0001 && Math.abs(ds.velocity.y) < 0.0001) {
+                ds.autoBlend += 0.0008;
+                ds.dragOffset.x *= 1 - ds.autoBlend * 0.02;
+                ds.dragOffset.y *= 1 - ds.autoBlend * 0.02;
             } else {
-                userData.autoBlend = 0;
+                ds.autoBlend = 0;
             }
         }
     });
@@ -297,10 +282,10 @@ function WireSphere({ config }: { config: SphereTheme }) {
 // Particle system
 function Particles({ config }: { config: SphereTheme }) {
     const pointsRef = useRef<THREE.Points>(null);
-    const { userData } = useThree<ExtendedRootState>();
 
     useFrame((state) => {
         if (!pointsRef.current) return;
+        const ds = sharedDragState;
 
         const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
         const time = state.clock.elapsedTime;
@@ -323,12 +308,12 @@ function Particles({ config }: { config: SphereTheme }) {
         }
         pointsRef.current.geometry.attributes.position.needsUpdate = true;
 
-        if (!userData.isDragging) {
+        if (!ds.isDragging) {
             pointsRef.current.rotation.y += 0.0002;
             pointsRef.current.rotation.x += 0.0001;
         } else {
-            pointsRef.current.rotation.x = userData.dragOffset.x;
-            pointsRef.current.rotation.y = userData.dragOffset.y;
+            pointsRef.current.rotation.x = ds.dragOffset.x;
+            pointsRef.current.rotation.y = ds.dragOffset.y;
         }
     });
 
@@ -363,20 +348,19 @@ function Particles({ config }: { config: SphereTheme }) {
 // Glow sphere
 function GlowSphere({ config }: { config: SphereTheme }) {
     const meshRef = useRef<THREE.Mesh>(null);
-    const { userData } = useThree<ExtendedRootState>();
 
     useFrame((state) => {
         if (!meshRef.current) return;
+        const ds = sharedDragState;
 
-        if (userData.isDragging) {
-            meshRef.current.rotation.x = userData.dragOffset.x;
-            meshRef.current.rotation.y = userData.dragOffset.y;
+        if (ds.isDragging) {
+            meshRef.current.rotation.x = ds.dragOffset.x;
+            meshRef.current.rotation.y = ds.dragOffset.y;
         } else {
             meshRef.current.rotation.y += 0.0003;
             meshRef.current.rotation.x = Math.sin(state.clock.elapsedTime * 0.1) * 0.02;
         }
 
-        // Pulse glow
         const pulse = Math.sin(state.clock.elapsedTime * 1.5) * 0.15 + 0.85;
         if (meshRef.current.material instanceof THREE.MeshBasicMaterial) {
             meshRef.current.material.opacity = 0.08 * pulse;
@@ -399,47 +383,43 @@ function GlowSphere({ config }: { config: SphereTheme }) {
 }
 
 // Main Canvas content
-function SphereCanvas({ config }: { config: typeof SPHERE_THEMES.light }) {
+function SphereCanvas({ config }: { config: SphereTheme }) {
     const containerRef = useRef<HTMLDivElement>(null);
     const previousPointer = useRef({ x: 0, y: 0 });
     const lastDragTime = useRef(0);
-    const storeRef = useRef<ReturnType<typeof useStore> | null>(null);
 
     // Attach DOM-level pointer events for drag interaction
     useEffect(() => {
         const el = containerRef.current;
         if (!el) return;
 
-        // Get the userData from the store
-        const getUserData = () => (storeRef.current?.getState() as any)?.userData;
-        const userData = getUserData();
-        if (!userData) return;
+        const ds = sharedDragState;
 
         const onPointerDown = (e: PointerEvent) => {
             if (e.pointerType !== 'mouse') return;
-            userData.isDragging = true;
+            ds.isDragging = true;
             previousPointer.current = { x: e.clientX, y: e.clientY };
-            userData.velocity = { x: 0, y: 0 };
-            userData.autoBlend = 0;
+            ds.velocity = { x: 0, y: 0 };
+            ds.autoBlend = 0;
             lastDragTime.current = performance.now();
             el.setPointerCapture(e.pointerId);
             el.style.cursor = 'grabbing';
         };
 
         const onPointerMove = (e: PointerEvent) => {
-            if (!userData.isDragging) return;
+            if (!ds.isDragging) return;
 
             const deltaX = e.clientX - previousPointer.current.x;
             const deltaY = e.clientY - previousPointer.current.y;
 
             const sensitivity = 0.008;
-            userData.dragOffset.y += deltaX * sensitivity;
-            userData.dragOffset.x += deltaY * sensitivity;
+            ds.dragOffset.y += deltaX * sensitivity;
+            ds.dragOffset.x += deltaY * sensitivity;
 
             const now = performance.now();
             const dt = now - lastDragTime.current;
             if (dt > 0) {
-                userData.velocity = {
+                ds.velocity = {
                     x: (deltaY * sensitivity) / (dt / 16),
                     y: (deltaX * sensitivity) / (dt / 16),
                 };
@@ -450,7 +430,7 @@ function SphereCanvas({ config }: { config: typeof SPHERE_THEMES.light }) {
         };
 
         const onPointerUp = () => {
-            userData.isDragging = false;
+            ds.isDragging = false;
             el.style.cursor = 'grab';
         };
 
