@@ -21,7 +21,7 @@ const HeroSection = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden" style={{ backgroundColor: 'var(--theme-bg)' }}>
       {/* 3D Sphere: absolute positioned, centered, behind text */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <AnimatedSphere className="w-[600px] h-[600px] md:w-[700px] md:h-[700px] lg:w-[800px] lg:h-[800px]" />
+        <AnimatedSphere className="w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px] lg:w-[600px] lg:h-[600px] xl:w-[700px] xl:h-[700px]" />
       </div>
 
       {/* Sphere glow effect */}
