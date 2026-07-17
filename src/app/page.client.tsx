@@ -8,6 +8,7 @@ import HeroSection from '@/components/sections/HeroSection';
 import WhatIDoSection from '@/components/sections/WhatIDoSection';
 import ServicesSection from '@/components/sections/ServicesSection';
 import CTASection from '@/components/sections/CTASection';
+import AvailabilitySection from '@/components/sections/AvailabilitySection';
 
 export default function HomeClient() {
 
@@ -17,6 +18,7 @@ export default function HomeClient() {
         <HeroSection />
         <WhatIDoSection />
         <ServicesSection />
+        <AvailabilitySection />
         <CTASection />
       </main>
     </PageTransition>

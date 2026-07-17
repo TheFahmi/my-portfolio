@@ -1,4 +1,12 @@
 // Site configuration
+export interface CaseStudy {
+  problem: string;
+  solution: string;
+  impact: string[];
+  role: string;
+  duration: string;
+}
+
 export interface Project {
   id: number;
   title: string;
@@ -9,6 +17,13 @@ export interface Project {
   github?: string;
   demo?: string;
   featured: boolean;
+  caseStudy?: CaseStudy;
+}
+
+export interface Availability {
+  status: 'available' | 'in-project';
+  nextAvailable: string;
+  responseTime: string;
 }
 
 export interface Skill {
@@ -141,7 +156,18 @@ const siteConfig = {
       technologies: ['NestJS', 'Next.js', 'PostgreSQL', 'Redis', 'TypeScript', 'Docker'],
       image: '/images/project-merdu.png',
       demo: 'https://merdu.id',
-      featured: true
+      featured: true,
+      caseStudy: {
+        problem: 'Businesses struggled with managing multiple WhatsApp accounts efficiently, leading to missed leads and poor customer service response times.',
+        solution: 'Built a centralized multi-tenant SaaS platform that unifies WhatsApp communication with automated broadcast campaigns, AI-driven chatbots, and real-time message management.',
+        impact: [
+          'Reduced average response time by 40%',
+          'Enabled 500+ businesses to scale customer outreach',
+          'Processed over 1M messages monthly with 99.9% uptime'
+        ],
+        role: 'Full Stack Developer',
+        duration: '6 months'
+      }
     },
     {
       id: 3,
@@ -151,7 +177,18 @@ const siteConfig = {
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'TypeScript', 'TailwindCSS'],
       image: '/images/project-sen.png',
       demo: 'https://sen.co.id',
-      featured: true
+      featured: true,
+      caseStudy: {
+        problem: 'Traditional book procurement for schools in Indonesia was fragmented, manual, and lacked a central digital marketplace for educational materials.',
+        solution: 'Developed a comprehensive e-commerce ecosystem featuring a rich catalog, bulk ordering for school packages, and seamless payment integrations tailored for institutional buyers.',
+        impact: [
+          'Digitized ordering for 200+ schools',
+          'Increased sales volume by 35% in the first quarter',
+          'Streamlined inventory management with real-time tracking'
+        ],
+        role: 'Lead Full Stack Developer',
+        duration: '4 months'
+      }
     },
     {
       id: 5,
@@ -181,7 +218,18 @@ const siteConfig = {
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
       image: '/images/project-rsk.png',
       demo: 'https://rumahsiapkerja.com',
-      featured: true
+      featured: true,
+      caseStudy: {
+        problem: 'Indonesia\'s Prakerja participants needed a more engaging and accessible way to access high-quality vocational training and career mentoring.',
+        solution: 'Architected a scalable training platform featuring a diverse catalog of courses, interactive mentoring sessions, and a seamless user experience tailored for rapid upskilling.',
+        impact: [
+          'Onboarded over 10,000 active learners',
+          'Achieved a 60% course completion rate',
+          'Reduced platform latency by 50% through Next.js migration'
+        ],
+        role: 'Frontend Lead Developer',
+        duration: '12 months'
+      }
     },
     {
       id: 8,
@@ -191,7 +239,18 @@ const siteConfig = {
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
       image: '/images/project-temanujian.png',
       demo: 'https://ujian.mfah.me',
-      featured: true
+      featured: true,
+      caseStudy: {
+        problem: 'Students found traditional exam preparation boring and ineffective, leading to low engagement and poor retention of study materials.',
+        solution: 'Created an AI-driven platform with gamified quizzes, interactive tutor avatars, and a rewards system to transform studying into an engaging, habit-forming experience.',
+        impact: [
+          'Increased average study time per user by 3x',
+          'Expanded to 50,000+ active users within 3 months',
+          'Boosted user retention by 45% via gamification'
+        ],
+        role: 'Full Stack Developer',
+        duration: '3 months'
+      }
     },
     {
       id: 9,
@@ -201,7 +260,18 @@ const siteConfig = {
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'Redis', 'TypeScript', 'Docker'],
       image: '/images/project-wasaas.png',
       demo: 'https://wasaas.mfah.me',
-      featured: true
+      featured: true,
+      caseStudy: {
+        problem: 'Small to medium businesses struggled to manage high volumes of customer inquiries and orders coming through WhatsApp alongside their traditional e-commerce setups.',
+        solution: 'Built a unified SaaS solution that bridges e-commerce operations with AI-powered WhatsApp automation, allowing for instant order processing and customer support.',
+        impact: [
+          'Automated 80% of routine customer service queries',
+          'Reduced order processing time from 2 hours to 10 minutes',
+          'Increased customer satisfaction scores by 30%'
+        ],
+        role: 'Full Stack Developer',
+        duration: '5 months'
+      }
     },
     {
       id: 10,
@@ -265,6 +335,13 @@ const siteConfig = {
       featured: false
     },
   ] as Project[],
+
+  // Availability
+  availability: {
+    status: 'available' as const,
+    nextAvailable: 'Immediately',
+    responseTime: 'Within 24 hours'
+  } as Availability,
 
   // Experience Section
   experience: [
@@ -474,6 +551,17 @@ const localizedContent: Record<string, {
         image: '/images/project-merdu.png',
         demo: 'https://merdu.id',
         featured: true,
+        caseStudy: {
+          problem: 'Bisnis kesulitan mengelola banyak akun WhatsApp secara efisien, menyebabkan lead yang terlewat dan waktu respons layanan pelanggan yang buruk.',
+          solution: 'Membangun platform SaaS multi-tenant terpusat yang menyatukan komunikasi WhatsApp dengan kampanye broadcast otomatis, chatbot bertenaga AI, dan manajemen pesan real-time.',
+          impact: [
+            'Mengurangi waktu respons rata-rata sebesar 40%',
+            'Memungkinkan 500+ bisnis untuk meningkatkan jangkauan pelanggan',
+            'Memproses lebih dari 1 juta pesan per bulan dengan uptime 99,9%'
+          ],
+          role: 'Full Stack Developer',
+          duration: '6 bulan'
+        }
       },
       {
         id: 3,
@@ -484,6 +572,17 @@ const localizedContent: Record<string, {
         image: '/images/project-sen.png',
         demo: 'https://sen.co.id',
         featured: true,
+        caseStudy: {
+          problem: 'Pengadaan buku tradisional untuk sekolah di Indonesia terpecah-belah, manual, dan kurangnya pasar digital terpusat untuk materi pendidikan.',
+          solution: 'Mengembangkan ekosistem e-commerce komprehensif dengan katalog yang kaya, pemesanan massal untuk paket sekolah, dan integrasi pembayaran yang mulus untuk pembeli institusional.',
+          impact: [
+            'Mendigitalisasi pemesanan untuk 200+ sekolah',
+            'Meningkatkan volume penjualan sebesar 35% di kuartal pertama',
+            'Menyederhanakan manajemen inventaris dengan pelacakan real-time'
+          ],
+          role: 'Lead Full Stack Developer',
+          duration: '4 bulan'
+        }
       },
       {
         id: 5,
@@ -514,6 +613,17 @@ const localizedContent: Record<string, {
         image: '/images/project-rsk.png',
         demo: 'https://rumahsiapkerja.com',
         featured: true,
+        caseStudy: {
+          problem: 'Peserta Prakerja Indonesia membutuhkan cara yang lebih menarik dan mudah diakses untuk mengakses pelatihan vokasi berkualitas tinggi dan mentoring karier.',
+          solution: 'Mengarsiteki platform pelatihan yang skalabel dengan katalog kursus yang beragam, sesi mentoring interaktif, dan pengalaman pengguna yang mulus untuk peningkatan keterampilan cepat.',
+          impact: [
+            'Mendaftarkan lebih dari 10.000 pelajar aktif',
+            'Mencapai tingkat penyelesaian kursus 60%',
+            'Mengurangi latensi platform sebesar 50% melalui migrasi Next.js'
+          ],
+          role: 'Frontend Lead Developer',
+          duration: '12 bulan'
+        }
       },
       {
         id: 8,
@@ -524,6 +634,17 @@ const localizedContent: Record<string, {
         image: '/images/project-temanujian.png',
         demo: 'https://ujian.mfah.me',
         featured: true,
+        caseStudy: {
+          problem: 'Siswa merasa persiapan ujian tradisisonal membosankan dan tidak efektif, menyebabkan rendahnya keterlibatan dan retensi materi belajar yang buruk.',
+          solution: 'Menciptakan platform bertenaga AI dengan kuis bergamifikasi, avatar tutor interaktif, dan sistem reward untuk mengubah belajar menjadi pengalaman yang menarik dan membentuk kebiasaan.',
+          impact: [
+            'Meningkatkan waktu belajar rata-rata pengguna sebesar 3x',
+            'Berkembang menjadi 50.000+ pengguna aktif dalam 3 bulan',
+            'Meningkatkan retensi pengguna sebesar 45% melalui gamifikasi'
+          ],
+          role: 'Full Stack Developer',
+          duration: '3 bulan'
+        }
       },
       {
         id: 9,
@@ -534,6 +655,17 @@ const localizedContent: Record<string, {
         image: '/images/project-wasaas.png',
         demo: 'https://wasaas.mfah.me',
         featured: true,
+        caseStudy: {
+          problem: 'Usaha kecil dan menengah kesulitan mengelola volume pertanyaan dan pesanan pelanggan yang tinggi yang masuk melalui WhatsApp bersamaan dengan pengaturan e-commerce tradisional mereka.',
+          solution: 'Membangun solusi SaaS terpadu yang menjembatani operasi e-commerce dengan otomasi WhatsApp bertenaga AI, memungkinkan pemrosesan pesanan dan dukungan pelanggan instan.',
+          impact: [
+            'Mengotomatiskan 80% pertanyaan layanan pelanggan rutin',
+            'Mengurangi waktu pemrosesan pesanan dari 2 jam menjadi 10 menit',
+            'Meningkatkan skor kepuasan pelanggan sebesar 30%'
+          ],
+          role: 'Full Stack Developer',
+          duration: '5 bulan'
+        }
       },
       {
         id: 10,

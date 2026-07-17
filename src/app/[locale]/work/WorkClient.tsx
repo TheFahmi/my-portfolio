@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 import siteConfig, { getLocalizedConfig } from '@/config/siteConfig';
 import { useTranslations } from 'next-intl';
 import { useLocale } from 'next-intl';
@@ -153,6 +154,14 @@ export default function WorkClient() {
 
                       {/* Action Links */}
                       <div className="flex items-center gap-4 mt-auto pt-6" style={{ borderTop: '1px solid var(--theme-divider)' }}>
+                        <Link
+                          href={`/${locale}/work/${project.id}`}
+                          className="flex items-center gap-2 text-sm font-medium transition-colors group-hover:text-[var(--theme-fg)]"
+                          style={{ color: 'var(--theme-fg-muted)' }}
+                        >
+                          <span>{t('viewCaseStudy') || 'View Case Study'}</span>
+                          <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:translate-y-[-1px]" />
+                        </Link>
                         {project.demo && (
                           <a
                             href={project.demo}
