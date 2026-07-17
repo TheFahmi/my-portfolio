@@ -213,7 +213,7 @@ const siteConfig = {
     {
       id: 7,
       title: 'RumahSiapKerja.com',
-      description: 'Training platform for Indonesia\'s Prakerja program — providing professional upskilling courses, business development mentoring, and career readiness programs for job seekers nationwide.',
+      description: 'Indonesia\'s leading training platform for Prakerja participants — providing entrepreneurship courses, business mentoring, and career development programs for over 900,000 registered users nationwide.',
       category: 'Platform',
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
       image: '/images/project-rsk.png',
