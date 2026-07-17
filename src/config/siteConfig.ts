@@ -220,10 +220,10 @@ const siteConfig = {
       demo: 'https://rumahsiapkerja.com',
       featured: true,
       caseStudy: {
-        problem: 'Indonesia\'s Prakerja participants needed a more engaging and accessible way to access high-quality vocational training and career mentoring.',
-        solution: 'Architected a scalable training platform featuring a diverse catalog of courses, interactive mentoring sessions, and a seamless user experience tailored for rapid upskilling.',
+        problem: 'Indonesia\\'s Prakerja participants needed a more engaging and accessible way to access high-quality vocational training, entrepreneurship mentoring, and career development programs.',
+        solution: 'Architected a scalable training platform featuring a diverse catalog of courses, interactive mentoring sessions, and a seamless user experience tailored for rapid upskilling across entrepreneurship, soft skills, and agriculture.',
         impact: [
-          'Onboarded over 10,000 active learners',
+          'Served over 900,000 registered Prakerja participants',
           'Achieved a 60% course completion rate',
           'Reduced platform latency by 50% through Next.js migration'
         ],
