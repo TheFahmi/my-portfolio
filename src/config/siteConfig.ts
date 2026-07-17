@@ -228,7 +228,7 @@ const siteConfig = {
           'Reduced platform latency by 50% through Next.js migration'
         ],
         role: 'Frontend Lead Developer',
-        duration: '12 months'
+        duration: '4 years'
       }
     },
     {
