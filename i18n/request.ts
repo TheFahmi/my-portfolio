@@ -125,6 +125,15 @@ interface Messages {
       button: string;
     };
   };
+  availability: {
+    available: string;
+    busy: string;
+    headline: string;
+    nextAvailable: string;
+    responseTime: string;
+    ready: string;
+    getInTouch: string;
+  };
 }
 
 export default getRequestConfig(async ({ requestLocale }) => {
@@ -142,7 +151,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const contact = (await import(`../messages/${locale}/contact.json`)).default;
   const footer = (await import(`../messages/${locale}/footer.json`)).default;
   const services = (await import(`../messages/${locale}/services.json`)).default;
-  const messages = { ...navigation, ...common, ...about, ...hero, ...work, ...contact, ...footer, ...services } as Messages;
+  const availability = (await import(`../messages/${locale}/availability.json`)).default;
+  const messages = { ...navigation, ...common, ...about, ...hero, ...work, ...contact, ...footer, ...services, ...availability } as Messages;
 
   const navigationFallback = (await import(`../messages/en/navigation.json`)).default;
   const commonFallback = (await import(`../messages/en/common.json`)).default;
@@ -152,7 +162,8 @@ export default getRequestConfig(async ({ requestLocale }) => {
   const contactFallback = (await import(`../messages/en/contact.json`)).default;
   const footerFallback = (await import(`../messages/en/footer.json`)).default;
   const servicesFallback = (await import(`../messages/en/services.json`)).default;
-  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback, ...workFallback, ...contactFallback, ...footerFallback, ...servicesFallback } as Messages;
+  const availabilityFallback = (await import(`../messages/en/availability.json`)).default;
+  const fallbackMessages = { ...navigationFallback, ...commonFallback, ...aboutFallback, ...heroFallback, ...workFallback, ...contactFallback, ...footerFallback, ...servicesFallback, ...availabilityFallback } as Messages;
 
   return {
     locale,
