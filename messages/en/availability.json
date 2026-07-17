@@ -1,0 +1,11 @@
+{
+  "availability": {
+    "available": "Available for Work",
+    "busy": "Currently In a Project",
+    "headline": "Let's build something great together.",
+    "nextAvailable": "Next Available",
+    "responseTime": "Response Time",
+    "ready": "Ready to start your project?",
+    "getInTouch": "Get in Touch"
+  }
+}

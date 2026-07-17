@@ -11,6 +11,15 @@
     "ctaTitle2": "Something Great",
     "ctaDescription": "Whether you need a new platform, a custom web app, or a reliable development partner — I'm ready to help turn your vision into reality.",
     "startProject": "Start a Project",
-    "viewWork": "View My Work"
+    "viewWork": "View My Work",
+    "projectNotFound": "Project not found",
+    "backToWork": "Back to Work",
+    "theProblem": "The Problem",
+    "theSolution": "The Solution",
+    "techStack": "Tech Stack",
+    "impactResults": "Impact & Results",
+    "role": "Role",
+    "duration": "Duration",
+    "viewLive": "View Live"
   }
 }
