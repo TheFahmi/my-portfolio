@@ -132,7 +132,7 @@ export default function WorkClient() {
                         {project.title}
                       </h3>
                       <p className="mb-6 flex-grow leading-relaxed" style={{ color: 'var(--theme-fg-muted)' }}>
-                        {project.description}
+                        {locale === 'id' && project.descriptionId ? project.descriptionId : project.description}
                       </p>
 
                       {/* Technologies */}

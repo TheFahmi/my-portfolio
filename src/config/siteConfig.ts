@@ -5,12 +5,16 @@ export interface CaseStudy {
   impact: string[];
   role: string;
   duration: string;
+  problemId?: string;
+  solutionId?: string;
+  impactId?: string[];
 }
 
 export interface Project {
   id: number;
   title: string;
   description: string;
+  descriptionId?: string;
   category: string;
   technologies: string[];
   image: string;
@@ -214,6 +218,7 @@ const siteConfig = {
       id: 7,
       title: 'RumahSiapKerja.com',
       description: 'Indonesia\'s leading training platform for Prakerja participants — providing entrepreneurship courses, business mentoring, and career development programs for over 900,000 registered users nationwide.',
+      descriptionId: 'Platform pelatihan terdepan di Indonesia untuk peserta Prakerja — menyediakan kursus kewirausahaan, mentoring bisnis, dan program pengembangan karier bagi lebih dari 900.000 pengguna terdaftar.',
       category: 'Platform',
       technologies: ['Next.js', 'NestJS', 'PostgreSQL', 'TypeScript', 'TailwindCSS'],
       image: '/images/project-rsk.png',
@@ -228,7 +233,14 @@ const siteConfig = {
           'Reduced platform latency by 50% through Next.js migration'
         ],
         role: 'Frontend Lead Developer',
-        duration: '4 years'
+        duration: '4 years',
+        problemId: 'Peserta Prakerja di Indonesia membutuhkan cara yang lebih menarik dan mudah diakses untuk mendapatkan pelatihan vokasi berkualitas tinggi, mentoring kewirausahaan, dan program pengembangan karier.',
+        solutionId: 'Merancang arsitektur platform pelatihan yang scalable dengan katalog kursus yang beragam, sesi mentoring interaktif, dan pengalaman pengguna yang mulus untuk akselerasi keterampilan di bidang kewirausahaan, soft skill, dan pertanian.',
+        impactId: [
+          'Melayani lebih dari 900.000 peserta Prakerja terdaftar',
+          'Mencapai tingkat kelulusan kursus 60%',
+          'Mengurangi latensi platform sebesar 50% melalui migrasi ke Next.js'
+        ]
       }
     },
     {
