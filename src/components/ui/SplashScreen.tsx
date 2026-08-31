@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const SPLASH_DURATION = 4500; // ms before fade out starts
+const SPLASH_DURATION = 4000;
 const SESSION_KEY = "mfah-splash-shown";
 
 export default function SplashScreen() {
@@ -11,9 +11,7 @@ export default function SplashScreen() {
   const [phase, setPhase] = useState<"enter" | "exit">("enter");
 
   useEffect(() => {
-    // Only show on first visit per session
     if (typeof window === "undefined") return;
-    
     const alreadyShown = sessionStorage.getItem(SESSION_KEY);
     if (alreadyShown) {
       setShow(false);
@@ -23,15 +21,12 @@ export default function SplashScreen() {
     setShow(true);
     document.body.style.overflow = "hidden";
 
-    const exitTimer = setTimeout(() => {
-      setPhase("exit");
-    }, SPLASH_DURATION);
-
+    const exitTimer = setTimeout(() => setPhase("exit"), SPLASH_DURATION);
     const removeTimer = setTimeout(() => {
       setShow(false);
       sessionStorage.setItem(SESSION_KEY, "1");
       document.body.style.overflow = "";
-    }, SPLASH_DURATION + 1000);
+    }, SPLASH_DURATION + 800);
 
     return () => {
       clearTimeout(exitTimer);
@@ -47,209 +42,123 @@ export default function SplashScreen() {
       {phase === "enter" && (
         <motion.div
           key="splash"
-          className="fixed inset-0 z-[9999] flex items-center justify-center"
+          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden"
           style={{ backgroundColor: "var(--theme-splash-bg)" }}
           exit={{
             opacity: 0,
-            scale: 1.05,
-            transition: { duration: 0.9, ease: [0.4, 0, 0.2, 1] },
+            clipPath: "circle(0% at 50% 50%)",
+            transition: { duration: 0.8, ease: [0.4, 0, 0.2, 1] },
           }}
         >
-          {/* Subtle grid background */}
-          <div
-            className="absolute inset-0 opacity-[0.04]"
+          {/* Ambient gradient orbs */}
+          <motion.div
+            className="absolute -top-1/3 -left-1/3 w-[80vmax] h-[80vmax] rounded-full"
             style={{
-              backgroundImage:
-                "linear-gradient(rgba(128,128,128,0.5) 1px, transparent 1px), linear-gradient(to right, rgba(128,128,128,0.5) 1px, transparent 1px)",
-              backgroundSize: "60px 60px",
+              background:
+                "radial-gradient(circle, var(--theme-sphere-glow) 0%, transparent 60%)",
             }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
           />
 
-          {/* Radial glow behind content */}
           <motion.div
-            className="absolute"
+            className="absolute -bottom-1/3 -right-1/3 w-[60vmax] h-[60vmax] rounded-full"
             style={{
-              width: "600px",
-              height: "600px",
               background:
-                "radial-gradient(circle, var(--theme-sphere-glow) 0%, transparent 70%)",
+                "radial-gradient(circle, var(--theme-sphere-glow) 0%, transparent 60%)",
+              opacity: 0.5,
             }}
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 1.8, ease: "easeOut" }}
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 0.5, scale: 1 }}
+            transition={{ duration: 2.5, ease: "easeOut", delay: 0.3 }}
           />
 
           {/* Main content */}
-          <div className="relative flex flex-col items-center gap-8">
-            {/* Geometric lines - top */}
+          <div className="relative flex flex-col items-center gap-6">
+            {/* Logo mark: stacked geometric shapes */}
             <motion.div
-              className="flex items-center gap-3"
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative w-20 h-20 sm:w-24 sm:h-24"
+              initial={{ opacity: 0, rotate: -20, scale: 0.6 }}
+              animate={{ opacity: 1, rotate: 0, scale: 1 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             >
               <motion.div
-                className="h-[1px]"
-                style={{ background: 'linear-gradient(to right, transparent, var(--theme-fg-dim))' }}
-                initial={{ width: 0 }}
-                animate={{ width: "60px" }}
-                transition={{ duration: 1.0, delay: 0.5 }}
-              />
-              <motion.span
-                className="text-xs font-mono tracking-[0.3em] uppercase"
-                style={{ color: 'var(--theme-splash-muted)' }}
+                className="absolute inset-0"
+                style={{
+                  border: "2px solid var(--theme-fg-dim)",
+                  transform: "rotate(45deg)",
+                  borderRadius: "4px",
+                }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.3 }}
-                transition={{ duration: 0.6, delay: 0.9 }}
-              >
-                portfolio
-              </motion.span>
-              <motion.div
-                className="h-[1px]"
-                style={{ background: 'linear-gradient(to left, transparent, var(--theme-fg-dim))' }}
-                initial={{ width: 0 }}
-                animate={{ width: "60px" }}
-                transition={{ duration: 1.0, delay: 0.5 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
               />
-            </motion.div>
-
-            {/* Initials - MFH */}
-            <div className="flex items-center gap-1">
-              {"MFH".split("").map((letter, i) => (
-                <motion.span
-                  key={letter}
-                  className="text-6xl sm:text-7xl md:text-8xl font-bold tracking-[-0.04em] select-none"
-                  style={{
-                    fontFamily: "var(--font-body), 'Inter', sans-serif",
-                    backgroundImage: 'var(--theme-gradient-heading)',
-                    WebkitBackgroundClip: "text",
-                    backgroundClip: "text",
-                    color: "transparent",
-                  }}
-                  initial={{ opacity: 0, y: 30, rotateX: -90 }}
-                  animate={{ opacity: 1, y: 0, rotateX: 0 }}
-                  transition={{
-                    duration: 0.8,
-                    delay: 0.7 + i * 0.2,
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-            </div>
-
-            {/* Full name reveal */}
-            <motion.div
-              className="flex flex-col items-center gap-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 1.6 }}
-            >
-              <motion.p
-                className="text-sm sm:text-base font-light tracking-[0.2em] uppercase"
-                style={{ color: 'var(--theme-fg-secondary)' }}
-                initial={{ opacity: 0, letterSpacing: "0.5em" }}
-                animate={{ opacity: 1, letterSpacing: "0.2em" }}
-                transition={{ duration: 1.0, delay: 1.8 }}
-              >
-                M. Fahmi Hassan
-              </motion.p>
-
-              {/* Role with typing cursor */}
               <motion.div
-                className="flex items-center gap-1"
+                className="absolute inset-4"
+                style={{
+                  border: "2px solid var(--theme-fg)",
+                  borderRadius: "3px",
+                }}
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.6, duration: 0.6, ease: "backOut" }}
+              />
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 2.4 }}
+                transition={{ delay: 1.0, duration: 0.5 }}
               >
-                <span
-                  className="text-xs font-mono tracking-wider"
-                  style={{ color: 'var(--theme-splash-muted)' }}
-                >
-                  Full Stack Engineer
-                </span>
-                <motion.span
-                  className="inline-block w-[2px] h-3"
-                  style={{ backgroundColor: 'var(--theme-fg-dim)' }}
-                  animate={{ opacity: [1, 0] }}
-                  transition={{
-                    duration: 0.7,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
+                <div
+                  className="w-2 h-2 rounded-full"
+                  style={{ backgroundColor: "var(--theme-fg)" }}
                 />
               </motion.div>
             </motion.div>
 
-            {/* Geometric lines - bottom */}
+            {/* Name: clean stacked */}
             <motion.div
-              className="flex items-center gap-4 mt-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 2.9 }}
+              className="flex flex-col items-center gap-1"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.3, ease: "easeOut" }}
             >
-              {[0, 1, 2].map((i) => (
-                <motion.div
-                  key={i}
-                  className="rounded-full"
-                  style={{ backgroundColor: 'var(--theme-fg-dim)' }}
-                  initial={{ width: 0, height: "2px" }}
-                  animate={{
-                    width: i === 1 ? "24px" : "8px",
-                    height: "2px",
-                  }}
-                  transition={{ duration: 0.5, delay: 3.0 + i * 0.12 }}
-                />
-              ))}
+              <h1
+                className="text-2xl sm:text-3xl font-semibold tracking-tight"
+                style={{
+                  fontFamily: "var(--font-body), 'Inter', sans-serif",
+                  color: "var(--theme-fg)",
+                }}
+              >
+                M. Fahmi Hassan
+              </h1>
+              <p
+                className="text-xs sm:text-sm font-mono tracking-widest uppercase"
+                style={{ color: "var(--theme-splash-muted)" }}
+              >
+                Full Stack Engineer
+              </p>
             </motion.div>
 
-            {/* Loading indicator */}
+            {/* Loading bar */}
             <motion.div
-              className="absolute -bottom-16 left-1/2 -translate-x-1/2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 3.2 }}
+              className="w-32 h-[1px] mt-2 overflow-hidden rounded-full"
+              style={{ backgroundColor: "var(--theme-splash-muted)", opacity: 0.15 }}
             >
               <motion.div
-                className="w-8 h-[1px]"
-                style={{
-                  background:
-                    "linear-gradient(90deg, transparent, var(--theme-fg-dim), transparent)",
-                }}
-                animate={{
-                  scaleX: [0, 1, 0],
-                  opacity: [0, 1, 0],
-                }}
+                className="h-full w-full"
+                style={{ backgroundColor: "var(--theme-fg)" }}
+                initial={{ x: "-100%" }}
+                animate={{ x: "100%" }}
                 transition={{
-                  duration: 1.2,
+                  duration: 1.4,
                   repeat: Infinity,
-                  ease: "easeInOut",
+                  ease: [0.25, 0.1, 0.25, 1],
                 }}
               />
             </motion.div>
           </div>
-
-          {/* Corner accents */}
-          <motion.div
-            className="absolute top-8 left-8 w-8 h-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.2 }}
-            transition={{ delay: 0.8 }}
-          >
-            <div className="absolute top-0 left-0 w-full h-[1px]" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
-            <div className="absolute top-0 left-0 w-[1px] h-full" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
-          </motion.div>
-
-          <motion.div
-            className="absolute bottom-8 right-8 w-8 h-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.2 }}
-            transition={{ delay: 0.8 }}
-          >
-            <div className="absolute bottom-0 right-0 w-full h-[1px]" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
-            <div className="absolute bottom-0 right-0 w-[1px] h-full" style={{ backgroundColor: 'var(--theme-fg-dim)' }} />
-          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
