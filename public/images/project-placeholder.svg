@@ -1,7 +1,1 @@
-<svg width="1280" height="720" viewBox="0 0 1280 720" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="1280" height="720" fill="#111111"/>
-  <rect x="0.5" y="0.5" width="1279" height="719" stroke="white" stroke-opacity="0.08"/>
-  <circle cx="640" cy="320" r="60" stroke="white" stroke-opacity="0.15" stroke-width="2" fill="none"/>
-  <path d="M620 305 L665 330 L620 355 Z" fill="white" fill-opacity="0.2"/>
-  <text x="640" y="420" text-anchor="middle" fill="white" fill-opacity="0.3" font-family="Inter, sans-serif" font-size="18" font-weight="500">Preview Coming Soon</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" fill="none" viewBox="0 0 1280 720"><rect width="1280" height="720" fill="#111"/><rect width="1279" height="719" x=".5" y=".5" stroke="#fff" stroke-opacity=".08"/><circle cx="640" cy="320" r="60" fill="none" stroke="#fff" stroke-opacity=".15" stroke-width="2"/><path fill="#fff" fill-opacity=".2" d="M620 305 L665 330 L620 355 Z"/><text x="640" y="420" fill="#fff" fill-opacity=".3" font-family="Inter, sans-serif" font-size="18" font-weight="500" text-anchor="middle">Preview Coming Soon</text></svg>
